@@ -1,21 +1,25 @@
 ---
+import { getCollection, render } from 'astro:content';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { articles } from '../content/articles.js';
-export function getStaticPaths() {
- return articles.map(article => ({ params: { slug: article.slug }, props: { article } }));
+export async function getStaticPaths() {
+ const articles = await getCollection('articles');
+ return articles.map(article => ({ params: { slug: article.id }, props: { article } }));
 }
 const { article } = Astro.props;
-const published = new Intl.DateTimeFormat('es-MX', {dateStyle:'long', timeZone:'UTC'}).format(new Date(`${article.date}T12:00:00Z`));
+const { data } = article;
+const { Content } = await render(article);
+const isoDate = data.date.toISOString().slice(0, 10);
+const published = new Intl.DateTimeFormat('es-MX', {dateStyle:'long', timeZone:'UTC'}).format(data.date);
 ---
-<SiteLayout title={`${article.title} · Herminio Cultura`} description={article.description} section={article.section} bodyClass="reader-body" contentId="lectura">
+<SiteLayout title={`${data.title} · Herminio Cultura`} description={data.description} section={data.section} bodyClass="reader-body" contentId="lectura">
  <main class="reader" id="lectura">
-  <a class="back" href={`/${article.section}/`}>Volver a la sección</a>
+  <a class="back" href={`/${data.section}/`}>Volver a la sección</a>
   <article>
-   <h1>{article.title}</h1>
-   <div class="metadata"><span>{article.label}</span><time datetime={article.date}>{published}</time></div>
-   <p class="intro">{article.intro}</p>
-   <Fragment set:html={article.body}/>
+   <h1>{data.title}</h1>
+   <div class="metadata"><span>{data.label}</span><time datetime={isoDate}>{published}</time></div>
+   <p class="intro">{data.intro}</p>
+   <Content />
   </article>
  </main>
- <footer class="reader-footer"><a href={`/${article.section}/`}>Volver a {article.section}</a><p>Comisión de Cultura · Escuela Herminio Almendros</p></footer>
+ <footer class="reader-footer"><a href={`/${data.section}/`}>Volver a {data.section}</a><p>Comisión de Cultura · Escuela Herminio Almendros</p></footer>
 </SiteLayout>

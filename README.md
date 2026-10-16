@@ -48,7 +48,7 @@ La rama `main` está conectada al proyecto de Vercel. Publicar cambios en esa ra
 
 ## Contenidos
 
-Las publicaciones se editan en `src/content/articles.js`. Cada una tiene una dirección, sección, título, descripción, fecha y cuerpo. La cartelera y las reseñas muestran mensajes de próxima publicación mientras se reúne la selección de la comisión.
+Cada publicación es un archivo Markdown en `src/content/articles/<sección>/<slug>.md` (la dirección es `/<sección>/<slug>/`). El encabezado (frontmatter) lleva `section`, `label`, `title`, `description`, `intro` y `date`; el cuerpo se escribe en Markdown. El esquema está en `src/content.config.ts`. La cartelera y las reseñas muestran mensajes de próxima publicación mientras se reúne la selección de la comisión.
 
 La entrada conserva tres decorados y seis pasos, todos controlados por el scroll vertical nativo de la página. Cada decorado mantiene una pausa de lectura, desplaza sus dos paneles lateralmente y después sale hacia arriba. Las figuras y las capas se mueven con ese mismo avance. No se interceptan eventos de rueda o táctiles ni se usa un carrusel independiente. La preferencia de movimiento reducido presenta los seis paneles en flujo normal.
 

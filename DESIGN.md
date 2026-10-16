@@ -276,4 +276,4 @@ Jardín, ciudad y bosque nocturno tienen fondos, figuras y luces propios. Todos 
 
 ## Estructura de publicación
 
-El sitio usa Astro estático. Las páginas y los artículos están en `src/pages/`, los componentes compartidos en `src/components/`, las publicaciones en `src/content/articles.js` y el estilo global en `src/styles/global.css`. Las imágenes y fuentes se sirven desde `/assets/`. Los avisos de prueba se retiraron por instrucción del usuario.
+El sitio usa Astro estático. Las páginas y los artículos están en `src/pages/`, los componentes compartidos en `src/components/`, las publicaciones en archivos Markdown dentro de `src/content/articles/` y el estilo global en `src/styles/global.css`. Las imágenes y fuentes se sirven desde `/assets/`. Los avisos de prueba se retiraron por instrucción del usuario.
