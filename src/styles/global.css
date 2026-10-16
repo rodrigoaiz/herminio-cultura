@@ -27,3 +27,131 @@ html:has(body.motion-paused){scroll-behavior:auto}body.motion-paused .scene-copy
 .direction-help span{display:flex;align-items:center;gap:6px}.direction-help svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;flex:none}.direction-help span:first-child svg{transform:rotate(90deg)}
 
 .scene-garden{background:#ead9b2}.scene-town{background:#edc9b5}.scene-night{background:#29356b;color:#fff5db}
+
+/* Scroll theatre: the document advances every panel, then changes the set. */
+.scene-copy-track{display:block;height:auto;overflow:visible;scroll-snap-type:none}
+.intro-scene{height:auto;min-height:var(--stage-height)}
+.scene-panel{min-height:var(--stage-height);height:auto}
+.js-world:not(.theatre-static) .intro-scene{height:var(--stage-height)}
+.js-world:not(.theatre-static) .scene-copy-track{display:flex;height:100%;overflow:visible;will-change:transform}
+.js-world:not(.theatre-static) .scene-panel{height:100%;min-height:0}
+.js-world:not(.theatre-static) .sets-stack{will-change:transform}
+.puppet{transform-box:fill-box;transform-origin:50% 85%}
+.scroll-invitation{font-size:12px;margin:0}
+.theatre-progress{position:absolute;bottom:-12px;left:0;right:0;height:2px;background:#fff2d833}
+.theatre-progress span{display:block;width:100%;height:100%;background:#e3bc75;transform:scaleX(0);transform-origin:left}
+.js-world.theatre-static .stage-window{position:relative;height:auto;isolation:auto;overflow:visible}
+.theatre-static .theatre-past .stage-controls{display:none}
+.theatre-static .proscenium,.theatre-static .theatre-progress,.theatre-static .scroll-invitation,.theatre-static .scene-status,.theatre-static #chapter-progress{display:none}
+.theatre-static .stage-controls{position:fixed;left:auto;right:24px;bottom:24px;top:auto}
+.theatre-static .scene-panel{min-height:660px}
+.theatre-static .scene-world{opacity:.35}
+.theatre-static .intro-scene.scene-night .scene-world{opacity:1}
+.theatre-static .scene-visual{opacity:.45}
+.theatre-static .sheet-panel{justify-content:flex-start}
+/* Text surfaces retain only a trace of fibre; scenery keeps its cardboard. */
+.paper-surface,.stage-caption{background-image:linear-gradient(#fbf5e8eb,#fbf5e8eb),var(--paper-texture);background-blend-mode:normal}
+.culture-poster{background-image:linear-gradient(#e8c77ce8,#e8c77ce8),var(--paper-texture)}
+.reader-body{background-image:linear-gradient(#fbf5e8ed,#fbf5e8ed),var(--paper-texture);background-blend-mode:normal}
+.editorial-world:before{opacity:.035}
+.scene-world:after{opacity:.12}
+.copy p{padding:4px 0;background:linear-gradient(90deg,#ead9b2ee,#ead9b200)}
+.scene-town .copy p{background:linear-gradient(90deg,#edc9b5ee,#edc9b500)}
+.scene-night .copy p{background:linear-gradient(90deg,#29356bee,#29356b00)}
+/* Editorial destinations have their own page composition and URLs. */
+.section-main{padding-top:104px;min-height:75vh}
+.section-breadcrumb{max-width:1248px;padding:16px 48px;margin:auto;display:flex;gap:16px;font-size:12px}
+.section-main>.editorial-section{padding-top:48px}
+.section-heading h1,.books-copy h1{font-size:clamp(60px,6vw,88px);line-height:1;margin:0}
+.books-copy h1{margin-bottom:32px}
+.section-shelf h2{font-size:48px;line-height:1.1;margin:0 0 24px}
+.preview-heading{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:40px}
+.preview-heading h2{font-size:60px;line-height:1;margin:0}
+.preview-heading h3{font-size:36px;line-height:1.1;margin:0}
+.preview-heading .text-link{flex:none}
+.discovery-section .section-heading{margin-bottom:80px}
+.book-shelf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;padding-top:16px}
+.book-preview{min-width:0}
+.book-cover{position:relative;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:3/4;padding:32px 28px 24px 36px;text-decoration:none;box-shadow:5px 12px 18px #0002;transform:rotate(-3deg);transition:transform .4s var(--ease);isolation:isolate}
+.book-cover:before{content:'';position:absolute;inset:0;z-index:-1;opacity:.1;background-image:var(--paper-texture);background-size:400px}
+.book-cover:after{content:'';position:absolute;left:8px;top:0;bottom:0;width:6px;background:#00000018;box-shadow:2px 0 3px #0001}
+.book-preview:nth-child(2) .book-cover{transform:rotate(2deg)}
+.book-preview:nth-child(3) .book-cover{transform:rotate(-1deg)}
+.book-cover:hover{transform:translateY(-6px) rotate(0deg)!important}
+.cover-ochre{background:#e7bc62;color:#263b32}
+.cover-forest{background:#385b4c;color:#fff5db}
+.cover-clay{background:#a74432;color:#fff5db}
+.cover-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;line-height:1.05;font-weight:600;max-width:220px;text-wrap:balance}
+.book-cover .cover-drawing{width:65%;height:160px;max-height:160px;align-self:center;fill:currentColor;stroke:none}
+.cover-foot{font-size:11px;font-weight:600}
+.book-preview>p{font-size:12px;margin:24px 0 0;max-width:240px}
+.home-events{padding-top:32px}
+.event-preview-list{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.event-preview{display:flex;flex-direction:column;min-width:0}
+.event-illustration{height:224px;display:grid;place-items:center;background:#dce3d3}
+.event-theatre .event-illustration{background:#e9c9b6}
+.event-illustration svg{height:85%;max-width:100%;filter:drop-shadow(4px 8px 4px #0002)}
+.event-copy{padding-top:24px}
+.event-copy h3{font-size:36px;line-height:1.1;margin:0 0 16px}
+.event-copy p{margin:16px 0 24px;font-size:14px;max-width:400px}
+.community-note{max-width:1152px;margin:0 auto 96px;padding:48px;background:#e3e8dc;display:grid;grid-template-columns:1fr 2fr;align-items:center;gap:80px}
+.community-note>img{width:100%;height:auto;max-width:220px}
+.community-note h2{font-size:48px;line-height:1;margin:0 0 24px}
+.community-note p{font-size:16px;max-width:480px}
+.school-signature{display:block;flex:none}
+.school-signature img{display:block;width:176px;height:auto}
+.site-footer nav{gap:24px;flex-wrap:wrap}
+.site-footer nav a{font-size:12px}
+.site-footer nav a:hover{color:#e3bc75;border-bottom-color:#e3bc75}
+@media(max-width:1100px){.book-shelf{gap:32px}.cover-title{font-size:30px}.book-cover{padding:24px}.community-note{margin-left:40px;margin-right:40px;gap:48px}.preview-heading h3{font-size:30px}}
+@media(max-width:700px){
+ .scroll-invitation{position:absolute;bottom:48px;font-size:11px;left:0}
+ .stage-controls{bottom:24px;flex-wrap:nowrap}
+ .scene-status{max-width:none}
+ .scene-panel{padding-top:136px}
+ .copy h1,.copy h2{font-size:48px;max-width:300px;margin-bottom:16px}
+ .copy p{max-width:280px;margin-bottom:16px}
+ .scene-visual{bottom:7%;height:43%}
+ .sheet-panel{padding:128px 12vw 112px}
+ .intro-sheet{padding:24px}
+ .intro-sheet h2{font-size:36px}
+ .intro-sheet p{font-size:14px;line-height:1.6}
+ .section-main{padding-top:88px}
+ .section-breadcrumb{padding:16px 24px}
+ .section-heading h1,.books-copy h1{font-size:60px;margin-bottom:24px}
+ .preview-heading{display:block;margin-bottom:32px}
+ .preview-heading h2{font-size:48px;margin-bottom:24px}
+ .preview-heading h3{font-size:30px;margin-bottom:24px}
+ .discovery-section .section-heading{margin-bottom:48px}
+ .book-shelf{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px}
+ .book-preview:last-child{display:none}
+ .libros-page .book-preview:last-child{display:block}
+ .book-cover{padding:20px 16px 16px 24px;min-height:232px}
+ .cover-title{font-size:24px}
+ .book-cover .cover-drawing{height:80px;max-height:80px;width:80%}
+ .cover-foot{font-size:11px;line-height:1.35}
+ .book-preview>p{font-size:12px;margin-top:24px}
+ .event-preview-list{grid-template-columns:1fr;gap:40px}
+ .event-illustration{height:192px}
+ .event-copy h3{font-size:30px}
+ .community-note{margin:0 24px 64px;padding:32px 24px;grid-template-columns:1fr;gap:32px}
+ .community-note>img{max-width:144px}
+ .community-note h2{font-size:36px}
+ .community-note p{font-size:14px}
+ .school-signature img{width:152px}
+ .site-footer>div{flex:1;order:0}
+ .site-footer nav{width:100%;justify-content:space-between}
+ .section-shelf h2{font-size:36px}
+}
+@media(max-height:720px){
+ .js-world:not(.theatre-static) .scene-panel{padding-top:112px;padding-bottom:96px}
+ .copy h1,.copy h2{font-size:48px}
+ .copy p{font-size:12px;line-height:1.6}
+ .intro-sheet h2{font-size:36px;margin-bottom:16px}
+ .intro-sheet p{font-size:12px;margin-bottom:12px}
+ .simple-list{font-size:18px;margin-bottom:12px}
+ .simple-list li{padding:4px 0}
+}
+@media(prefers-reduced-motion:reduce){.book-cover:hover{transform:none!important}}
+
+#descubrir{scroll-margin-top:80px}.books-art-panel>span{background:#fbf5e8ed;padding:8px 12px;left:20px;right:20px;width:fit-content}

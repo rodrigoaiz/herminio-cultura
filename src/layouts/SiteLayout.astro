@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import Header from '../components/Header.astro';
-const { title, description, home = false, section = '', bodyClass = '' } = Astro.props;
+const { title, description, home = false, section = '', bodyClass = '', contentId = 'contenido' } = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
@@ -14,7 +14,7 @@ const { title, description, home = false, section = '', bodyClass = '' } = Astro
   <link rel="preload" href="/assets/cormorant-garamond.ttf" as="font" type="font/ttf" crossorigin/>
  </head>
  <body class={bodyClass}>
-  <a class="skip" href={home ? '#cartelera' : '#lectura'}>Saltar al contenido</a>
+  <a class="skip" href={home ? '#descubrir' : `#${contentId}`}>Saltar al contenido</a>
   <Header home={home} section={section}/>
   <slot/>
  </body>

@@ -1,0 +1,21 @@
+---
+const books = [
+ { title: 'Una historia por descubrir', note: 'Próxima reseña del alumnado', color: 'ochre', motif: 'sun' },
+ { title: 'Un libro para compartir', note: 'Próxima lectura de personas adultas', color: 'forest', motif: 'leaf' },
+ { title: 'Preguntas entre páginas', note: 'Próxima conversación en comunidad', color: 'clay', motif: 'window' },
+];
+---
+<div class="book-shelf">
+ {books.map(book => <article class="book-preview">
+  <a class={`book-cover cover-${book.color}`} href="/libros/lecturas-de-la-comunidad/" aria-label={`${book.title}. ${book.note}`}>
+   <span class="cover-title">{book.title}</span>
+   <svg class="cover-drawing" viewBox="0 0 160 160" aria-hidden="true">
+    {book.motif === 'sun' && <><circle cx="80" cy="80" r="32"/><path d="M80 18v16m0 92v16M18 80h16m92 0h16M36 36l12 12m64 64 12 12M36 124l12-12m64-64 12-12" fill="none" stroke="currentColor" stroke-width="3"/></>}
+    {book.motif === 'leaf' && <><path d="M80 135V36" fill="none" stroke="currentColor" stroke-width="3"/><path d="M80 98Q20 93 26 44q52 3 54 54M80 78q57-2 55-50-52 7-55 50"/></>}
+    {book.motif === 'window' && <><path d="M32 133V68a48 48 0 0 1 96 0v65Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M80 22v111M32 80h96" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="104" cy="58" r="12"/></>}
+   </svg>
+   <span class="cover-foot">Lecturas de la comunidad</span>
+  </a>
+  <p>{book.note}</p>
+ </article>)}
+</div>

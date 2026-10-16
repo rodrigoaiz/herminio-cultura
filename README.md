@@ -24,14 +24,15 @@ Astro genera páginas estáticas en `dist/`. El contenido de los artículos se i
 
 ```text
 src/
-  components/   Cabecera, pie y filtros de papel
+  components/   Cabecera, pie, avances de libros y eventos, filtros de papel
   content/      Publicaciones y metadatos editables
   layouts/      Estructura compartida de las páginas
-  pages/        Inicio, artículos y página 404
+  pages/        Inicio, cartelera, libros, boletines, artículos y página 404
   scripts/      Interacciones de la entrada teatral
   styles/       Tipografía, materiales y estilos
 public/
   assets/       Imágenes, fuentes y licencias
+  logos/        Logos PNG aportados por la escuela
   robots.txt
 astro.config.mjs
 package.json
@@ -49,6 +50,8 @@ La rama `main` está conectada al proyecto de Vercel. Publicar cambios en esa ra
 
 Las publicaciones se editan en `src/content/articles.js`. Cada una tiene una dirección, sección, título, descripción, fecha y cuerpo. La cartelera y las reseñas muestran mensajes de próxima publicación mientras se reúne la selección de la comisión.
 
-La entrada conserva tres decorados, con avance vertical entre escenas y contenido horizontal independiente. Los accesorios de Muertos se activan automáticamente del 20 de octubre al 3 de noviembre, según la fecha de Ciudad de México.
+La entrada conserva tres decorados y seis pasos, todos controlados por el scroll vertical nativo de la página. Cada decorado mantiene una pausa de lectura, desplaza sus dos paneles lateralmente y después sale hacia arriba. Las figuras y las capas se mueven con ese mismo avance. No se interceptan eventos de rueda o táctiles ni se usa un carrusel independiente. La preferencia de movimiento reducido presenta los seis paneles en flujo normal.
+
+Las secciones tienen sus propias páginas `/cartelera/`, `/libros/` y `/boletines/`, con `SectionLayout.astro` compartido y composición propia. El inicio sólo muestra avances después del teatro. Los libros y planes provisionales se editan en `BookShelf.astro` y `EventPreview.astro`; no representan publicaciones confirmadas. Los accesorios de Muertos se activan automáticamente del 20 de octubre al 3 de noviembre, según la fecha de Ciudad de México.
 
 El archivo fotográfico `fotos/` permanece fuera de Git y del despliegue. Las licencias de las fuentes se encuentran en `public/assets/` y la procedencia de los materiales en `docs/assets/`.

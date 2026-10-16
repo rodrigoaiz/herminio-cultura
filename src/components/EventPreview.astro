@@ -1,0 +1,14 @@
+---
+const ideas = [
+ { type: 'Arte', title: 'Una mañana en el museo', text: 'Mirar de cerca, hacer preguntas y encontrar algo inesperado.', theme: 'museum' },
+ { type: 'En escena', title: 'Una historia sobre el escenario', text: 'Un encuentro con el teatro para compartir en familia.', theme: 'theatre' },
+];
+---
+<div class="event-preview-list">
+ {ideas.map(idea => <article class={`event-preview event-${idea.theme}`}>
+  <div class="event-illustration" aria-hidden="true"><svg viewBox="0 0 240 160">
+   {idea.theme === 'museum' ? <><path d="m30 45 90-38 90 38Z" fill="#a74432"/><path d="M36 54h168v10H36ZM24 134h192v14H24Z" fill="#263b32"/><path d="M49 67h20v65H49Zm40 0h20v65H89Zm42 0h20v65h-20Zm40 0h20v65h-20Z" fill="#fbf5e8"/></> : <><path d="M28 15h184v132H28Z" fill="#263b32"/><path d="M28 15h77q-5 60-77 80Zm184 0h-77q5 60 77 80Z" fill="#a74432"/><path d="M25 146h190" stroke="#fbf5e8" stroke-width="8"/><path d="m120 47 8 17 19 3-14 13 3 20-16-10-17 10 4-20-14-13 19-3Z" fill="#eab64f"/></>}
+  </svg></div>
+  <div class="event-copy"><h3>{idea.title}</h3><div class="metadata"><span>{idea.type}</span><span>Fecha y sede por confirmar</span></div><p>{idea.text}</p><a class="text-link" href="/cartelera/octubre-2026/">Consultar la próxima selección <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+ </article>)}
+</div>

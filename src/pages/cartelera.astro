@@ -1,0 +1,11 @@
+---
+import SectionLayout from '../layouts/SectionLayout.astro';
+import EventPreview from '../components/EventPreview.astro';
+---
+<SectionLayout title="Cartelera" description="Recomendaciones mensuales para salir, mirar y descubrir en familia." section="cartelera">
+ <section class="editorial-section cartelera-section" id="cartelera">
+  <div class="section-heading"><h1>Afuera hay<br>todo un <em>mundo.</em></h1><div><p>La cartelera de la comisión: recomendaciones mensuales para salir, mirar y descubrir en familia.</p><div class="metadata"><span>Cartelera mensual</span><time datetime="2026-10">Octubre de 2026</time></div></div></div>
+  <div class="cartelera-layout"><a class="culture-poster paper-surface" href="/cartelera/octubre-2026/"><div class="poster-copy"><h3>Un mes<br>para <em>descubrir.</em></h3><span>La primera selección está por llegar</span></div><div class="editorial-art poster-art" data-art="1" aria-hidden="true"></div><span class="poster-bottom">Abrir la cartelera <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></a><div class="cartelera-notes"><h3>El próximo plan<br>puede empezar aquí.</h3><p>Un lugar para reunir propuestas culturales, con sus fechas, sedes y detalles para elegir juntos.</p><ul class="program-list"><li><span>Arte para mirar</span><span>Exposiciones y museos</span></li><li><span>Historias en escena</span><span>Teatro y narración</span></li><li><span>Salir a descubrir</span><span>Paseos en familia</span></li></ul><p class="editorial-note">Pronto compartiremos la selección de actividades de este mes.</p></div></div>
+ </section>
+<div class="editorial-section section-shelf"><h2>Ideas para la próxima salida</h2><EventPreview /></div>
+</SectionLayout>

@@ -1,0 +1,15 @@
+---
+import SiteLayout from './SiteLayout.astro';
+import PaperFilters from '../components/PaperFilters.astro';
+import Footer from '../components/Footer.astro';
+const { title, description, section } = Astro.props;
+---
+<SiteLayout title={`${title} · Herminio Cultura`} description={description} section={section} bodyClass={`section-page ${section}-page`}>
+ <PaperFilters />
+ <main class="editorial-world section-main" id="contenido">
+  <div class="section-breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><span>{title}</span></div>
+  <slot />
+ </main>
+ <Footer />
+ <script>import { mountPaperArt } from '../scripts/paper-art.js'; mountPaperArt();</script>
+</SiteLayout>

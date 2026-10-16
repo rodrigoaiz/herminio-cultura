@@ -1,6 +1,6 @@
 ---
-name: "Herminio · Teatro de papel (revisión 4)"
-description: "Entrada teatral con ejes nativos separados y sitio editorial fuera del telón; revisión v4 con ship en alcance de sitio."
+name: "Herminio · Teatro de papel (revisión 5)"
+description: "Teatro conducido por scroll vertical nativo, vistas previas en inicio y páginas editoriales independientes."
 colors:
   paper: "#fbf5e8"
   ink: "#263b32"
@@ -12,6 +12,8 @@ colors:
   ink-hover: "#3c5646"
   theatre-label: "#fff2d8"
   books-sage: "#dce3d3"
+  cover-ochre: "#e7bc62"
+  cover-forest: "#385b4c"
   bulletin-paper: "#eed7c6"
   night-copy: "#fff5db"
   night-emphasis: "#efd38b"
@@ -25,7 +27,7 @@ typography:
     letterSpacing: "-0.035em"
   headline:
     fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "72px"
+    fontSize: "clamp(60px, 6vw, 88px)"
     fontWeight: 600
     lineHeight: 1
     letterSpacing: "-0.035em"
@@ -35,6 +37,11 @@ typography:
     fontWeight: 600
     lineHeight: 1.1
     letterSpacing: "-0.035em"
+  cover-title:
+    fontFamily: "Cormorant Garamond, Georgia, serif"
+    fontSize: "36px"
+    fontWeight: 600
+    lineHeight: 1.05
   reader-headline:
     fontFamily: "Cormorant Garamond, Georgia, serif"
     fontSize: "64px"
@@ -115,27 +122,28 @@ components:
     padding: "48px"
 ---
 
-# Design System: Herminio · Teatro de papel · revisión 4
+# Design System: Herminio · Teatro de papel · revisión 5
 
 ## Overview
 
 **Creative North Star: "Teatro de papel"**
 
-La revisión 4 limita el teatro a la entrada. El usuario conserva la identidad de papel y cartón, pero reemplaza la arquitectura anterior: bajar cambia escenografías completas y desplazarse horizontalmente cambia el contenido dentro de la misma escenografía. Cartelera, libros, boletines y artículos se leen después, fuera del cortinaje. Esta instrucción sustituye las reglas incompatibles de v2 y v3. La revisión v4 obtuvo `ship` en el alcance de este sitio; el único ajuste de contraste de la leyenda nocturna quedó resuelto. Este resultado no aprueba una identidad final ni una implementación de producción.
-
+La revisión 5 conserva el teatro de papel en la entrada y usa el desplazamiento vertical nativo del documento para conducir todos sus pasos: primero viaja el contenido horizontalmente y después cambia la escenografía completa. Figuras y capas entran, se desplazan y salen durante ese recorrido. Al terminar, el inicio ofrece vistas previas de libros y actividades y una invitación a los boletines; Cartelera, Libros y Boletines tienen páginas propias. Esta instrucción del usuario sustituye el carrusel horizontal independiente de v4, sin reemplazar la identidad elegida. El `ship` de v4 queda como antecedente histórico del sitio, no como aprobación de esta revisión.
 Las figuras SVG originales, la fibra de papel y el telón raster mantienen un mundo gráfico común. Cormorant Garamond da carácter cultural a los títulos y Manrope sostiene la lectura. Una cabecera delgada de vidrio translúcido, pedida expresamente por el usuario, permite acceder directamente a los contenidos. La noche es una escenografía azul completa con texto claro, no una transformación global del sitio.
 
 **Key Characteristics:**
 
 - Teatro sólo en la entrada; contenido editorial convencional fuera del telón.
 - Tres decorados completos: jardín, ciudad y bosque nocturno.
-- Eje vertical para escenografía; eje horizontal nativo para ideas de cada decorado.
+- Un scroll vertical nativo conduce seis pasos, movimiento horizontal y cambios verticales de decorado.
+- Vistas previas con disponibilidad explícita y páginas editoriales independientes.
+- Logos escolares originales como firma comunitaria y de pie de página.
 - Cabecera translúcida de 48px y navegación directa por enlaces.
 - Papel texturado, figuras originales y pareja Cormorant Garamond / Manrope.
 
 ## Colors
 
-Papel crema y tinta verde conectan las piezas escénicas con las secciones editoriales. Los tokens registran la implementación v4; los colores literales de cada ilustración y degradado siguen siendo material local de escena.
+Papel crema y tinta verde conectan las piezas escénicas con las secciones editoriales. Los tokens registran la implementación v5; los colores literales de cada ilustración y degradado siguen siendo material local de escena.
 
 ### Primary
 - **Coral teatral** (`coral`): énfasis serif, navegación activa y hover de enlaces.
@@ -144,6 +152,7 @@ Papel crema y tinta verde conectan las piezas escénicas con las secciones edito
 ### Secondary
 - **Salvia editorial** (`books-sage`): fondo de la sección de libros.
 - **Papel rosado** (`bulletin-paper`): publicación destacada de boletines.
+- **Ocre de cubierta** (`cover-ochre`) y **verde de cubierta** (`cover-forest`): tapas del estante compartido entre inicio y Libros. La tercera tapa reutiliza coral; las dos tapas oscuras usan papel nocturno para sus títulos.
 - **Amarillo de papel** (`yellow`): selección de texto.
 - **Azul de foco** (`blue`): contorno de foco.
 
@@ -165,27 +174,29 @@ Los tres cielos y sus degradados forman parte de decorados completos, sin un est
 
 ### Hierarchy
 - **Display:** titulares de los decorados de entrada, con interlineado (1).
-- **Headline:** títulos principales de cartelera, libros y boletines.
+- **Headline:** títulos principales de las páginas Cartelera, Libros y Boletines.
+- **Cover title:** títulos de cubiertas; pasan a (30px) hasta (1100px) y a (24px) hasta (700px).
 - **Title:** título de publicación destacada; títulos auxiliares comparten esta familia y escala con variaciones locales.
 - **Reader headline / Reader title:** título y subtítulos del artículo.
 - **Body / Scene body / Reader intro:** texto general, presentación escénica y entradilla de artículo.
 - **Label:** navegación y enlaces de vuelta; el enlace principal usa (14px), peso (700).
 
-Los titulares escénicos pasan a (72px) hasta (1100px), a (60px) hasta (700px), y a (48px) hasta (370px). En escritorio bajo, hasta (700px) de altura y desde (701px) de ancho, quedan en (60px). Los titulares editoriales pasan de (72px) a (60px) hasta (1100px), y a (48px) hasta (370px). La lectura pasa de (64px) a (48px) hasta (700px) y a (36px) hasta (370px).
-
+Los titulares escénicos pasan a (72px) hasta (1100px) de ancho y a (48px) hasta (700px), también a (48px) cuando la altura disponible no supera (720px). Las hojas de segundo panel pasan a (36px) en móvil o altura reducida. Los títulos de páginas editoriales pasan a (60px) en móvil; los títulos de sección del inicio parten de (72px), pasan a (60px) y llegan a (48px) hasta (370px). Los títulos de eventos pasan de (36px) a (30px) en móvil. La lectura pasa de (64px) a (48px) hasta (700px) y a (36px) hasta (370px).
 Metadatos editoriales se mantienen en (12px). Los apoyos móviles, la marca pequeña y la navegación estrecha que antes eran menores usan ahora (11px). Se registra el valor real, pero **no se canoniza como mínimo universal de legibilidad**.
 
 **The Two Voices Rule.** Los títulos culturales usan Cormorant Garamond; párrafos, navegación y controles usan Manrope.
 
 ## Layout
 
-La cabecera es fija, mide (48px), está a (12px) del borde superior y tiene márgenes laterales (24px), ancho máximo (1392px) y relleno (8px 24px). Hasta (700px) queda a (8px) de los bordes con relleno (8px 12px) y radio menor. Sus enlaces llevan directamente a las secciones fuera del teatro.
+La cabecera es fija, mide (48px), está a (12px) del borde superior y tiene márgenes laterales (24px), ancho máximo (1392px) y relleno (8px 24px). Hasta (700px) queda a (8px) de los bordes con relleno (8px 12px) y radio menor. Sus enlaces llevan directamente a `/cartelera/`, `/libros/` y `/boletines/`; el acceso del inicio a `#descubrir` permite saltar la entrada.
 
-La entrada contiene tres decorados de una altura escénica cada uno, en una pila vertical continua dentro de un viewport sticky de (100svh). El tramo de documento dura (3.5) alturas de viewport: (2.5) de recorrido y una ventana adicional. Cada transición entre decorados dedica un tramo inicial de reposo y después interpola la posición de la pila. El telón es absoluto dentro de ese viewport, con z-index (60); la cabecera tiene (80) y los controles de entrada (65).
+La entrada contiene tres decorados de dos paneles cada uno dentro de un viewport sticky de (100svh). El scroll vertical nativo es el reloj de toda la coreografía. El motor usa un paso por decorado de (2.8) alturas escénicas, un recorrido de (7.6) alturas y una ventana adicional: la entrada ocupa (8.6) alturas. En cada decorado, el viaje horizontal empieza en (0.4) y dura (1.05) alturas; el cambio vertical al siguiente decorado ocurre de (2.0) a (2.8). El último decorado termina después de sus dos paneles. El telón es absoluto dentro de ese viewport, con z-index (60); la cabecera tiene (80) y los controles de entrada (65).
 
-Cada decorado tiene un carrusel horizontal independiente de dos paneles. Usa `overflow-x:auto`, `scroll-snap-type:x mandatory` y paneles de ancho (100%). El avance horizontal funciona con swipe, trackpad, botones y flechas del teclado. El scroll vertical sigue siendo nativo; el motor no intercepta wheel ni touch y no reescribe el hash.
+Las pistas horizontales son capas transformadas por ese reloj, sin carrusel nativo independiente, swipe lateral obligatorio ni scroll-snap activo. El motor escucha scroll de forma pasiva y no cancela wheel ni touch. Un `requestAnimationFrame` bajo demanda pinta los cambios; `ResizeObserver` mide el escenario y la altura `svh` mantiene estable el recorrido ante la barra del navegador móvil. El motor no reescribe el hash.
 
-Después de la entrada, cartelera, libros y boletines vuelven al flujo vertical convencional. La sección base tiene ancho máximo (1248px) y relleno (96px 48px). Las composiciones de escritorio usan dos columnas, con separaciones de (64px) u (80px). Hasta (1100px) el relleno es (80px 40px); hasta (700px), (64px 24px), con columnas apiladas. La lectura independiente usa ancho máximo (864px), margen superior (128px) y relleno (48px 64px); en móvil ocupa el ancho menos (32px), con relleno (32px 24px).
+Después de la entrada, el inicio ofrece el estante de libros, dos ideas de actividades y la firma comunitaria con enlace a boletines. La sección base tiene ancho máximo (1248px) y relleno (96px 48px); hasta (1100px), (80px 40px); hasta (700px), (64px 24px). El estante usa tres columnas con separación (48px), después (32px), y dos columnas móviles con separación (40px 24px). El inicio muestra dos cubiertas en móvil; la página Libros conserva las tres. Los eventos usan dos columnas y se apilan hasta (700px).
+
+Cartelera, Libros y Boletines usan páginas y enlaces propios, con ruta de regreso a Inicio y cabecera compartida. Su contenido empieza con separación superior (104px), reducida a (88px) en móvil. Las composiciones editoriales de escritorio usan dos columnas, con separaciones de (64px) u (80px), y se apilan en móvil. La lectura independiente usa ancho máximo (864px), margen superior (128px) y relleno (48px 64px); en móvil ocupa el ancho menos (32px), con relleno (32px 24px).
 
 ## Elevation & Depth
 
@@ -198,16 +209,19 @@ Las capas de cartón usan sombras negras suaves y fibra recortada a sus siluetas
 - **Cortina:** `drop-shadow(6px 12px 10px #0005)`, junto con brillo que acompaña el decorado nocturno.
 - **Cabecera:** `0 4px 16px #00000014`, con vidrio translúcido y desenfoque de fondo (16px).
 - **Artículo:** `4px 12px 32px #00000012`.
+- **Cubierta de libro:** `5px 12px 18px #0002`.
 
 **The Intro Boundary Rule.** El telón pertenece únicamente al viewport de la entrada y sale del documento con ella. Las secciones editoriales y los artículos no llevan cortinaje.
 
-**The Two Axes Rule.** El scroll vertical desplaza la pila de decorados completos; el scroll horizontal cambia paneles dentro de un mismo decorado. No se convierte el avance vertical en desplazamiento horizontal.
+**The Native Scroll Rule.** El desplazamiento vertical nativo conduce el contenido horizontal, las figuras y el cambio vertical de decorados. La animación sigue la posición del documento sin capturar wheel ni touch.
 
-La pausa o la preferencia de movimiento reducido redondean la posición vertical a un decorado completo y hacen instantáneo el avance horizontal por controles. El modo reducido elimina transiciones CSS y desplazamientos de hover. La selección de decorado y panel usa `inert` para evitar que elementos fuera de la escena activa reciban interacción. No hay fundido manual de luz ni temporizador de (1400ms) en v4.
+La pausa o la preferencia de movimiento reducido colocan los seis paneles en el flujo natural del documento, retiran el telón y la progresión animada y hacen accesible todo el contenido, sin `inert`. Al cambiar de modo se conserva el panel de lectura; fuera de la entrada se conserva la distancia respecto a su final. El control permanece disponible mientras se recorre la entrada en modo lineal, se oculta al salir de ella y se deshabilita cuando la preferencia del dispositivo exige movimiento reducido. En modo animado, `inert` limita la interacción al panel activo y el foco sale de un panel que se retira antes de desactivarlo. El modo reducido elimina transiciones CSS y desplazamientos de hover.
+
+La textura de lectura se atenúa mediante una capa crema (`#fbf5e8eb`) sobre la fibra; el fondo de artículo usa (`#fbf5e8ed`). La fibra del conjunto escénico queda en opacidad (.12) y la del mundo editorial en (.035). Los recortables mantienen su material y las cubiertas usan una capa de fibra propia en (.1).
 
 ## Shapes
 
-El telón raster de borde a borde conserva su transparencia real y encuadra sólo la entrada. Las figuras son SVG originales simples y coloridas; la textura se aplica mediante filtro y mezcla multiply. La continuidad con el sitio editorial se logra reutilizando esas ilustraciones en un cartel y en el panel de libros.
+El telón raster de borde a borde conserva su transparencia real y encuadra sólo la entrada. Las figuras son SVG originales simples y coloridas; la textura se aplica mediante filtro y mezcla multiply. La continuidad con el sitio editorial se logra reutilizando esas ilustraciones en un cartel y en el panel de libros, además de motivos SVG originales en cubiertas y actividades.
 
 La cabecera tiene esquinas suaves mayores; los enlaces y controles, radios pequeños regulares. Las hojas y los módulos editoriales conservan esquinas rectas. El cartel cultural gira ligeramente en reposo y se endereza en hover, mientras que el libro y el boletín se presentan como piezas editoriales, sin copiar la composición del teatro.
 
@@ -219,7 +233,7 @@ Los materiales conservados son `public/assets/curtain-frame-v2.webp` y `public/a
 
 El enlace principal usa tinta y papel, relleno compacto, radio regular y flecha SVG. Sube (2px) en hover y baja (1px) en pulsación, con transición (0.35s). En la primera lámina del bosque nocturno invierte el contraste según su variante del frontmatter. El enlace de texto usa subrayado fino y flecha SVG (24px), con hover coral. El foco global es azul (3px), separado del elemento (5px).
 
-Las ayudas «Baja: escenario» y «Desliza: contenido» distinguen los ejes. Los botones escénicos son cuadrados de (44px), con fondo marrón translúcido y borde crema. Las flechas anterior y siguiente se deshabilitan en los límites de cada carrusel; el contador anuncia el panel actual. El control de movimiento usa `aria-pressed` y queda deshabilitado si el dispositivo exige movimiento reducido. Estos controles desaparecen al salir de la entrada.
+La invitación «Sigue bajando para recorrer el teatro», el contador de seis pasos y la barra de progreso explican el recorrido. El único botón escénico controla el movimiento; mide (44px), usa fondo marrón translúcido, borde crema y `aria-pressed`. No existen flechas anterior/siguiente de carrusel. El control queda deshabilitado si el dispositivo exige movimiento reducido; en lectura lineal permanece fijo durante la entrada para permitir reactivar el recorrido y se oculta al dejarla atrás.
 
 ### Metadata
 
@@ -227,23 +241,27 @@ Las notas editoriales usan la misma tinta del cuerpo. Tipo y fecha se muestran c
 
 ### Cards / Containers
 
-La cartelera se presenta como un cartel ilustrado con banda inferior oscura y texto de acción. Libros combina una ilustración de papel con dos enlaces a reseñas del alumnado y de personas adultas. El boletín destacado usa una superficie rosada de dos columnas, apilada en móvil. El artículo usa una hoja crema y metadatos de publicación. Estos patrones editoriales están fuera del cortinaje.
+La cartelera se presenta como un cartel ilustrado con banda inferior oscura y texto de acción. Libros combina una ilustración de papel con dos enlaces a reseñas del alumnado y de personas adultas. El boletín destacado usa una superficie rosada de dos columnas, apilada en móvil. El artículo usa una hoja crema y metadatos de publicación. Estos patrones editoriales están fuera del cortinaje. El estante comparte cubiertas de proporción (3/4), tres colores de papel, lomo sugerido y motivos SVG. Sus títulos son ideas de próximas reseñas, acompañadas por su estado de disponibilidad. Las actividades distinguen «Fecha y sede por confirmar». No deben presentarse como libros reales ya reseñados ni eventos confirmados.
 
 ### Navigation
 
-La cabecera de vidrio usa fondo crema translúcido, borde claro y `backdrop-filter: blur(16px) saturate(1.2)`. No es una regla para volver translúcidos los demás módulos: es un tratamiento de cabecera expresamente pedido por el usuario. Navegación activa y hover usan coral y una línea inferior. Los enlaces son anclas nativas; el indicador de sección usa observación de intersección sin sustituir la URL. La lectura independiente conserva esta cabecera y un enlace de regreso a su sección, sin telón.
+La cabecera de vidrio usa fondo crema translúcido, borde claro y `backdrop-filter: blur(16px) saturate(1.2)`. No es una regla para volver translúcidos los demás módulos: es un tratamiento de cabecera expresamente pedido por el usuario. Navegación activa y hover usan coral y una línea inferior. Los enlaces son nativos a páginas independientes; la página activa se declara con `aria-current="page"`. La lectura independiente conserva esta cabecera y un enlace de regreso a su sección, sin telón.
+
+### Community Signature
+
+Los PNG originales de la Escuela Herminio Almendros, aportados por Rodrigo y conservados con metadatos de procedencia y píxeles originales, se usan sin redibujar: versión negra en el cierre comunitario claro del inicio y blanca en el pie verde de las páginas. Conservan proporción (1584/830). La firma del pie mide (176px) de ancho en escritorio y (152px) en móvil; la firma comunitaria tiene máximo (220px), reducido a (144px) en móvil. El pie incluye enlaces a las tres páginas editoriales.
 
 ### Intro Scenes
 
-Jardín, ciudad y bosque nocturno tienen fondos, figuras y luces propios. El carrusel de cada decorado conserva su posición horizontal al cambiar de escena. Las capas son decorativas; texto y enlaces son HTML. Si falla el script, las escenas quedan en flujo y se ocultan marco y controles escénicos. Los accesorios de temporada siguen la fecha de Ciudad de México: la ventana de Muertos es del (20 de octubre) al (3 de noviembre), sin selector para visitantes. Navidad, Niñez y Cultura siguen pendientes.
+Jardín, ciudad y bosque nocturno tienen fondos, figuras y luces propios. Todos los desplazamientos se calculan de forma determinista desde la posición vertical y se revierten al subir; figuras y planos tienen entradas, desplazamientos y salidas diferenciadas. Las capas son decorativas; texto y enlaces son HTML. Si falla el script, las escenas quedan en flujo y se ocultan marco y controles escénicos. Los accesorios de temporada siguen la fecha de Ciudad de México: la ventana de Muertos es del (20 de octubre) al (3 de noviembre), sin selector para visitantes. Navidad, Niñez y Cultura siguen pendientes.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** limitar el marco y los controles escénicos a la entrada.
-- **Do** conservar la separación entre bajar para cambiar decorado y deslizar para cambiar idea.
-- **Do** mantener enlaces nativos a secciones y artículos, con URL e historial del navegador.
+- **Do** limitar el marco y la coreografía a la entrada y mantener accesible el control de movimiento en el modo lineal.
+- **Do** conducir todos los pasos teatrales desde el scroll vertical nativo, con viajes horizontales y cambios verticales de decorado.
+- **Do** mantener enlaces nativos a páginas editoriales y artículos, con URL e historial del navegador.
 - **Do** compartir ilustraciones, fibra y tipografía entre la entrada y el sitio editorial.
 - **Do** mantener la cabecera translúcida delgada solicitada, con contenido interior separado de sus bordes.
 - **Do** respetar movimiento reducido y mostrar estados de próxima publicación cuando todavía no hay recomendaciones.
@@ -252,9 +270,9 @@ Jardín, ciudad y bosque nocturno tienen fondos, figuras y luces propios. El car
 
 - **Don't** extender el telón a cartelera, libros, boletines ni lectura independiente.
 - **Don't** reintroducir selectores de decorado o iluminación ni el foco cálido global de v3.
-- **Don't** interceptar wheel o touch para convertir scroll vertical en avance horizontal.
+- **Don't** cancelar wheel o touch ni exigir un carrusel horizontal independiente para completar el recorrido.
 - **Don't** convertir los rótulos de 11px del sitio en mínimos de lectura del sistema.
-- **Don't** interpretar el ship de v4 en alcance de sitio como aprobación de identidad final o preparación para producción.
+- **Don't** presentar las próximas reseñas o ideas de actividades como publicaciones o eventos ya confirmados.
 
 ## Estructura de publicación
 

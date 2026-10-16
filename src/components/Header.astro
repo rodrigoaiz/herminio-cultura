@@ -1,10 +1,9 @@
 ---
 const { home = false, section = '' } = Astro.props;
-const prefix = home ? '' : '/';
 const sections = [['cartelera','Cartelera'],['libros','Libros'],['boletines','Boletines']];
 ---
 <header class="site-header">
- <a class="brand" href={`${prefix}#bienvenida`} aria-label="Herminio Cultura, inicio"><img src="/assets/flor.svg" alt="" width="32" height="32"/><span>Herminio<span class="brand-small">Comisión de Cultura</span></span></a>
- <nav aria-label="Secciones">{sections.map(([id,label]) => <a href={`${prefix}#${id}`} aria-current={section === id ? 'location' : undefined}>{label}</a>)}</nav>
- {home && <a class="header-shortcut" href="#cartelera">Explorar la cultura <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>}
+ <a class="brand" href="/" aria-label="Herminio Cultura, inicio"><img src="/assets/flor.svg" alt="" width="32" height="32"/><span>Herminio<span class="brand-small">Comisión de Cultura</span></span></a>
+ <nav aria-label="Secciones">{sections.map(([id,label]) => <a href={`/${id}/`} aria-current={section === id ? 'page' : undefined}>{label}</a>)}</nav>
+ {home && <a class="header-shortcut" href="#descubrir">Explorar la cultura <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>}
 </header>
