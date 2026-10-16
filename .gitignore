@@ -1,0 +1,39 @@
+# Archivos del sistema y del editor
+.DS_Store
+._*
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Herramientas locales y resultados de revisión
+.agents/
+.codex/
+.impeccable/
+.playwright-cli/
+# Archivo fotográfico local; requiere autorización específica para publicación
+fotos/
+playwright-report/
+test-results/
+*.log
+
+# Dependencias y compilaciones
+node_modules/
+dist/
+build/
+.astro/
+.cache/
+__pycache__/
+*.py[cod]
+.venv/
+
+# Configuración privada y credenciales
+.env
+.env.*
+!.env.example
+!.env.*.example
+.aws/
+*.pem
+*.key
+*.p12
+*.pfx
