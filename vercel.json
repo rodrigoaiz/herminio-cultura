@@ -1,0 +1,60 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/prototipo",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/prototipo/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/prototipo/lectura.html",
+      "destination": "/lectura.html",
+      "permanent": true
+    },
+    {
+      "source": "/lectura.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "pieza",
+          "value": "cartelera"
+        }
+      ],
+      "destination": "/cartelera/octubre-2026/",
+      "permanent": true
+    },
+    {
+      "source": "/lectura.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "pieza",
+          "value": "libros"
+        }
+      ],
+      "destination": "/libros/lecturas-de-la-comunidad/",
+      "permanent": true
+    },
+    {
+      "source": "/lectura.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "pieza",
+          "value": "boletines"
+        }
+      ],
+      "destination": "/boletines/las-palabras-tambien-hacen-comunidad/",
+      "permanent": true
+    }
+  ]
+}

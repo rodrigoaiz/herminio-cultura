@@ -37,3 +37,6 @@ __pycache__/
 *.key
 *.p12
 *.pfx
+
+# Vinculación local de Vercel
+.vercel/

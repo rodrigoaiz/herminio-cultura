@@ -1,29 +1,54 @@
 # Herminio Cultura
 
-Proyecto del espacio cultural de la Escuela Herminio Almendros. Incluye un prototipo navegable de teatro de papel, documentación de producto y diseño y planificación.
+Sitio de la Comisión de Cultura de la Escuela Herminio Almendros. Incluye una entrada de teatro de papel, cartelera mensual, lecturas de la comunidad y boletines.
 
-## Ejecutar el prototipo
+## Desarrollo
 
-Desde la raíz del repositorio:
+Requiere Node.js 22.22.0 o posterior de la rama 22 y npm. El archivo `.nvmrc` fija la versión para desarrollo.
 
 ```sh
-python3 -m http.server 8000 --bind 127.0.0.1 --directory prototipo
+npm ci
+npm run dev
 ```
 
-Abrir [http://127.0.0.1:8000](http://127.0.0.1:8000). No requiere instalar dependencias ni compilar: está construido con HTML, CSS y JavaScript, y sirve las fuentes y los recursos visuales localmente.
+## Compilación
 
-El recorrido incluye cuatro capítulos, páginas de lectura de muestra, una variante de Día de Muertos y cambios de iluminación durante el desplazamiento. Consultar [la documentación del prototipo](prototipo/README.md) para conocer su alcance y las verificaciones realizadas.
+```sh
+npm run build
+npm run preview
+```
 
-## Contenido
+Astro genera páginas estáticas en `dist/`. El contenido de los artículos se incluye en el HTML durante la compilación; no necesita JavaScript, servidor ni base de datos para leerse.
 
-- [`prototipo/`](prototipo/): páginas, estilos, interacciones y recursos del teatro de papel.
-- [`PRODUCT.md`](PRODUCT.md): definición del producto y su alcance.
-- [`DESIGN.md`](DESIGN.md): dirección y decisiones de diseño.
-- [`planning-cultura/`](planning-cultura/): propuesta inicial del espacio cultural.
-- [`planning-previo/`](planning-previo/): investigación y planificación previa del sitio escolar.
+## Estructura
 
-## Estado
+```text
+src/
+  components/   Cabecera, pie y filtros de papel
+  content/      Publicaciones y metadatos editables
+  layouts/      Estructura compartida de las páginas
+  pages/        Inicio, artículos y página 404
+  scripts/      Interacciones de la entrada teatral
+  styles/       Tipografía, materiales y estilos
+public/
+  assets/       Imágenes, fuentes y licencias
+  robots.txt
+astro.config.mjs
+package.json
+package-lock.json
+vercel.json
+```
 
-Prototipo en desarrollo con contenido editorial demostrativo. La gestión editorial y el archivo definitivo todavía están pendientes. La publicación del repositorio no despliega el sitio web.
+## Vercel
 
-El archivo fotográfico de referencia se conserva localmente en `fotos/` y queda excluido de Git. Las licencias de las fuentes están incluidas en [`prototipo/assets/`](prototipo/assets/).
+El proyecto se despliega desde la **raíz del repositorio**, con el preset **Astro**. `vercel.json` fija la instalación con `npm ci`, la compilación con `npm run build` y la salida en `dist`.
+
+La rama `main` está conectada al proyecto de Vercel. Publicar cambios en esa rama activa un nuevo despliegue. Los enlaces de lectura anteriores redirigen a sus nuevas direcciones.
+
+## Contenidos
+
+Las publicaciones se editan en `src/content/articles.js`. Cada una tiene una dirección, sección, título, descripción, fecha y cuerpo. La cartelera y las reseñas muestran mensajes de próxima publicación mientras se reúne la selección de la comisión.
+
+La entrada conserva tres decorados, con avance vertical entre escenas y contenido horizontal independiente. Los accesorios de Muertos se activan automáticamente del 20 de octubre al 3 de noviembre, según la fecha de Ciudad de México.
+
+El archivo fotográfico `fotos/` permanece fuera de Git y del despliegue. Las licencias de las fuentes se encuentran en `public/assets/` y la procedencia de los materiales en `docs/assets/`.

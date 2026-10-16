@@ -1,0 +1,10 @@
+fotos/
+.agents/
+.codex/
+.impeccable/
+.playwright-cli/
+planning-previo/
+planning-cultura/
+docs/
+*.log
+.DS_Store

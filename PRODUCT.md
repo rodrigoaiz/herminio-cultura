@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Primera versión estática, con contenidos editables como archivos por Rodrigo. Astro es la recomendación para el sitio editorial completo, pendiente de cerrar; el primer prototipo de movimiento puede ser HTML, CSS y JavaScript sin compilación. Hosting y dominio pendientes.
+Astro estático con fuentes en src/, recursos en public/ y compilación en dist/. Rodrigo edita los contenidos como archivos y publica los cambios en GitHub. Vercel despliega desde la rama main y la raíz del repositorio; no se requiere backend ni base de datos.
 
 ## Users
 
@@ -30,18 +30,18 @@ Sitio público de la Comisión de Cultura, independiente del sitio institucional
 
 ## Brand Commitments
 
-El usuario descartó la dirección gráfica de los documentos previos. Quiere un teatro de figuras de cartón dibujadas, sencillas, coloridas y de carácter infantil cuidado, con profundidad de diorama de papel. Confirmó una boca de teatro fija mientras cambian los escenarios con el scroll y eligió empezar por un prototipo animado en código.
+El usuario descartó la dirección gráfica de los documentos previos. Quiere un teatro de figuras de cartón dibujadas, sencillas, coloridas y de carácter infantil cuidado, con profundidad de diorama de papel. Confirmó una boca de teatro fija mientras cambian los escenarios con el scroll y eligió empezar por un teatro animado en código.
 
-Tras revisar el primer prototipo, pidió un cortinaje más realista de borde a borde y que todo el contenido editorial en movimiento pase detrás de él. Solicitó textura de cartón, sombras más fuertes entre planos y una atmósfera teatral con degradados. Para la tipografía, pidió títulos serif culturales conservando la sans de cuerpo que le gustó. También pidió momentos horizontales deliberados dentro de cada sección, ritmo más lento y evitar superposiciones que dificulten la lectura. Estas peticiones sustituyen las decisiones provisionales incompatibles de la primera maqueta; la revisión v2 sigue pendiente de valoración visual.
+El refinamiento conserva un cortinaje realista de borde a borde, fibra de cartón, sombras entre planos y atmósfera teatral con degradados. Los títulos usan una serif cultural y el cuerpo mantiene la sans que le gustó al usuario. La referencia nocturna aportada pide que la transformación de iluminación se perciba de forma clara.
 
-El usuario aportó después una referencia de diorama nocturno y pidió que el cambio de iluminación fuese visible. La revisión v3 desarrolla una transición de luz cálida a noche azul violeta, con fuentes de luz de papel, conservando el teatro, las figuras y la lectura. La iluminación es independiente de las temporadas y no implica una nueva dirección de marca. La luz sigue el scroll automáticamente y el control permite elegir automático, noche o día; el fundido manual dura 1400 ms y aplica el destino inmediatamente con pausa o movimiento reducido. Las lecturas independientes permanecen diurnas. Un foco cálido aumenta continuamente mientras el escenario se oscurece y permanece iluminado por la noche; el texto conserva tinta verde y énfasis coral para evitar un cambio brusco de contraste.
+En la revisión 4, el usuario limitó el teatro a la entrada. Al bajar deben cambiar escenografías completas; el avance horizontal cambia contenido dentro de una misma escena. Eliminó los selectores de decorado: los cambios del recorrido deben ser automáticos con el scroll. Pidió una cabecera más delgada con fondo de vidrio translúcido. Cartelera, libros, boletines y artículos deben funcionar convencionalmente fuera del telón, conservando la identidad de papel. Esta instrucción sustituye la extensión del teatro a todas las secciones de las revisiones anteriores. Las ilustraciones estacionales siguen cambiando por calendario, sin controles para visitantes. La luz se integra en los tres decorados de la entrada; no existe un selector manual de luz.
 
 ## Evidence on Hand
 
 - `planning-previo/` documenta el sitio institucional anterior: sirve de contexto sobre la escuela, su tono comunitario y el valor de la voz del alumnado. No define la arquitectura ni la identidad de este sitio de cultura.
 - Referencia visual aportada: https://miaai-lab.github.io/Claude-Opus-5.5-100-HTML-Files/018-paper-cut-diorama.html
 - Skills locales `scroll-world` y `landing-page-design` instalados.
-- Aún no hay textos finales específicos de carteleras, reseñas o boletines en el proyecto. Los ejemplos del prototipo deben identificarse como demostración.
+- La cartelera y las reseñas de libros esperan la primera selección de la comisión. El sitio expresa esa disponibilidad con mensajes editoriales de próxima publicación, sin avisos de prueba.
 - El usuario menciona fotografías de referencia, pero no se recibieron imágenes en el mensaje ni aparecen en los archivos revisados.
 
 ## Product Principles
@@ -51,3 +51,7 @@ El usuario aportó después una referencia de diorama nocturno y pidió que el c
 - El recorrido visual debe convivir con acceso directo a los contenidos.
 - Fechas, tipos y autorías hacen legible el archivo.
 - La complejidad técnica responde a funciones reales, conservando una publicación estática mientras sea suficiente.
+
+## Publicación
+
+El usuario pidió retirar los avisos de prueba y publicar el sitio en Vercel con una estructura de proyecto convencional. Los artículos se generan como HTML estático con enlaces propios y los metadatos forman parte de cada publicación.

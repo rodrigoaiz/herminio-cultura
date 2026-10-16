@@ -1,6 +1,6 @@
 ---
-name: Herminio · Teatro de papel (prototipo v3 · iluminación)
-description: Registro provisional del teatro con transición de iluminación v3.
+name: "Herminio · Teatro de papel (revisión 4)"
+description: "Entrada teatral con ejes nativos separados y sitio editorial fuera del telón; revisión v4 con ship en alcance de sitio."
 colors:
   paper: "#fbf5e8"
   ink: "#263b32"
@@ -11,30 +11,41 @@ colors:
   wood: "#3c251e"
   ink-hover: "#3c5646"
   theatre-label: "#fff2d8"
+  books-sage: "#dce3d3"
+  bulletin-paper: "#eed7c6"
+  night-copy: "#fff5db"
+  night-emphasis: "#efd38b"
+  night-link: "#f1dfb5"
 typography:
   display:
     fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "clamp(58px, 6.4vw, 96px)"
+    fontSize: "clamp(60px, 6.4vw, 96px)"
     fontWeight: 600
-    lineHeight: 0.94
+    lineHeight: 1
     letterSpacing: "-0.035em"
   headline:
     fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "clamp(56px, 6vw, 88px)"
+    fontSize: "72px"
     fontWeight: 600
-    lineHeight: 0.94
-    letterSpacing: "-0.035em"
-  reader-headline:
-    fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "clamp(42px, 5vw, 64px)"
-    fontWeight: 600
-    lineHeight: 1.02
+    lineHeight: 1
     letterSpacing: "-0.035em"
   title:
     fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "34px"
+    fontSize: "48px"
     fontWeight: 600
-    lineHeight: 1.15
+    lineHeight: 1.1
+    letterSpacing: "-0.035em"
+  reader-headline:
+    fontFamily: "Cormorant Garamond, Georgia, serif"
+    fontSize: "64px"
+    fontWeight: 600
+    lineHeight: 1.05
+    letterSpacing: "-0.035em"
+  reader-title:
+    fontFamily: "Cormorant Garamond, Georgia, serif"
+    fontSize: "36px"
+    fontWeight: 600
+    lineHeight: 1.1
     letterSpacing: "-0.035em"
   body:
     fontFamily: "Manrope, sans-serif"
@@ -43,223 +54,208 @@ typography:
     lineHeight: 1.6
   scene-body:
     fontFamily: "Manrope, sans-serif"
-    fontSize: "17px"
-    fontWeight: 400
-    lineHeight: 1.7
-  reader-intro:
-    fontFamily: "Manrope, sans-serif"
-    fontSize: "19px"
+    fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.75
+  reader-intro:
+    fontFamily: "Manrope, sans-serif"
+    fontSize: "20px"
+    fontWeight: 400
+    lineHeight: 1.6
   label:
     fontFamily: "Manrope, sans-serif"
     fontSize: "14px"
-    fontWeight: 700
+    fontWeight: 600
     lineHeight: 1.6
 rounded:
-  control: "3px"
-  paper-link: "3px 7px 4px 6px"
+  control: "4px"
+  header: "12px"
+  header-mobile: "8px"
 spacing:
   small: "8px"
   compact: "16px"
   regular: "24px"
   wide: "32px"
   sheet: "48px"
+  section-gap: "64px"
+  section: "96px"
 components:
   button-primary:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
-    rounded: "{rounded.paper-link}"
-    padding: "13px 20px"
+    rounded: "{rounded.control}"
+    padding: "12px 16px"
   button-primary-hover:
     backgroundColor: "{colors.ink-hover}"
-  lighting-button:
-    backgroundColor: "#42251dcc"
-    textColor: "{colors.theatre-label}"
+  button-primary-night:
+    backgroundColor: "{colors.night-link}"
+    textColor: "{colors.ink}"
     rounded: "{rounded.control}"
-    padding: "0 10px"
-    height: "36px"
+    padding: "12px 16px"
+  button-primary-night-hover:
+    backgroundColor: "{colors.night-copy}"
   button-text:
     textColor: "{colors.ink}"
-    padding: "0 0 5px"
-  season-select:
+    padding: "0 0 4px"
+  stage-button:
     backgroundColor: "#42251dcc"
     textColor: "{colors.theatre-label}"
     rounded: "{rounded.control}"
-    padding: "9px 10px"
-  motion-button:
-    backgroundColor: "#42251dcc"
-    textColor: "{colors.theatre-label}"
-    rounded: "{rounded.control}"
-    height: "36px"
-    width: "36px"
-  playbill:
-    backgroundColor: "{colors.paper}"
+    height: "44px"
+    width: "44px"
+  header-glass:
+    backgroundColor: "#fbf5e8c9"
     textColor: "{colors.ink}"
-    padding: "36px 48px"
-    width: "min(650px, 100%)"
+    rounded: "{rounded.header}"
+    padding: "8px 24px"
+    height: "48px"
+  bulletin-feature:
+    backgroundColor: "{colors.bulletin-paper}"
+    textColor: "{colors.ink}"
+    padding: "48px"
 ---
 
-# Design System: Herminio · Teatro de papel v3
+# Design System: Herminio · Teatro de papel · revisión 4
 
 ## Overview
 
 **Creative North Star: "Teatro de papel"**
 
-Esta es la revisión v3 del prototipo animado, todavía provisional. La nueva referencia nocturna aportada por el usuario pide una transición visible de iluminación: día cálido, atardecer violeta y noche azul con luna, estrellas y luciérnagas de papel. Esta mejora se aplica al teatro existente, sin cambiar su dirección ni el recorrido editorial. Registra la nueva crítica del usuario y reemplaza las decisiones de la primera maqueta: cortinaje más realista de borde a borde, contenido editorial detrás de la boca del teatro, textura visible de cartón, sombras entre planos más fuertes, atmósfera teatral y titulares serif. Manrope se conserva para el cuerpo porque el usuario valoró su lectura.
+La revisión 4 limita el teatro a la entrada. El usuario conserva la identidad de papel y cartón, pero reemplaza la arquitectura anterior: bajar cambia escenografías completas y desplazarse horizontalmente cambia el contenido dentro de la misma escenografía. Cartelera, libros, boletines y artículos se leen después, fuera del cortinaje. Esta instrucción sustituye las reglas incompatibles de v2 y v3. La revisión v4 obtuvo `ship` en el alcance de este sitio; el único ajuste de contraste de la leyenda nocturna quedó resuelto. Este resultado no aprueba una identidad final ni una implementación de producción.
 
-La cortina frontal y las fibras de papel son materiales raster generados; las figuras infantiles siguen siendo ilustración SVG original con textura aplicada. No hay fotografía de sustitución de personajes. El recorrido usa cuatro capítulos con dos paneles horizontales cada uno, conducidos por scroll vertical nativo y pausas de lectura. Los artículos comparten la cortina fija, con una hoja de papel para el texto. No se da por aprobada la proporción final de títulos, planos ni apertura.
+Las figuras SVG originales, la fibra de papel y el telón raster mantienen un mundo gráfico común. Cormorant Garamond da carácter cultural a los títulos y Manrope sostiene la lectura. Una cabecera delgada de vidrio translúcido, pedida expresamente por el usuario, permite acceder directamente a los contenidos. La noche es una escenografía azul completa con texto claro, no una transformación global del sitio.
 
 **Key Characteristics:**
 
-- Cortina material de borde a borde y boca fija sobre contenido y figuras.
-- Cormorant Garamond local en títulos; Manrope local en cuerpo y controles.
-- Cartón texturado, transición día–noche, degradados de luz y sombras entre capas.
-- Cuatro capítulos, dos paneles por capítulo y pausas antes y después del desplazamiento lateral.
-- Pausa y movimiento reducido, navegación directa y contenido HTML real.
+- Teatro sólo en la entrada; contenido editorial convencional fuera del telón.
+- Tres decorados completos: jardín, ciudad y bosque nocturno.
+- Eje vertical para escenografía; eje horizontal nativo para ideas de cada decorado.
+- Cabecera translúcida de 48px y navegación directa por enlaces.
+- Papel texturado, figuras originales y pareja Cormorant Garamond / Manrope.
 
 ## Colors
 
-La paleta base combina papel crema, tinta verde y acentos de terracota con la luz cálida de la cortina. Los valores del frontmatter registran la implementación actual, no una identidad final aprobada.
+Papel crema y tinta verde conectan las piezas escénicas con las secciones editoriales. Los tokens registran la implementación v4; los colores literales de cada ilustración y degradado siguen siendo material local de escena.
 
 ### Primary
-- **Coral teatral** (`coral`): palabras destacadas de titulares, detalles y hover de enlaces de texto.
-- **Óxido de lectura** (`rust`): primer dato de los metadatos y notas del libro.
+- **Coral teatral** (`coral`): énfasis serif, navegación activa y hover de enlaces.
+- **Óxido de lectura** (`rust`): primer metadato y hover de enlaces de reseñas.
 
 ### Secondary
+- **Salvia editorial** (`books-sage`): fondo de la sección de libros.
+- **Papel rosado** (`bulletin-paper`): publicación destacada de boletines.
 - **Amarillo de papel** (`yellow`): selección de texto.
-- **Azul de foco** (`blue`): contorno de foco; también aparece en los recortables originales.
+- **Azul de foco** (`blue`): contorno de foco.
 
 ### Neutral
-- **Papel crema** (`paper`): hojas, fondo de texto y texto del enlace principal.
-- **Tinta verde** (`ink`): texto editorial y enlace principal.
-- **Tinta activa** (`ink-hover`): hover del enlace principal.
-- **Madera oscura** (`wood`): fondo exterior del teatro.
-- **Luz de sala** (`theatre-label`): navegación y controles sobre el cortinaje.
+- **Papel crema** (`paper`), **tinta verde** (`ink`) y **tinta activa** (`ink-hover`): superficies de lectura, texto y enlace principal.
+- **Madera oscura** (`wood`) y **luz de sala** (`theatre-label`): exterior de la entrada y controles sobre el telón.
+- **Papel nocturno** (`night-copy`), **oro nocturno** (`night-emphasis`) y **papel del enlace nocturno** (`night-link`): contraste de la copia y enlace principal del decorado de noche. La hoja del segundo panel conserva tinta oscura sobre papel claro. Las leyendas de papel del escenario también declaran tinta verde explícita (`color: var(--ink)`), incluso dentro del decorado nocturno.
 
-Las figuras SVG conservan colores literales de la ilustración original; no todas sus prendas o cubiertas derivan de las nuevas variables de interfaz. El verde `--mint` sigue declarado en CSS, pero no se registra como token de aplicación porque no tiene asignación activa en esta versión.
+Los tres cielos y sus degradados forman parte de decorados completos, sin un estado `--night` global ni botones para cambiar la luz. Cada escena declara además un fondo base local —jardín `#ead9b2`, ciudad `#edc9b5` y noche `#29356b`— para conservar una superficie estable si no se representa el degradado. La cortina acompaña la llegada del bosque nocturno mediante brillo dependiente de la posición vertical. El verde `--mint` sigue declarado, pero no se registra como token activo porque el código no lo asigna a una superficie.
 
-**The Material Light Rule.** La textura, los degradados de luz y las sombras entre planos pertenecen al teatro solicitado; se conservan como material e iluminación, no se eliminan por una preferencia genérica por superficies planas.
-
-El cielo cotidiano usa una luz radial cálida; colinas y pliegue del libro usan degradados para volumen. Día de Muertos cambia la luz a lavanda y modifica colinas y accesorios. Los temas de Navidad, Día de la Niñez y Día de la Cultura siguen pendientes. Los colores literales de cada degradado y escena permanecen ajustes locales; no se promueven a nuevos tokens globales por aparecer en una comprobación mecánica.
-
-
-### Lighting states
-
-La variable `--night` recorre de (0) a (1). Superpone un cielo azul violeta y matiza figuras, cortina, nubes y colinas; la luna, las estrellas suspendidas y las luciérnagas aparecen con ese mismo valor. Los halos pertenecen a fuentes de luz literales y usan degradados radiales, sin convertirlos en sombras de resplandor para controles.
-
-La presentación conserva tinta verde y énfasis coral durante todo el recorrido, incluido el enlace principal oscuro. Un foco radial cálido detrás de la copia aumenta continuamente con `--night` y permanece iluminado durante la noche; no hay inversión de paleta del texto ni del botón. Las hojas editoriales conservan su papel claro.
-
-**The Lit Paper Rule.** La noche transforma la luz del teatro; la presentación y las hojas editoriales conservan áreas cálidas iluminadas para leer. Los colores de cielo, luna, estrellas y colinas son material de escena, no nuevos colores globales de interfaz.
-
-**The Continuous Reading Light Rule.** El foco cálido detrás de la copia aumenta con `opacity: clamp(0, calc(var(--night) * 2), .96)` y permanece durante la noche. La tinta verde y el énfasis coral se mantienen constantes; no hay encendido binario del foco ni cambio de paleta del texto.
+**The Same Paper Rule.** Fuera del teatro se conservan fibra, ilustraciones, tinta, serif y colores de papel; la continuidad gráfica no necesita conservar la cortina.
 
 ## Typography
 
 **Display Font:** Cormorant Garamond local, con `Georgia, serif` de reserva.  
 **Body Font:** Manrope local, con `sans-serif` de reserva.
 
-**Character:** serif cultural de peso medio y titulares compactos frente a un cuerpo sans claro. Esta incorporación responde a la petición explícita del usuario; reemplaza el sistema de títulos Manrope del primer prototipo.
+**Character:** títulos culturales de peso (600), espaciado compacto y lectura sans abierta. Los tamaños base y pesos constan en el frontmatter.
 
 ### Hierarchy
-- **Display / Headline:** bienvenida y presentación de cada capítulo; valores base en el frontmatter.
-- **Reader headline / Title:** título y subtítulos del artículo, respectivamente.
-- **Body:** texto base; los párrafos y listas del artículo amplían el interlineado (1.85).
-- **Scene body / Reader intro:** descripción de escena y entradilla del artículo.
-- **Label:** navegación de escritorio; enlaces principales y de texto usan (13px), peso (700).
-- **Titulares de hojas:** manifiesto y boletín (60px), cartelera (64px), páginas de libro (54px), con peso serif (600) y espaciado (-0.035em). Son tratamientos de estas piezas, no una escala adicional universal.
+- **Display:** titulares de los decorados de entrada, con interlineado (1).
+- **Headline:** títulos principales de cartelera, libros y boletines.
+- **Title:** título de publicación destacada; títulos auxiliares comparten esta familia y escala con variaciones locales.
+- **Reader headline / Reader title:** título y subtítulos del artículo.
+- **Body / Scene body / Reader intro:** texto general, presentación escénica y entradilla de artículo.
+- **Label:** navegación y enlaces de vuelta; el enlace principal usa (14px), peso (700).
 
-Los titulares de presentación pasan a (68px) hasta (1100px), (57px) hasta (650px) y (49px) hasta (370px). En pantallas desde (1700px), bienvenida usa (104px) y otros capítulos (96px). La última regla de escritorio bajo, hasta (700px) de alto y desde (651px) de ancho, fija los titulares de presentación en (62px).
+Los titulares escénicos pasan a (72px) hasta (1100px), a (60px) hasta (700px), y a (48px) hasta (370px). En escritorio bajo, hasta (700px) de altura y desde (701px) de ancho, quedan en (60px). Los titulares editoriales pasan de (72px) a (60px) hasta (1100px), y a (48px) hasta (370px). La lectura pasa de (64px) a (48px) hasta (700px) y a (36px) hasta (370px).
 
-Los metadatos, estado, selector y varios apoyos usan (11px); la nota de prototipo usa (10px). Navegación móvil y enlaces móviles también llegan a (11px), y los párrafos del libro llegan a (11px) hasta (370px). Se registran para no perder la cascada real, pero **no se canonizan como mínimos de lectura ni como solución de ajuste**. Su legibilidad queda sujeta a la revisión visual de esta maqueta.
+Metadatos editoriales se mantienen en (12px). Los apoyos móviles, la marca pequeña y la navegación estrecha que antes eran menores usan ahora (11px). Se registra el valor real, pero **no se canoniza como mínimo universal de legibilidad**.
 
-**The Two Voices Rule.** Los títulos culturales usan Cormorant Garamond y los párrafos, navegación y controles conservan Manrope.
+**The Two Voices Rule.** Los títulos culturales usan Cormorant Garamond; párrafos, navegación y controles usan Manrope.
 
 ## Layout
 
-La ventana escénica es sticky, ocupa (100svh) y contiene todo el contenido editorial del recorrido. Cuatro capítulos superpuestos se activan de uno en uno; cada capítulo tiene una tira de dos paneles de ancho (100vw). El scroll vertical es la línea de tiempo y mueve la tira horizontalmente. El primer capítulo tiene una distancia de (2.8) alturas escénicas y los otros (3.4) cada uno; la altura del documento suma esas distancias y una ventana adicional.
+La cabecera es fija, mide (48px), está a (12px) del borde superior y tiene márgenes laterales (24px), ancho máximo (1392px) y relleno (8px 24px). Hasta (700px) queda a (8px) de los bordes con relleno (8px 12px) y radio menor. Sus enlaces llevan directamente a las secciones fuera del teatro.
 
-Cada panel de escritorio se distribuye dentro de la apertura con relleno (170px 14vw 136px). La copia ocupa el (49%) y las figuras el lado derecho. Las hojas del segundo panel se centran. El área útil debe revisarse contra la transparencia real del material de cortina; sus bordes opacos no son espacio disponible para texto. La indicación de scroll forma parte del flujo de la copia de bienvenida, con margen superior (28px), reducido a (18px) en móvil; no flota sobre el enlace principal.
+La entrada contiene tres decorados de una altura escénica cada uno, en una pila vertical continua dentro de un viewport sticky de (100svh). El tramo de documento dura (3.5) alturas de viewport: (2.5) de recorrido y una ventana adicional. Cada transición entre decorados dedica un tramo inicial de reposo y después interpola la posición de la pila. El telón es absoluto dentro de ese viewport, con z-index (60); la cabecera tiene (80) y los controles de entrada (65).
 
-La cabecera fija actual mide (106px), con z-index (80); la franja inferior mide (85px), con z-index (85). Permanecen encima de la cortina para navegación y controles. Hasta (1100px) la cabecera mide (96px), hasta (650px) mide (100px), y en escritorio bajo mide (85px). En móvil la franja inferior mide (90px). Estos valores son los del código, no las dimensiones del área transparente del telón.
+Cada decorado tiene un carrusel horizontal independiente de dos paneles. Usa `overflow-x:auto`, `scroll-snap-type:x mandatory` y paneles de ancho (100%). El avance horizontal funciona con swipe, trackpad, botones y flechas del teclado. El scroll vertical sigue siendo nativo; el motor no intercepta wheel ni touch y no reescribe el hash.
 
-En móvil, hasta (650px), la copia ocupa el ancho interior, las figuras se sitúan abajo, se ocultan las leyendas de escena y el libro abierto apila sus páginas. Los breakpoints adicionales son (370px), (1100px) y (1700px), más la condición de escritorio bajo. La lectura conserva el cortinaje fijo, con una hoja de ancho máximo (820px), relleno (38px 48px) y márgenes verticales amplios; en móvil la hoja ocupa el (76%) del ancho y ajusta su relleno. En pantallas de hasta (370px), la luna baja al (60%) de alto, a (14%) del borde derecho y un ancho (42px), fuera del titular. El cuerpo de la página de lectura establece un contexto `flow-root` y altura mínima (100vh), para contener los márgenes de la hoja sobre el fondo continuo.
+Después de la entrada, cartelera, libros y boletines vuelven al flujo vertical convencional. La sección base tiene ancho máximo (1248px) y relleno (96px 48px). Las composiciones de escritorio usan dos columnas, con separaciones de (64px) u (80px). Hasta (1100px) el relleno es (80px 40px); hasta (700px), (64px 24px), con columnas apiladas. La lectura independiente usa ancho máximo (864px), margen superior (128px) y relleno (48px 64px); en móvil ocupa el ancho menos (32px), con relleno (32px 24px).
 
 ## Elevation & Depth
 
-La profundidad actual combina un marco raster realista al frente, SVG texturado, capas de colinas, luz radial, viñeta y sombras de mayor presencia. La cortina fija ocupa toda la ventana con z-index (60), `object-fit: fill` y sin capturar clics. Figuras y contenido editorial quedan detrás. Los controles persistentes se mantienen en la capa frontal de navegación.
+Las capas de cartón usan sombras negras suaves y fibra recortada a sus siluetas. El jardín, la arquitectura de ciudad y el bosque nocturno existen simultáneamente en la pila; bajar desplaza el conjunto completo y deja ver la siguiente escenografía. La noche usa su propio cielo y color claro de copia, sin grandes focos que oculten las figuras.
 
 ### Shadow Vocabulary
-- **Pieza de cartón:** `drop-shadow(4px 12px 6px #3b281a42)`, después del filtro de fibras.
-- **Conjunto de escena:** `drop-shadow(7px 24px 12px #15182f55)`.
-- **Hoja escénica:** `12px 22px 30px #36231845, 2px 4px 5px #36231824`.
-- **Cortina frontal:** `drop-shadow(8px 15px 12px #160e1f65)`.
-- **Luz periférica:** `inset 0 0 90px 15px #2d1c1a50`, combinada con degradado radial.
+- **Pieza de cartón:** `drop-shadow(4px 10px 5px #0003)`, después del filtro de fibra.
+- **Ilustración de escena:** `drop-shadow(6px 20px 10px #0003)`.
+- **Hoja de papel:** `8px 16px 24px #0002`.
+- **Cortina:** `drop-shadow(6px 12px 10px #0005)`, junto con brillo que acompaña el decorado nocturno.
+- **Cabecera:** `0 4px 16px #00000014`, con vidrio translúcido y desenfoque de fondo (16px).
+- **Artículo:** `4px 12px 32px #00000012`.
 
-**The Aperture Rule.** El contenido editorial en movimiento y las figuras pasan detrás de la cortina fija. El espacio útil es la apertura central, no el rectángulo completo de la ventana.
+**The Intro Boundary Rule.** El telón pertenece únicamente al viewport de la entrada y sale del documento con ella. Las secciones editoriales y los artículos no llevan cortinaje.
 
-**The Reading Hold Rule.** Cada panel tiene un tramo de reposo antes del desplazamiento lateral; los capítulos se activan de uno en uno.
+**The Two Axes Rule.** El scroll vertical desplaza la pila de decorados completos; el scroll horizontal cambia paneles dentro de un mismo decorado. No se convierte el avance vertical en desplazamiento horizontal.
 
-El tramo de reposo usa unidades (0.65) y el de viaje (1); el desplazamiento interpola con `t*t*(3-2*t)`. Las piezas tienen distintas profundidades laterales; las colinas, nubes y sol se desplazan menos que el contenido. El estado inactivo de capítulos y paneles usa `inert` y `aria-hidden`. Pausa o movimiento reducido redondean a un panel completo y eliminan la deriva entre planos; el scroll nativo sigue permitiendo consultar todos los paneles.
-
-
-La iluminación automática toma el progreso global normalizado por capítulos: empieza a cambiar al (10%) y alcanza noche completa al (78%), con interpolación `t*t*(3-2*t)`. El atributo de luz etiqueta atardecer desde (0.28) y noche desde (0.52); esas etiquetas son metadatos y no condicionan el foco ni la tinta. El control permite recorrer automático → noche → día. Cada cambio manual interpola durante (1400ms) mediante una animación acotada; pausa, movimiento reducido o documento oculto fijan el valor de destino sin interpolación. La escenografía estacional sigue siendo independiente de la iluminación.
-
-Las reglas añadidas al final del CSS prevalecen sobre los filtros v2: la escena multiplica su brillo por `1 - night * .32` y su saturación por `1 - night * .12`; el cortinaje usa `.48` y `.28`, respectivamente. Las nubes reducen brillo con `.46`. Las hojas y leyendas se atenúan solo con `.07`, manteniéndose claras. La página de artículo no monta el motor del recorrido y conserva el valor inicial diurno (0).
+La pausa o la preferencia de movimiento reducido redondean la posición vertical a un decorado completo y hacen instantáneo el avance horizontal por controles. El modo reducido elimina transiciones CSS y desplazamientos de hover. La selección de decorado y panel usa `inert` para evitar que elementos fuera de la escena activa reciban interacción. No hay fundido manual de luz ni temporizador de (1400ms) en v4.
 
 ## Shapes
 
-El telón de borde a borde es un material generado con transparencia central, pliegues amplios y borde inferior poco profundo. Las figuras siguen siendo siluetas SVG originales, sencillas y coloridas; un filtro les aplica la textura de fibras. Las hojas escénicas conservan esquinas mayormente rectas, pequeños giros y alguna unión curva en el libro. Los enlaces tienen radios asimétricos pequeños y los controles radios regulares mínimos.
+El telón raster de borde a borde conserva su transparencia real y encuadra sólo la entrada. Las figuras son SVG originales simples y coloridas; la textura se aplica mediante filtro y mezcla multiply. La continuidad con el sitio editorial se logra reutilizando esas ilustraciones en un cartel y en el panel de libros.
 
-Los materiales son `prototipo/assets/curtain-frame-v2.webp` y `prototipo/assets/paper-fibers-v2.webp`; sus prompts y procedencia están en `prototipo/assets/materials-v2-prompts.md`. La textura se usa por mezcla multiply y por el filtro SVG `paper-matte`, recortado a la silueta original.
+La cabecera tiene esquinas suaves mayores; los enlaces y controles, radios pequeños regulares. Las hojas y los módulos editoriales conservan esquinas rectas. El cartel cultural gira ligeramente en reposo y se endereza en hover, mientras que el libro y el boletín se presentan como piezas editoriales, sin copiar la composición del teatro.
+
+Los materiales conservados son `public/assets/curtain-frame-v2.webp` y `public/assets/paper-fibers-v2.webp`; sus prompts y procedencia figuran en `docs/assets/materials-v2-prompts.md`.
 
 ## Components
 
 ### Buttons
 
-El enlace principal usa tinta verde y papel crema, peso sans (700), flecha SVG y radios asimétricos. En hover sube (2px) y cambia de tinta; en pulsación baja (1px). El enlace conserva su transición base (0.4s) para desplazamiento y fondo, junto con su tinta y papel en todos los estados de iluminación. El enlace de texto es más ligero: línea inferior de (1px), separación inferior (5px) y hover coral. Los enlaces de texto también usan flechas SVG dibujadas, de tamaño (23px), trazo (1.5) y sin relleno.
+El enlace principal usa tinta y papel, relleno compacto, radio regular y flecha SVG. Sube (2px) en hover y baja (1px) en pulsación, con transición (0.35s). En la primera lámina del bosque nocturno invierte el contraste según su variante del frontmatter. El enlace de texto usa subrayado fino y flecha SVG (24px), con hover coral. El foco global es azul (3px), separado del elemento (5px).
 
-El control de iluminación comparte el fondo y borde de los controles; muestra icono SVG y nombre de modo, comunica el modo actual y el siguiente mediante `aria-label`, y en móvil conserva solo el icono en un ancho (34px).
-
-El control de movimiento es cuadrado, de fondo marrón translúcido, borde crema translúcido e icono SVG. Comunica pausa con `aria-pressed` y queda deshabilitado si el dispositivo exige movimiento reducido. El foco compartido es azul (3px), con separación (5px).
+Las ayudas «Baja: escenario» y «Desliza: contenido» distinguen los ejes. Los botones escénicos son cuadrados de (44px), con fondo marrón translúcido y borde crema. Las flechas anterior y siguiente se deshabilitan en los límites de cada carrusel; el contador anuncia el panel actual. El control de movimiento usa `aria-pressed` y queda deshabilitado si el dispositivo exige movimiento reducido. Estos controles desaparecen al salir de la entrada.
 
 ### Metadata
 
-Tipo y fecha se muestran como texto flexible con separación horizontal, sin cápsulas ni fondos. El primer dato es óxido. En la hoja de boletín, la línea tiene separadores finos arriba y abajo. No hay filtros por tags implementados.
+Las notas editoriales usan la misma tinta del cuerpo. Tipo y fecha se muestran como texto flexible sin cápsulas ni fondos; el primer dato usa óxido. La publicación tiene su fecha distinguible y los artículos conservan enlaces propios. No hay un sistema de filtros implementado.
 
 ### Cards / Containers
 
-Las piezas son objetos editoriales de papel, no una retícula de tarjetas: manifiesto suspendido, programa mensual, libro abierto y hoja de boletín. Comparten fibras y sombra estructural, pero cada una tiene su ancho, relleno y giro. El programa mensual incluye filas separadas por líneas finas; el libro incluye sombra de pliegue central. El aviso del lector es una superficie de papel más oscuro, sin sombra propia ni radio especial.
-
-### Inputs / Fields
-
-El indicador de escena es un círculo plano, sin resplandor. La nota de prototipo lleva fondo explícito de madera oscura, relleno (2px 8px) y ancho ajustado al contenido para preservar su contraste.
-
-El selector nativo de escenografía comparte fondo marrón translúcido y borde crema con el control de movimiento. Las opciones incluyen modo según fecha, cotidiano y Día de Muertos. No hay inputs de texto ni estados de formulario implementados.
+La cartelera se presenta como un cartel ilustrado con banda inferior oscura y texto de acción. Libros combina una ilustración de papel con dos enlaces a reseñas del alumnado y de personas adultas. El boletín destacado usa una superficie rosada de dos columnas, apilada en móvil. El artículo usa una hoja crema y metadatos de publicación. Estos patrones editoriales están fuera del cortinaje.
 
 ### Navigation
 
-La marca y los enlaces viven sobre la cortina, con texto claro y sombra direccional de legibilidad (`0 2px 7px #0009`). Un subrayado claro de (1px) identifica hover y escena activa. La navegación directa lleva al inicio del capítulo y sincroniza el hash; las flechas izquierda y derecha también recorren paneles cuando el foco pertenece al escenario. La lectura comparte cabecera y cortina fijas.
+La cabecera de vidrio usa fondo crema translúcido, borde claro y `backdrop-filter: blur(16px) saturate(1.2)`. No es una regla para volver translúcidos los demás módulos: es un tratamiento de cabecera expresamente pedido por el usuario. Navegación activa y hover usan coral y una línea inferior. Los enlaces son anclas nativas; el indicador de sección usa observación de intersección sin sustituir la URL. La lectura independiente conserva esta cabecera y un enlace de regreso a su sección, sin telón.
 
-### Persistent Theatre
+### Intro Scenes
 
-La cortina decorativa queda fuera del árbol accesible; encabezados, enlaces y publicaciones son HTML. El segundo panel de cada capítulo forma parte del mismo viaje horizontal detrás de la boca. Si falla el script, el CSS deja los capítulos y paneles en flujo vertical y esconde los controles del recorrido.
+Jardín, ciudad y bosque nocturno tienen fondos, figuras y luces propios. El carrusel de cada decorado conserva su posición horizontal al cambiar de escena. Las capas son decorativas; texto y enlaces son HTML. Si falla el script, las escenas quedan en flujo y se ocultan marco y controles escénicos. Los accesorios de temporada siguen la fecha de Ciudad de México: la ventana de Muertos es del (20 de octubre) al (3 de noviembre), sin selector para visitantes. Navidad, Niñez y Cultura siguen pendientes.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** conservar la cortina fija hasta los cuatro bordes y todo contenido editorial móvil detrás de ella.
-- **Do** usar Cormorant Garamond para títulos culturales y Manrope para lectura y controles.
-- **Do** conservar fibras, sombras entre planos y degradados de iluminación acordes con el teatro pedido.
-- **Do** dar a cada panel tiempo de lectura y comprobar el área visible dentro de la apertura en cada tamaño.
-- **Do** conservar navegación directa, foco visible, pausa y preferencia de movimiento reducido.
-- **Do** coordinar la luz nocturna de figuras y cortina con áreas cálidas de lectura y tinta constante.
-- **Do** tratar los tokens y proporciones como una revisión v3 provisional, no como aprobación final.
+- **Do** limitar el marco y los controles escénicos a la entrada.
+- **Do** conservar la separación entre bajar para cambiar decorado y deslizar para cambiar idea.
+- **Do** mantener enlaces nativos a secciones y artículos, con URL e historial del navegador.
+- **Do** compartir ilustraciones, fibra y tipografía entre la entrada y el sitio editorial.
+- **Do** mantener la cabecera translúcida delgada solicitada, con contenido interior separado de sus bordes.
+- **Do** respetar movimiento reducido y mostrar estados de próxima publicación cuando todavía no hay recomendaciones.
 
 ### Don't:
 
-- **Don't** reintroducir la regla anterior que sacaba los artículos de la cortina: fue reemplazada por la petición del usuario.
-- **Don't** convertir los rótulos de 10–11px en mínimos obligatorios de lectura.
-- **Don't** confundir estos materiales raster con la cadena de video de scroll-world: el recorrido sigue siendo HTML, CSS, SVG y JavaScript nativos.
-- **Don't** sustituir las figuras originales de cartón por fotografía ni convertir los textos de muestra en publicaciones reales.
+- **Don't** extender el telón a cartelera, libros, boletines ni lectura independiente.
+- **Don't** reintroducir selectores de decorado o iluminación ni el foco cálido global de v3.
+- **Don't** interceptar wheel o touch para convertir scroll vertical en avance horizontal.
+- **Don't** convertir los rótulos de 11px del sitio en mínimos de lectura del sistema.
+- **Don't** interpretar el ship de v4 en alcance de sitio como aprobación de identidad final o preparación para producción.
+
+## Estructura de publicación
+
+El sitio usa Astro estático. Las páginas y los artículos están en `src/pages/`, los componentes compartidos en `src/components/`, las publicaciones en `src/content/articles.js` y el estilo global en `src/styles/global.css`. Las imágenes y fuentes se sirven desde `/assets/`. Los avisos de prueba se retiraron por instrucción del usuario.

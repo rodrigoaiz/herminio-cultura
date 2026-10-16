@@ -1,0 +1,4 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Lecturas · Herminio Cultura</title><meta name="robots" content="noindex"><script>
+const destinations = {cartelera:'/cartelera/octubre-2026/',libros:'/libros/lecturas-de-la-comunidad/',boletines:'/boletines/las-palabras-tambien-hacen-comunidad/'};
+location.replace((destinations[new URLSearchParams(location.search).get('pieza')] || destinations.boletines) + location.hash);
+</script></head><body><p><a href="/">Ir a Herminio Cultura</a></p></body></html>

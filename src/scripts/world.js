@@ -1,4 +1,5 @@
-/* Original vector paper-theatre prototype. No generated video or external runtime. */
+(() => {
+/* Original vector paper theatre. No generated video or external runtime. */
 const wrap = (content) => `<svg viewBox="0 0 800 650" xmlns="http://www.w3.org/2000/svg">${content}</svg>`;
 const plant = (x,y,s=1,color='#52755a') => `<g class="paper-piece" transform="translate(${x} ${y}) scale(${s})"><path d="M0 0Q-18-90 7-150Q18-80 0 0" fill="${color}"/><path d="M0-16Q-70-28-66-84Q-12-82 0-16M2-55Q55-48 65-112Q11-118 2-55M2-92Q-37-104-30-151Q9-138 2-92" fill="${color}"/><path d="M0-10 0-111" stroke="#fbf5e8" stroke-width="1.5" fill="none" opacity=".5"/></g>`;
 const child = (x,y,s=1,shirt='#4b6899',skin='#bf8058',hair='#343c30') => `<g class="figure paper-piece" transform="translate(${x} ${y}) scale(${s})"><path d="m-30 165-8 72 28 2 14-65M17 172l8 64 29-2-7-75" fill="#334f53"/><path d="m-39 230-11 17q1 14 38 8l3-22M25 230l-1 23q37 9 42-4l-16-18" fill="#cf503c"/><path d="m-25 87-45 30-20-32-15 11 23 57q9 13 22 1l32-24M35 90l40 16 21-39 17 7-24 66q-6 11-21 4l-35-11" fill="${skin}"/><path d="M-26 77Q3 67 39 80l22 95q-51 20-104 0Z" fill="${shirt}"/><path d="m-27 78-28 19 13 34 24-12M37 80l28 14-10 34-19-9" fill="${shirt}"/><path d="M-3 50v30q12 13 26-1V51" fill="${skin}"/><path d="M-29 12Q-40-34 8-38Q55-35 49 15L42 48Q11 76-22 47Z" fill="${skin}"/><path d="M-33 24Q-50-8-29-31Q-8-56 25-39Q63-39 54 16L40 23 37-7Q16 5-5-9Q-6 14-33 24Z" fill="${hair}"/><ellipse cx="-15" cy="29" rx="3" ry="4" fill="#233d3a"/><ellipse cx="26" cy="29" rx="3" ry="4" fill="#233d3a"/><path d="M1 44q10 7 17-1" stroke="#233d3a" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="-22" cy="39" r="5" fill="#cf503c" opacity=".35"/><circle cx="34" cy="39" r="5" fill="#cf503c" opacity=".35"/><path d="m-4 112 12-14 12 14-12 14Z" fill="#fbf5e8" opacity=".7"/><g class="season-prop"><path d="M-35-25q8-34 39-29 28-10 52 27L21-16-8-18Z" fill="#eab64f"/><circle cx="-20" cy="-29" r="9" fill="#cf503c"/><circle cx="4" cy="-36" r="10" fill="#cf503c"/><circle cx="29" cy="-30" r="9" fill="#cf503c"/></g></g>`;
@@ -89,6 +90,11 @@ tracks.forEach(track=> {
   event.preventDefault();moveContent(event.key === 'ArrowRight'?1:-1);
  });
 });
+document.addEventListener('keydown',event=>{
+ if(event.defaultPrevented || !['ArrowLeft','ArrowRight'].includes(event.key) || event.metaKey || event.ctrlKey || event.altKey) return;
+ if(event.target !== document.body || scrollY >= top + span + height) return;
+ event.preventDefault();moveContent(event.key==='ArrowRight'?1:-1);
+});
 function syncMotion() {
  document.body.classList.toggle('motion-paused',simpleMotion());
  motion.setAttribute('aria-pressed',String(simpleMotion()));
@@ -110,7 +116,7 @@ window.addEventListener('resize',()=>{
 const navLinks=[...document.querySelectorAll('.site-header nav a')];
 const observed=[...document.querySelectorAll('.editorial-world section[id]')];
 const observer=new IntersectionObserver(entries=>{
- entries.forEach(entry=>{if(entry.isIntersecting){navLinks.forEach(a=>a.toggleAttribute('aria-current',a.hash==='#'+entry.target.id));}});
+ entries.forEach(entry=>{if(entry.isIntersecting){navLinks.forEach(a=>{if(a.hash==='#'+entry.target.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}});
 },{rootMargin:'-15% 0px -60% 0px',threshold:0});
 observed.forEach(section=>observer.observe(section));
 document.documentElement.classList.add('js-world');
@@ -121,3 +127,5 @@ window.addEventListener('load',()=>{
  if(anchor && anchor !== intro) anchor.scrollIntoView({behavior:'instant'});
 },{once:true});
 window.theatreDebug=()=>({...state,height,span,top,width:stage.clientWidth,paused:simpleMotion(),scene:sets[state.index].dataset.name,horizontal:tracks.map(t=>t.scrollLeft),introBottom:top+span+height});
+
+})();

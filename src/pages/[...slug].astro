@@ -1,0 +1,21 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { articles } from '../content/articles.js';
+export function getStaticPaths() {
+ return articles.map(article => ({ params: { slug: article.slug }, props: { article } }));
+}
+const { article } = Astro.props;
+const published = new Intl.DateTimeFormat('es-MX', {dateStyle:'long', timeZone:'UTC'}).format(new Date(`${article.date}T12:00:00Z`));
+---
+<SiteLayout title={`${article.title} · Herminio Cultura`} description={article.description} section={article.section} bodyClass="reader-body">
+ <main class="reader" id="lectura">
+  <a class="back" href={`/#${article.section}`}>Volver a la sección</a>
+  <article>
+   <h1>{article.title}</h1>
+   <div class="metadata"><span>{article.label}</span><time datetime={article.date}>{published}</time></div>
+   <p class="intro">{article.intro}</p>
+   <Fragment set:html={article.body}/>
+  </article>
+ </main>
+ <footer class="reader-footer"><a href={`/#${article.section}`}>Volver a {article.section}</a><p>Comisión de Cultura · Escuela Herminio Almendros</p></footer>
+</SiteLayout>
