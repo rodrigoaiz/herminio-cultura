@@ -136,9 +136,8 @@ html.lights .glass-header {
 
 /*
   Cabecera de vidrio: fondo casi transparente, desenfoque y saturación del
-  fondo, y brillos en los bordes. En Chromium (clase "glass-refract") el filtro
-  SVG #liquid-glass además dobla el fondo en los bordes, como una lente
-  (ver scripts/liquid-glass.js).
+  fondo, y brillos en los bordes. Sin filtros SVG en backdrop-filter: Chromium
+  los recalcula en cada cuadro del scroll y la cabecera parpadea.
 */
 @layer components {
   .glass-header {
@@ -162,8 +161,5 @@ html.lights .glass-header {
     pointer-events: none;
     background: linear-gradient(105deg, #ffffff73 0%, #ffffff00 28%, #ffffff00 72%, #ffffff40 100%);
     mix-blend-mode: soft-light;
-  }
-  .glass-refract .glass-header {
-    backdrop-filter: url(#liquid-glass) blur(14px) saturate(1.35) brightness(1.06);
   }
 }

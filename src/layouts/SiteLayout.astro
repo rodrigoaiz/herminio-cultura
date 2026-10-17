@@ -18,7 +18,6 @@ const { title, description, home = false, section = '', bodyClass = '', contentI
     let internal = false;
     try { internal = new URL(document.referrer).origin === location.origin; } catch {}
     if (home && (!internal || nav?.type === 'reload')) root.classList.add('lights');
-    if (navigator.userAgentData?.brands?.some(b => b.brand === 'Chromium')) root.classList.add('glass-refract');
    })();
   </script>
   <link rel="icon" href="/assets/flor.svg" type="image/svg+xml"/>
