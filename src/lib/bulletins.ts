@@ -7,10 +7,17 @@ export type BulletinItem = {
   title: string;
   intro: string;
   label: string;
+  gradesText: string;
   dateISO: string;
   dateText: string;
   cover?: { src: string; width: number; height: number; alt: string };
 };
+
+const gradeList = new Intl.ListFormat('es', { type: 'conjunction' });
+
+// [1, 2] → «1.º y 2.º grado»; sin grados, cadena vacía.
+export const formatGrades = (grades: number[]) =>
+  grades.length ? `${gradeList.format([...grades].sort((a, b) => a - b).map(g => `${g}.º`))} grado` : '';
 
 const dateFormat = new Intl.DateTimeFormat('es-MX', { dateStyle: 'long', timeZone: 'UTC' });
 
@@ -27,6 +34,7 @@ export async function getBulletins(): Promise<BulletinItem[]> {
       title: data.title,
       intro: data.intro,
       label: data.label,
+      gradesText: formatGrades(data.grades),
       dateISO: data.date.toISOString().slice(0, 10),
       dateText: dateFormat.format(data.date),
       cover: cover ? {

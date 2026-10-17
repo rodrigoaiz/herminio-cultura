@@ -1,6 +1,7 @@
 ---
 section: boletines
 label: Boletín · Taller
+grades: [1, 2]
 title: Un muro de semillas
 description: El taller de grabado Tzompantli reunió a primero y segundo grado para imprimir, entre todos, un muro de cráneos que habla de vida y renovación.
 intro: En el taller de grabado, cada niña y niño diseñó su propio cráneo. Al colocar las impresiones juntas, descubrieron cómo sus creaciones se vuelven un diálogo colectivo.

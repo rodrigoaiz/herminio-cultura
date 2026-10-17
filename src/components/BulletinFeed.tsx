@@ -76,6 +76,7 @@ export default function BulletinFeed({ items, pageSize = 3 }: Props) {
               <div className="flex flex-1 flex-col pt-5">
                 <div className="metadata">
                   <span>{item.label}</span>
+                  {item.gradesText && <span>{item.gradesText}</span>}
                   <time dateTime={item.dateISO}>{item.dateText}</time>
                 </div>
                 <h3 className="mt-0 mb-3 text-3xl leading-[1.1]">
