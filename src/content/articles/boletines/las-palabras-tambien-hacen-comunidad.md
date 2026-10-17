@@ -1,6 +1,7 @@
 ---
 section: boletines
 label: Boletín · Comunidad
+grades: Toda la comunidad
 title: Las palabras también hacen comunidad
 description: Dar un lugar a las voces de niñas y niños es una manera de construir comunidad.
 intro: Escuchar lo que las niñas y los niños piensan es una forma de conocernos. Darle un lugar a su voz también es construir comunidad.

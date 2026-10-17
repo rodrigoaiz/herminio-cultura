@@ -17,7 +17,7 @@ const published = new Intl.DateTimeFormat('es-MX', {dateStyle:'long', timeZone:'
   <a class="back" href={`/${data.section}/`}>Volver a la sección</a>
   <article>
    <h1>{data.title}</h1>
-   <div class="metadata"><span>{data.label}</span>{data.grades.length > 0 && <span>{formatGrades(data.grades)}</span>}<time datetime={isoDate}>{published}</time></div>
+   <div class="metadata"><span>{data.label}</span>{formatGrades(data.grades) && <span>{formatGrades(data.grades)}</span>}<time datetime={isoDate}>{published}</time></div>
    <p class="intro">{data.intro}</p>
    <div class="article-body"><Content /></div>
   </article>

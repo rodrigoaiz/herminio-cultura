@@ -13,8 +13,8 @@ const articles = defineCollection({
     date: z.coerce.date(),
     cover: image().optional(),
     coverAlt: z.string().default(''),
-    // Grados que participaron (1 a 6), para los boletines de talleres.
-    grades: z.array(z.number().int().min(1).max(6)).default([]),
+    // Grados que participaron (1 a 6), o un texto libre como «Toda la comunidad».
+    grades: z.union([z.array(z.number().int().min(1).max(6)), z.string()]).default([]),
   }),
 });
 
