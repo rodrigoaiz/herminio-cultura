@@ -11,9 +11,32 @@ const eventos = (await getCollection('eventos', ({ data }) => isPast(data.date) 
  .sort((a, b) => (a.data.date.getTime() - b.data.date.getTime()) * (past ? -1 : 1) || a.id.localeCompare(b.id))
  .slice(0, limit);
 ---
-{eventos.length > 0 && <div class="grid grid-cols-3 gap-12 compact:grid-cols-2 narrow:grid-cols-1 narrow:gap-10">
- {eventos.map(({ id, data }) => <article class="relative flex min-w-0 flex-col">
-  <Image class="aspect-[4/3] h-auto w-full bg-white object-cover shadow-[3px_8px_18px_#0002]" src={data.cover} alt={data.coverAlt} style={{ objectPosition: data.coverPosition }} width={720} format="webp" />
-  <div class="pt-6"><h3 class="mt-0 mb-4 text-3xl leading-[1.1] narrow:text-2xl"><a class="text-ink no-underline after:absolute after:inset-0" href={`/cartelera/${id}/`}>{data.title}</a></h3><div class="metadata"><span>{data.type}</span><span>{data.when}</span><span>{data.where}</span></div><p class="mt-4 mb-0 max-w-100 text-sm">{data.summary}</p></div>
+{eventos.length > 0 && <div class="grid grid-cols-3 gap-12 compact:grid-cols-2 narrow:grid-cols-1 narrow:gap-10" data-event-grid>
+ {eventos.map(({ id, data }) => <article class="event-card relative flex min-w-0 flex-col">
+  <div class="event-cover"><Image class="aspect-[4/3] h-auto w-full bg-white object-cover" src={data.cover} alt={data.coverAlt} style={{ objectPosition: data.coverPosition }} width={720} format="webp" /></div>
+  <div class="pt-6"><h3 class="mt-0 mb-4 text-3xl leading-[1.1] narrow:text-2xl"><a class="no-underline after:absolute after:inset-0" href={`/cartelera/${id}/`}>{data.title}</a></h3><div class="metadata"><span>{data.type}</span><span>{data.when}</span><span>{data.where}</span></div><p class="mt-4 mb-0 max-w-100 text-sm">{data.summary}</p><span class="event-more" aria-hidden="true">Ver la ficha <svg viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div>
  </article>)}
 </div>}
+<script>
+ // Las tarjetas que aún no se ven entran al hacer scroll, por filas; las que ya están en pantalla no se tocan.
+ if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+   for (const entry of entries) {
+    if (!entry.isIntersecting) continue;
+    entry.target.classList.remove('is-waiting');
+    observer.unobserve(entry.target);
+   }
+  }, { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll<HTMLElement>('[data-event-grid]').forEach(grid => {
+   const cards = [...grid.children] as HTMLElement[];
+   cards.forEach(card => {
+    if (card.getBoundingClientRect().top < innerHeight) return;
+    // Dentro de cada fila, un pequeño desfase de izquierda a derecha.
+    const column = cards.filter(other => other.offsetTop === card.offsetTop).indexOf(card);
+    card.style.setProperty('--reveal-delay', `${column * 90}ms`);
+    card.classList.add('is-waiting');
+    observer.observe(card);
+   });
+  });
+ }
+</script>

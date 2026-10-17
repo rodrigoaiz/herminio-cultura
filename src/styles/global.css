@@ -2098,3 +2098,91 @@ button svg {
     animation: none;
   }
 }
+
+/* Tarjetas de la cartelera: carteles de papel que se levantan al pasar y entran al hacer scroll. */
+.event-card {
+  --tilt: -1.2deg;
+  --settle: 1.5deg;
+}
+.event-card:nth-child(even) {
+  --tilt: 1deg;
+  --settle: -1.5deg;
+}
+.event-cover {
+  overflow: hidden;
+  box-shadow: 3px 8px 18px #0002;
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+.event-cover img {
+  display: block;
+  transition: transform 0.9s var(--ease);
+}
+.event-card h3 a {
+  color: var(--ink);
+  transition: color 0.3s var(--ease);
+}
+.event-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--rust);
+  opacity: 0.75;
+  transition: opacity 0.3s var(--ease);
+}
+.event-more svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: transform 0.4s var(--ease);
+}
+.event-card:hover .event-cover,
+.event-card:has(a:focus-visible) .event-cover {
+  transform: translateY(-6px) rotate(var(--tilt));
+  box-shadow: 8px 20px 30px #0003;
+}
+.event-card:hover .event-cover img,
+.event-card:has(a:focus-visible) .event-cover img {
+  transform: scale(1.05);
+}
+.event-card:hover h3 a,
+.event-card:has(a:focus-visible) h3 a {
+  color: var(--rust);
+}
+.event-card:hover .event-more,
+.event-card:has(a:focus-visible) .event-more {
+  opacity: 1;
+}
+.event-card:hover .event-more svg,
+.event-card:has(a:focus-visible) .event-more svg {
+  transform: translateX(4px);
+}
+.event-card {
+  transition:
+    opacity 0.7s var(--ease) var(--reveal-delay, 0ms),
+    transform 0.9s var(--ease) var(--reveal-delay, 0ms);
+}
+.event-card.is-waiting {
+  opacity: 0;
+  transform: translateY(32px) rotate(var(--settle));
+}
+@media (prefers-reduced-motion: reduce) {
+  .event-card,
+  .event-cover,
+  .event-cover img,
+  .event-more svg {
+    transition: none;
+  }
+  .event-card:hover .event-cover,
+  .event-card:has(a:focus-visible) .event-cover,
+  .event-card:hover .event-cover img,
+  .event-card:has(a:focus-visible) .event-cover img {
+    transform: none;
+  }
+}
