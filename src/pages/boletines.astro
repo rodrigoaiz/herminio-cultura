@@ -4,7 +4,7 @@ import BulletinFeed from '../components/BulletinFeed.tsx';
 import { getBulletins } from '../lib/bulletins';
 const bulletins = await getBulletins();
 ---
-<SectionLayout title="Boletines" description="Noticias, voces e ideas de la Comisión de Cultura." section="boletines">
- <section class="editorial-section boletines-section" id="boletines"><div class="section-heading"><h1>Lo que pasa.<br>Lo que nos <em>une.</em></h1><p>Las noticias de la comisión, las voces de la comunidad y un archivo de ideas al que podemos volver.</p></div><div class="mt-16"><BulletinFeed client:load items={bulletins} pageSize={6} /></div></section>
+<SectionLayout title="Boletines" description="Noticias, voces e ideas del Comité de Cultura." section="boletines">
+ <section class="editorial-section boletines-section" id="boletines"><div class="section-heading"><h1>Lo que pasa.<br>Lo que nos <em>une.</em></h1><p>Las noticias del comité, las voces de la comunidad y un archivo de ideas al que podemos volver.</p></div><div class="mt-16"><BulletinFeed client:load items={bulletins} pageSize={6} /></div></section>
 
 </SectionLayout>

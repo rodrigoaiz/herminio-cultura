@@ -2,7 +2,7 @@
 title: XXVI Feria de las Calacas
 type: Día de Muertos
 summary: La fiesta de Día de Muertos de Alas y Raíces, con arte, tradición y juego para toda la familia.
-date: 2026-10-31
+date: 2026-11-01
 when: 31 de octubre y 1 de noviembre · 11:00 a 21:00 h
 where: Cenart y Pabellón de Cultura Comunitaria
 cost: Entrada libre

@@ -25,7 +25,7 @@ const imageUrl = new URL(ogImage?.src ?? '/og-default.jpg', Astro.site).href;
 // Astro no agranda imágenes: si la original es más angosta que 1200 px, la salida conserva su ancho.
 const imageWidth = image ? Math.min(1200, image.width) : 1200;
 const imageHeight = 630;
-const alt = ogImage ? (imageAlt || title) : 'La cultura la hacemos juntos. Comisión de Cultura, Escuela Herminio Almendros.';
+const alt = ogImage ? (imageAlt || title) : 'La cultura la hacemos juntos. Comité de Cultura, Escuela Herminio Almendros.';
 ---
 <title>{title}</title>
 <meta name="description" content={description}/>

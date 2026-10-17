@@ -1,14 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-interface Props { past?: boolean }
-const { past = false } = Astro.props;
+interface Props { past?: boolean; limit?: number }
+const { past = false, limit } = Astro.props;
 // Un evento pasa al historial al día siguiente de su fecha (hora de la CDMX, al construir el sitio).
 const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Mexico_City' }).format(new Date());
 const isPast = (date: Date) => date.toISOString().slice(0, 10) < today;
 // Próximos eventos del más cercano al más lejano; el historial, del más reciente al más antiguo.
 const eventos = (await getCollection('eventos', ({ data }) => isPast(data.date) === past))
- .sort((a, b) => (a.data.date.getTime() - b.data.date.getTime()) * (past ? -1 : 1) || a.id.localeCompare(b.id));
+ .sort((a, b) => (a.data.date.getTime() - b.data.date.getTime()) * (past ? -1 : 1) || a.id.localeCompare(b.id))
+ .slice(0, limit);
 ---
 {eventos.length > 0 && <div class="grid grid-cols-3 gap-12 compact:grid-cols-2 narrow:grid-cols-1 narrow:gap-10">
  {eventos.map(({ id, data }) => <article class="relative flex min-w-0 flex-col">

@@ -1,4 +1,4 @@
-# Herminio · Comisión de Cultura
+# Herminio · Comité de Cultura
 
 <!-- impeccable:product-schema 1 -->
 
@@ -16,7 +16,7 @@ Comunidad de la Escuela Herminio Almendros y personas que reciban sus enlaces p�
 
 ## Product Purpose
 
-Sitio público de la Comisión de Cultura, independiente del sitio institucional de la escuela. Permite descubrir actividades culturales, consultar recomendaciones de libros y leer boletines de la comisión.
+Sitio público del Comité de Cultura, independiente del sitio institucional de la escuela. Permite descubrir actividades culturales, consultar recomendaciones de libros y leer boletines del comité.
 
 ## Capabilities and Constraints
 
@@ -44,7 +44,7 @@ Cartelera, Libros y Boletines tienen páginas propias; el inicio presenta vistas
 - `planning-previo/` documenta el sitio institucional anterior: sirve de contexto sobre la escuela, su tono comunitario y el valor de la voz del alumnado. No define la arquitectura ni la identidad de este sitio de cultura.
 - Referencia visual aportada: https://miaai-lab.github.io/Claude-Opus-5.5-100-HTML-Files/018-paper-cut-diorama.html
 - Skills locales `scroll-world` y `landing-page-design` instalados.
-- La cartelera y las reseñas de libros esperan la primera selección de la comisión. El sitio expresa esa disponibilidad con mensajes editoriales de próxima publicación, sin avisos de prueba.
+- La cartelera y las reseñas de libros esperan la primera selección del comité. El sitio expresa esa disponibilidad con mensajes editoriales de próxima publicación, sin avisos de prueba.
 - Los logos originales aportados por el usuario están en `public/logos/`; sus variantes negra y blanca se usan como firma comunitaria y de pie.
 - La implementación v5 se contrasta con `src/scripts/world.js`, las páginas y componentes Astro, `src/styles/global.css` y las capturas de escritorio, móvil y 360×640 en `.impeccable/review/v5/`.
 

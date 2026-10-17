@@ -5,7 +5,7 @@ grades: [1, 2]
 title: Nuestro tzompantli
 description: En el taller de grabado, primero y segundo grado imprimieron, entre todos, su propio tzompantli, un muro de cráneos que habla de vida y renovación.
 intro: En el taller de grabado, cada niña y niño diseñó su propio cráneo. Al colocar las impresiones juntas, descubrieron cómo sus creaciones se vuelven un diálogo colectivo.
-date: 2026-10-16
+date: 2026-10-17
 cover: ./impresiones-sobre-la-mesa.jpg
 coverAlt: Doce impresiones de cráneos grabados, cada una distinta, sobre una mesa de madera.
 ---

@@ -1,14 +1,24 @@
 ---
-const books = [
- { title: 'Para hacer una pradera', note: 'Reseña de ejemplo de la Comisión de Cultura', href: '/lecturas/para-hacer-una-pradera/', color: 'bg-ochre text-ink', tilt: '-rotate-3', motif: 'sun' },
- { title: 'Un libro para compartir', note: 'Próxima lectura de personas adultas', color: 'bg-forest text-cream', tilt: 'rotate-2', motif: 'leaf' },
- { title: 'Preguntas entre páginas', note: 'Próxima conversación en comunidad', color: 'bg-coral text-cream', tilt: '-rotate-1', motif: 'window' },
+import { getCollection } from 'astro:content';
+interface Props { limit?: number }
+const { limit } = Astro.props;
+// Página de Lecturas: se muestran de seis en seis; en la portada, sólo las más recientes y un enlace a todas.
+const pageSize = 6;
+const looks = [
+ { color: 'bg-ochre text-ink', tilt: '-rotate-3', motif: 'sun' },
+ { color: 'bg-forest text-cream', tilt: 'rotate-2', motif: 'window' },
+ { color: 'bg-coral text-cream', tilt: '-rotate-1', motif: 'leaf' },
 ];
+// Una reseña entra al estante cuando dice quién la recomienda (la convocatoria y el ejemplo quedan fuera).
+const reviews = (await getCollection('articles', ({ data }) => data.section === 'lecturas' && !!data.recommendedBy))
+ .sort((a, b) => b.data.date.getTime() - a.data.date.getTime() || b.id.localeCompare(a.id));
+const books = reviews.slice(0, limit).map(({ id, data }, i) => ({ title: data.title, note: `Lo recomienda ${data.recommendedBy}`, href: `/${id}/`, ...looks[i % looks.length] }));
+const remaining = reviews.length - books.length;
 const cover = 'relative isolate flex aspect-[3/4] flex-col justify-between pt-8 pr-7 pb-6 pl-9 no-underline shadow-[5px_12px_18px_#0002] transition-transform duration-400 ease-paper before:absolute before:inset-0 before:-z-10 before:bg-[image:var(--paper-texture)] before:bg-[length:400px] before:opacity-10 after:absolute after:inset-y-0 after:left-2 after:w-1.5 after:bg-[#00000018] after:shadow-[2px_0_3px_#0001] hover:-translate-y-1.5 hover:rotate-0 motion-reduce:hover:translate-y-0 compact:p-6 narrow:min-h-58 narrow:pt-5 narrow:pr-4 narrow:pb-4 narrow:pl-6';
 ---
-<div class="grid grid-cols-3 gap-12 pt-4 compact:gap-8 narrow:grid-cols-2 narrow:gap-x-6 narrow:gap-y-10">
- {books.map(book => <article class="min-w-0 narrow:last:hidden narrow:[.lecturas-page_&]:last:block">
-  <a class={`${cover} ${book.color} ${book.tilt}`} href={book.href ?? '/lecturas/lecturas-de-la-comunidad/'} aria-label={`${book.title}. ${book.note}`}>
+<div class="grid grid-cols-3 gap-12 pt-4 compact:gap-8 narrow:grid-cols-2 narrow:gap-x-6 narrow:gap-y-10" data-shelf>
+ {books.map((book, i) => <article class={`min-w-0 ${limit && i === 2 ? 'narrow:hidden' : ''}`} hidden={!limit && i >= pageSize} data-book>
+  <a class={`${cover} ${book.color} ${book.tilt}`} href={book.href} aria-label={`${book.title}. ${book.note}`}>
    <span class="max-w-55 font-display text-4xl leading-[1.05] font-semibold text-balance compact:text-3xl narrow:text-2xl">{book.title}</span>
    <svg class="h-40 max-h-40 w-[65%] self-center fill-current stroke-none narrow:h-20 narrow:max-h-20 narrow:w-4/5" viewBox="0 0 160 160" aria-hidden="true">
     {book.motif === 'sun' && <><circle cx="80" cy="80" r="32"/><path d="M80 18v16m0 92v16M18 80h16m92 0h16M36 36l12 12m64 64 12 12M36 124l12-12m64-64 12-12" fill="none" stroke="currentColor" stroke-width="3"/></>}
@@ -20,3 +30,28 @@ const cover = 'relative isolate flex aspect-[3/4] flex-col justify-between pt-8 
   <p class="mt-6 mb-0 max-w-60 text-xs">{book.note}</p>
  </article>)}
 </div>
+{limit && remaining > 0 && <div class="mt-12 flex flex-wrap items-center gap-6">
+ <a class="paper-link" href="/lecturas/#estante">Ver más reseñas <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+ <p class="m-0 text-xs">{remaining === 1 ? 'Hay una reseña más en el estante' : `Hay ${remaining} reseñas más en el estante`}</p>
+</div>}
+{!limit && books.length > pageSize && <div class="mt-12 flex flex-wrap items-center gap-6" data-shelf-more>
+ <button type="button" class="paper-link border-0">Ver más reseñas <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6"/></svg></button>
+ <p class="m-0 text-xs" role="status" aria-live="polite">Mostrando {pageSize} de {books.length} reseñas</p>
+</div>}
+<noscript><style>[data-book][hidden] { display: block !important; } [data-shelf-more] { display: none !important; }</style></noscript>
+<script>
+ const pageSize = 6;
+ document.querySelectorAll<HTMLElement>('[data-shelf-more]').forEach(more => {
+  const books = [...(more.previousElementSibling?.querySelectorAll<HTMLElement>('[data-book]') ?? [])];
+  const button = more.querySelector('button')!;
+  const status = more.querySelector('p')!;
+  button.addEventListener('click', () => {
+   const next = books.filter(book => book.hidden).slice(0, pageSize);
+   next.forEach(book => { book.hidden = false; });
+   next[0]?.querySelector('a')?.focus({ preventScroll: true });
+   const shown = books.filter(book => !book.hidden).length;
+   if (shown === books.length) { button.remove(); status.textContent = `Ya viste las ${books.length} reseñas`; }
+   else status.textContent = `Mostrando ${shown} de ${books.length} reseñas`;
+  });
+ });
+</script>

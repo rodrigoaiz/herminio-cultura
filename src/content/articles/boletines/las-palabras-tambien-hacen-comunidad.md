@@ -14,4 +14,4 @@ Ese valor de la voz propia acompaña este espacio de cultura. Las recomendacione
 
 ## Un archivo para volver
 
-Los boletines reúnen las ideas, las noticias y los encuentros de la comisión. Un lugar para compartir lo que pasa y regresar a las historias que nos unen.
+Los boletines reúnen las ideas, las noticias y los encuentros del comité. Un lugar para compartir lo que pasa y regresar a las historias que nos unen.

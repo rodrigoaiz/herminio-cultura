@@ -1,6 +1,6 @@
 # Herminio Cultura
 
-Sitio de la Comisión de Cultura de la Escuela Herminio Almendros. Incluye una entrada de teatro de papel, cartelera mensual, lecturas de la comunidad y boletines.
+Sitio del Comité de Cultura de la Escuela Herminio Almendros. Incluye una entrada de teatro de papel, cartelera mensual, lecturas de la comunidad y boletines.
 
 ## Desarrollo
 
@@ -54,7 +54,7 @@ La imagen al compartir es la portada del artículo (`cover`), recortada a 1200×
 
 ## Contenidos
 
-Cada publicación es un archivo Markdown en `src/content/articles/<sección>/<slug>.md` (la dirección es `/<sección>/<slug>/`). El encabezado (frontmatter) lleva `section`, `label`, `title`, `description`, `intro` y `date`, y opcionalmente `cover` y `coverAlt` (portada de la lista y de la vista previa al compartir). Si el artículo lleva fotos, va en su propia carpeta (`<slug>/index.md`) con las imágenes al lado, referenciadas como `./foto.jpg`. el cuerpo se escribe en Markdown. El esquema está en `src/content.config.ts`. La cartelera y las reseñas muestran mensajes de próxima publicación mientras se reúne la selección de la comisión.
+Cada publicación es un archivo Markdown en `src/content/articles/<sección>/<slug>.md` (la dirección es `/<sección>/<slug>/`). El encabezado (frontmatter) lleva `section`, `label`, `title`, `description`, `intro` y `date`, y opcionalmente `cover` y `coverAlt` (portada de la lista y de la vista previa al compartir). Si el artículo lleva fotos, va en su propia carpeta (`<slug>/index.md`) con las imágenes al lado, referenciadas como `./foto.jpg`. el cuerpo se escribe en Markdown. Las reseñas de `lecturas` llevan además `recommendedBy` (por ejemplo, `Rodrigo Emilio, de 4.º`); con ese campo, el libro aparece solo en el estante, del más reciente al más antiguo. El esquema está en `src/content.config.ts`. La cartelera y las reseñas muestran mensajes de próxima publicación mientras se reúne la selección del comité.
 
 La entrada conserva tres decorados y seis pasos, todos controlados por el scroll vertical nativo de la página. Cada decorado mantiene una pausa de lectura, desplaza sus dos paneles lateralmente y después sale hacia arriba. Las figuras y las capas se mueven con ese mismo avance. No se interceptan eventos de rueda o táctiles ni se usa un carrusel independiente. La preferencia de movimiento reducido presenta los seis paneles en flujo normal.
 

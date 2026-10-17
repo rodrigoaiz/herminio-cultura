@@ -15,6 +15,8 @@ const articles = defineCollection({
     coverAlt: z.string().default(''),
     // Grados que participaron (1 a 6), o un texto libre como «Toda la comunidad».
     grades: z.union([z.array(z.number().int().min(1).max(6)), z.string()]).default([]),
+    // Reseñas de Lecturas: quién recomienda el libro. Con este campo, la reseña aparece en el estante.
+    recommendedBy: z.string().optional(),
   }),
 });
 
