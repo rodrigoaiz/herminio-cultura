@@ -586,6 +586,49 @@ button svg {
 .intro-sheet .text-link {
   margin-top: 8px;
 }
+.scroll-on {
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+}
+.scroll-on-arrow {
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.scroll-on-arrow svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  animation: nudge-down 1.8s ease-in-out infinite;
+}
+.scroll-on:hover {
+  color: var(--coral);
+}
+.scroll-on:hover .scroll-on-arrow {
+  color: var(--paper);
+  background-color: var(--coral);
+  border-color: var(--coral);
+}
+@keyframes nudge-down { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+.theatre-static .scroll-on-arrow svg {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-on-arrow svg {
+    animation: none;
+  }
+}
 .simple-list {
   padding: 0;
   list-style: none;
@@ -1217,9 +1260,14 @@ button svg {
     line-height: 1.65;
     margin-bottom: 16px;
   }
-  .intro-sheet .text-link {
+  .intro-sheet .text-link,
+  .scroll-on {
     font-size: 12px;
     gap: 8px;
+  }
+  .scroll-on-arrow {
+    width: 40px;
+    height: 40px;
   }
   .simple-list {
     font-size: 20px;
@@ -1388,7 +1436,8 @@ button svg {
   .intro-sheet p {
     font-size: 12px;
   }
-  .intro-sheet .text-link {
+  .intro-sheet .text-link,
+  .scroll-on {
     font-size: 11px;
   }
   .moon-lamp {
