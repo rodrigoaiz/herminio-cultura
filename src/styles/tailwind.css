@@ -74,12 +74,6 @@
   .article-body .voices blockquote {
     @apply m-0 flex flex-col justify-between gap-4 bg-note px-5 py-4 shadow-[2px_6px_12px_#0001];
   }
-  .article-body .voices blockquote:nth-child(3n + 2) {
-    @apply bg-sage;
-  }
-  .article-body .voices blockquote:nth-child(3n) {
-    @apply bg-blush;
-  }
   .article-body .voices blockquote:nth-child(odd) {
     @apply -rotate-1;
   }
