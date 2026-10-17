@@ -1791,6 +1791,16 @@ button svg {
 #descubrir {
   scroll-margin-top: 80px;
 }
+/* Lecturas: los enlaces al estante y a la convocatoria se deslizan. */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.lecturas-page) {
+    scroll-behavior: smooth;
+  }
+}
+#estante,
+#recomienda {
+  scroll-margin-top: 96px;
+}
 .books-art-panel > span {
   background: #fbf5e8ed;
   padding: 8px 12px;
