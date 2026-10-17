@@ -944,6 +944,14 @@ button svg {
   position: absolute;
   inset: -40px -80px 16px -64px;
 }
+.recommend-art {
+  min-height: 460px;
+  background-color: #eec46a;
+  background-blend-mode: soft-light;
+}
+.books-art-panel.recommend-art .editorial-art {
+  inset: -10px -16px -4px;
+}
 .books-art-panel > span {
   position: absolute;
   bottom: 24px;
@@ -1331,6 +1339,10 @@ button svg {
   }
   .books-art-panel .editorial-art {
     inset: -40px -80px 0 -64px;
+  }
+  .recommend-art {
+    min-height: 0;
+    aspect-ratio: 5 / 4;
   }
   .books-art-panel > span {
     left: 24px;

@@ -33,4 +33,6 @@ Envía una reseña cortita del libro que recomiendas a [comiteculturaherminioalm
 - No olvides poner el **título del libro**, tu **nombre** y tu **grado escolar**.
 - Tu reseña se publicará en el boletín de cultura.
 
+¿No sabes por dónde empezar? Mira [una reseña de ejemplo](/lecturas/para-hacer-una-pradera/) sobre *Para hacer una pradera*.
+
 ![Invitación a recomendar un libro a la comunidad de la Escuela Herminio Almendros.](./recomienda-un-libro.png)

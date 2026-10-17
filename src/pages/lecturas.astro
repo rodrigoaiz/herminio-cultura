@@ -4,5 +4,22 @@ import BookShelf from '../components/BookShelf.astro';
 ---
 <SectionLayout title="Lecturas" description="Lecturas y reseñas del alumnado y de las personas adultas de nuestra comunidad." section="lecturas">
  <section class="books-section" id="lecturas"><div class="editorial-section books-layout"><div class="books-art-panel"><div class="editorial-art" data-art="2" aria-hidden="true"></div><span>Leer también es conversar.</span></div><div class="books-copy"><h1>Un libro.<br>Muchas <em>miradas.</em></h1><p>Lo que sorprendió, lo que hizo reír, la pregunta que quedó abierta. Un lugar para las lecturas de nuestra comunidad.</p><div class="reading-links"><a href="/lecturas/lecturas-de-la-comunidad/#alumnado"><span><strong>Desde la infancia</strong><small>Reseñas del alumnado</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a><a href="/lecturas/lecturas-de-la-comunidad/#adultos"><span><strong>Desde la experiencia</strong><small>Lecturas de personas adultas</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div></div></section>
-<div class="editorial-section section-shelf"><h2>En nuestro próximo estante</h2><p>Estamos preparando las primeras reseñas de la comunidad. ¿Quieres compartir la tuya? <a href="/lecturas/lecturas-de-la-comunidad/#recomienda">Así puedes recomendar un libro</a>.</p><BookShelf /></div>
+<div class="editorial-section section-shelf"><h2>En nuestro estante</h2><p>Las lecturas que recomienda la comunidad. Para empezar, una reseña de ejemplo; los siguientes libros los ponen ustedes: <a href="#recomienda">así puedes recomendar uno</a>.</p><BookShelf /></div>
+<section class="mx-auto mb-24 grid max-w-288 grid-cols-[1.3fr_1fr] items-center gap-16 bg-note p-12 compact:mx-10 compact:gap-10 narrow:mx-6 narrow:mb-16 narrow:grid-cols-1 narrow:gap-8 narrow:px-6 narrow:py-8" id="recomienda" aria-labelledby="recomienda-title">
+ <div>
+  <h2 id="recomienda-title" class="mt-0 mb-6 text-5xl leading-none narrow:text-4xl">Recomienda<br><em>un libro.</em></h2>
+  <p class="max-w-120 text-base narrow:text-sm">¿Te gustan las historias, las aventuras y los dibujos que encuentras en los libros? Recomienda a la comunidad de la Herminio una lectura que te haya gustado mucho: tu favorito o una aventura que quieras compartir.</p>
+  <ul class="my-6 grid gap-2 pl-5 text-base narrow:text-sm">
+   <li>Escribe una reseña cortita del libro.</li>
+   <li>No olvides el <strong>título del libro</strong>, tu <strong>nombre</strong> y tu <strong>grado escolar</strong>.</li>
+   <li>Pueden participar niñas, niños, papás y mamás.</li>
+   <li>Las reseñas se publican en el boletín de cultura.</li>
+  </ul>
+  <div class="flex flex-wrap items-center gap-x-10 gap-y-4">
+   <a class="paper-link" href="mailto:comiteculturaherminioalmendros@gmail.com?subject=Recomiendo%20un%20libro">Enviar mi reseña <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+   <a class="text-link" href="/lecturas/para-hacer-una-pradera/">Ver una reseña de ejemplo <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+  </div>
+ </div>
+ <div class="books-art-panel recommend-art" aria-hidden="true"><div class="editorial-art" data-art="4"></div></div>
+</section>
 </SectionLayout>
