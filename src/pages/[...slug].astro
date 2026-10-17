@@ -11,14 +11,14 @@ const { Content } = await render(article);
 const isoDate = data.date.toISOString().slice(0, 10);
 const published = new Intl.DateTimeFormat('es-MX', {dateStyle:'long', timeZone:'UTC'}).format(data.date);
 ---
-<SiteLayout title={`${data.title} · Herminio Cultura`} description={data.description} section={data.section} bodyClass="reader-body" contentId="lectura">
+<SiteLayout title={`${data.title} · Herminio Cultura`} description={data.description} section={data.section} image={data.cover} imageAlt={data.coverAlt} publishedTime={data.date} bodyClass="reader-body" contentId="lectura">
  <main class="reader" id="lectura">
   <a class="back" href={`/${data.section}/`}>Volver a la sección</a>
   <article>
    <h1>{data.title}</h1>
    <div class="metadata"><span>{data.label}</span><time datetime={isoDate}>{published}</time></div>
    <p class="intro">{data.intro}</p>
-   <Content />
+   <div class="article-body"><Content /></div>
   </article>
  </main>
  <footer class="reader-footer"><a href={`/${data.section}/`}>Volver a {data.section}</a><p>Comisión de Cultura · Escuela Herminio Almendros</p></footer>

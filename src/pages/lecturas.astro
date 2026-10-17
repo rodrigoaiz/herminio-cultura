@@ -1,0 +1,8 @@
+---
+import SectionLayout from '../layouts/SectionLayout.astro';
+import BookShelf from '../components/BookShelf.astro';
+---
+<SectionLayout title="Lecturas" description="Lecturas y reseñas del alumnado y de las personas adultas de nuestra comunidad." section="lecturas">
+ <section class="books-section" id="lecturas"><div class="editorial-section books-layout"><div class="books-art-panel"><div class="editorial-art" data-art="2" aria-hidden="true"></div><span>Leer también es conversar.</span></div><div class="books-copy"><h1>Un libro.<br>Muchas <em>miradas.</em></h1><p>Lo que sorprendió, lo que hizo reír, la pregunta que quedó abierta. Un lugar para las lecturas de nuestra comunidad.</p><div class="reading-links"><a href="/lecturas/lecturas-de-la-comunidad/#alumnado"><span><strong>Desde la infancia</strong><small>Reseñas del alumnado</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a><a href="/lecturas/lecturas-de-la-comunidad/#adultos"><span><strong>Desde la experiencia</strong><small>Lecturas de personas adultas</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div></div></section>
+<div class="editorial-section section-shelf"><h2>En nuestro próximo estante</h2><p>Estamos preparando las primeras reseñas de la comunidad. ¿Quieres compartir la tuya? <a href="/lecturas/lecturas-de-la-comunidad/#recomienda">Así puedes recomendar un libro</a>.</p><BookShelf /></div>
+</SectionLayout>

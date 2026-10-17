@@ -1,21 +1,22 @@
 ---
 const books = [
- { title: 'Una historia por descubrir', note: 'Próxima reseña del alumnado', color: 'ochre', motif: 'sun' },
- { title: 'Un libro para compartir', note: 'Próxima lectura de personas adultas', color: 'forest', motif: 'leaf' },
- { title: 'Preguntas entre páginas', note: 'Próxima conversación en comunidad', color: 'clay', motif: 'window' },
+ { title: 'Una historia por descubrir', note: 'Próxima reseña del alumnado', color: 'bg-ochre text-ink', tilt: '-rotate-3', motif: 'sun' },
+ { title: 'Un libro para compartir', note: 'Próxima lectura de personas adultas', color: 'bg-forest text-cream', tilt: 'rotate-2', motif: 'leaf' },
+ { title: 'Preguntas entre páginas', note: 'Próxima conversación en comunidad', color: 'bg-coral text-cream', tilt: '-rotate-1', motif: 'window' },
 ];
+const cover = 'relative isolate flex aspect-[3/4] flex-col justify-between pt-8 pr-7 pb-6 pl-9 no-underline shadow-[5px_12px_18px_#0002] transition-transform duration-400 ease-paper before:absolute before:inset-0 before:-z-10 before:bg-[image:var(--paper-texture)] before:bg-[length:400px] before:opacity-10 after:absolute after:inset-y-0 after:left-2 after:w-1.5 after:bg-[#00000018] after:shadow-[2px_0_3px_#0001] hover:-translate-y-1.5 hover:rotate-0 motion-reduce:hover:translate-y-0 compact:p-6 narrow:min-h-58 narrow:pt-5 narrow:pr-4 narrow:pb-4 narrow:pl-6';
 ---
-<div class="book-shelf">
- {books.map(book => <article class="book-preview">
-  <a class={`book-cover cover-${book.color}`} href="/libros/lecturas-de-la-comunidad/" aria-label={`${book.title}. ${book.note}`}>
-   <span class="cover-title">{book.title}</span>
-   <svg class="cover-drawing" viewBox="0 0 160 160" aria-hidden="true">
+<div class="grid grid-cols-3 gap-12 pt-4 compact:gap-8 narrow:grid-cols-2 narrow:gap-x-6 narrow:gap-y-10">
+ {books.map(book => <article class="min-w-0 narrow:last:hidden narrow:[.lecturas-page_&]:last:block">
+  <a class={`${cover} ${book.color} ${book.tilt}`} href="/lecturas/lecturas-de-la-comunidad/" aria-label={`${book.title}. ${book.note}`}>
+   <span class="max-w-55 font-display text-4xl leading-[1.05] font-semibold text-balance compact:text-3xl narrow:text-2xl">{book.title}</span>
+   <svg class="h-40 max-h-40 w-[65%] self-center fill-current stroke-none narrow:h-20 narrow:max-h-20 narrow:w-4/5" viewBox="0 0 160 160" aria-hidden="true">
     {book.motif === 'sun' && <><circle cx="80" cy="80" r="32"/><path d="M80 18v16m0 92v16M18 80h16m92 0h16M36 36l12 12m64 64 12 12M36 124l12-12m64-64 12-12" fill="none" stroke="currentColor" stroke-width="3"/></>}
     {book.motif === 'leaf' && <><path d="M80 135V36" fill="none" stroke="currentColor" stroke-width="3"/><path d="M80 98Q20 93 26 44q52 3 54 54M80 78q57-2 55-50-52 7-55 50"/></>}
     {book.motif === 'window' && <><path d="M32 133V68a48 48 0 0 1 96 0v65Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M80 22v111M32 80h96" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="104" cy="58" r="12"/></>}
    </svg>
-   <span class="cover-foot">Lecturas de la comunidad</span>
+   <span class="text-[11px] font-semibold narrow:leading-[1.35]">Lecturas de la comunidad</span>
   </a>
-  <p>{book.note}</p>
+  <p class="mt-6 mb-0 max-w-60 text-xs">{book.note}</p>
  </article>)}
 </div>

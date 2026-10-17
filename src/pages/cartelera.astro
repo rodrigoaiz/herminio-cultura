@@ -3,9 +3,17 @@ import SectionLayout from '../layouts/SectionLayout.astro';
 import EventPreview from '../components/EventPreview.astro';
 ---
 <SectionLayout title="Cartelera" description="Recomendaciones mensuales para salir, mirar y descubrir en familia." section="cartelera">
- <section class="editorial-section cartelera-section" id="cartelera">
-  <div class="section-heading"><h1>Afuera hay<br>todo un <em>mundo.</em></h1><div><p>La cartelera de la comisión: recomendaciones mensuales para salir, mirar y descubrir en familia.</p><div class="metadata"><span>Cartelera mensual</span><time datetime="2026-10">Octubre de 2026</time></div></div></div>
-  <div class="cartelera-layout"><a class="culture-poster paper-surface" href="/cartelera/octubre-2026/"><div class="poster-copy"><h3>Un mes<br>para <em>descubrir.</em></h3><span>La primera selección está por llegar</span></div><div class="editorial-art poster-art" data-art="1" aria-hidden="true"></div><span class="poster-bottom">Abrir la cartelera <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></a><div class="cartelera-notes"><h3>El próximo plan<br>puede empezar aquí.</h3><p>Un lugar para reunir propuestas culturales, con sus fechas, sedes y detalles para elegir juntos.</p><ul class="program-list"><li><span>Arte para mirar</span><span>Exposiciones y museos</span></li><li><span>Historias en escena</span><span>Teatro y narración</span></li><li><span>Salir a descubrir</span><span>Paseos en familia</span></li></ul><p class="editorial-note">Pronto compartiremos la selección de actividades de este mes.</p></div></div>
+ <section class="editorial-section section-shelf" aria-labelledby="eventos-title">
+  <div class="preview-heading"><h1 id="eventos-title" class="m-0 text-6xl leading-none narrow:text-5xl">Para salir<br><em>este fin de semana.</em></h1><a class="text-link" href="/cartelera/octubre-2026/">Ver la cartelera completa <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+  <EventPreview />
  </section>
-<div class="editorial-section section-shelf"><h2>Ideas para la próxima salida</h2><EventPreview /></div>
+ <section class="editorial-section cartelera-section" id="cartelera">
+  <div class="section-heading"><h2>Afuera hay<br>todo un <em>mundo.</em></h2><div><p>La cartelera de la comisión: recomendaciones mensuales para salir, mirar y descubrir en familia.</p><div class="metadata"><span>Cartelera mensual</span><time datetime="2026-10">Octubre de 2026</time></div></div></div>
+  <div class="cartelera-layout"><a class="culture-poster paper-surface" href="/cartelera/octubre-2026/"><div class="poster-copy"><h3>Un mes<br>para <em>descubrir.</em></h3><span>Fin de semana del 17 y 18 de octubre</span></div><div class="editorial-art poster-art" data-art="1" aria-hidden="true"></div><span class="poster-bottom">Abrir la cartelera <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></a><div class="cartelera-notes"><h3>Este fin de semana<br>hay mucho por ver.</h3><p>Teatro para las infancias, un picnic literario y la presentación de un libro. Con fechas, sedes y costos para elegir juntos.</p><ul class="program-list"><li><span>Arte para mirar</span><span>Exposiciones y museos</span></li><li><span>Historias en escena</span><span>Teatro y narración</span></li><li><span>Salir a descubrir</span><span>Paseos en familia</span></li></ul></div></div>
+ </section>
+ <aside class="mx-auto mb-24 max-w-288 bg-note p-12 compact:mx-10 narrow:mx-6 narrow:mb-16 narrow:px-6 narrow:py-8" aria-labelledby="colabora-title">
+  <h2 id="colabora-title" class="mt-0 mb-6 text-5xl leading-none narrow:text-4xl">Colabora con <em>la agenda.</em></h2>
+  <p class="max-w-150 text-base narrow:text-sm">La cartelera también es de la comunidad. Si tú o tu familia participan en una presentación, una exposición, una obra, un concierto o cualquier actividad cultural, compártannos los datos del evento y lo sumamos a la agenda.</p>
+  <a class="text-link" href="mailto:comiteculturaherminioalmendros@gmail.com">comiteculturaherminioalmendros@gmail.com <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+ </aside>
 </SectionLayout>

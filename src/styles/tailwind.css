@@ -1,0 +1,169 @@
+/*
+  Tailwind convive con el CSS heredado (global.css) sin el reset "preflight".
+  Orden de capas: lo heredado va antes que las utilidades, así una clase de
+  Tailwind siempre gana sobre una regla heredada del mismo elemento.
+*/
+@layer theme, base, legacy, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import './global.css' layer(legacy);
+
+/* Puntos de corte propios del sitio (diseño de escritorio a móvil). */
+@custom-variant compact (@media (max-width: 1100px));
+@custom-variant narrow (@media (max-width: 700px));
+@custom-variant tiny (@media (max-width: 370px));
+
+@theme static {
+  --color-*: initial;
+  --color-white: #fff;
+  --color-paper: #fbf5e8;
+  --color-ink: #263b32;
+  --color-coral: #a74432;
+  --color-rust: #823324;
+  --color-sun: #dca342;
+  --color-mint: #9fb397;
+  --color-blue: #4b6899;
+  --color-wood: #3c251e;
+  --color-cream: #fff5db;
+  --color-gold: #e3bc75;
+  --color-mist: #d1d5c5;
+  --color-ochre: #e7bc62;
+  --color-forest: #385b4c;
+  --color-sage: #dce3d3;
+  --color-blush: #e9c9b6;
+  --color-note: #e3e8dc;
+
+  --font-sans: Manrope, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+
+  --ease-paper: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* El sitio hereda line-height 1.6 del body; los tamaños de texto no lo cambian. */
+  --text-xs--line-height: 1.6;
+  --text-sm--line-height: 1.6;
+  --text-base--line-height: 1.6;
+}
+
+/* Cuerpo de los artículos escritos en Markdown (fotos y voces del alumnado). */
+@layer components {
+  .article-body img {
+    @apply block h-auto max-h-[75vh] w-full rounded-[2px] bg-white object-contain p-2 shadow-[3px_8px_18px_#0002];
+  }
+  .article-body h3 {
+    @apply mt-10 mb-3 text-3xl leading-[1.1] narrow:text-2xl;
+  }
+  .article-body ul {
+    @apply my-4 pl-5;
+  }
+  .article-body li {
+    @apply mb-1;
+  }
+  .article-body a {
+    @apply text-coral underline-offset-4;
+  }
+  .article-body p:has(> img) {
+    @apply my-10 grid gap-4;
+  }
+  .article-body p:has(> img + img) {
+    @apply grid-cols-2 narrow:grid-cols-1;
+  }
+  .article-body .voices {
+    @apply my-8 grid grid-cols-2 gap-5 narrow:grid-cols-1;
+  }
+  .article-body .voices blockquote {
+    @apply m-0 flex flex-col justify-between gap-4 bg-note px-5 py-4 shadow-[2px_6px_12px_#0001];
+  }
+  .article-body .voices blockquote:nth-child(3n + 2) {
+    @apply bg-sage;
+  }
+  .article-body .voices blockquote:nth-child(3n) {
+    @apply bg-blush;
+  }
+  .article-body .voices blockquote:nth-child(odd) {
+    @apply -rotate-1;
+  }
+  .article-body .voices blockquote:nth-child(even) {
+    @apply rotate-1;
+  }
+  .article-body .voices blockquote p {
+    @apply m-0 font-display text-xl leading-snug font-semibold;
+  }
+  .article-body .voices blockquote p:last-child {
+    @apply font-sans text-xs leading-none font-bold tracking-[.06em] text-coral uppercase;
+  }
+}
+
+/*
+  Entrada de la página: se encienden las luces (un foco que se abre desde el
+  centro) y después baja la cabecera. Solo corre cuando <html> trae la clase
+  "lights", que pone SiteLayout al llegar de fuera del sitio o al recargar.
+*/
+@property --lights {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+@keyframes lights-on {
+  0% { --lights: 0%; opacity: 1; }
+  55% { opacity: 1; }
+  100% { --lights: 140%; opacity: 0; }
+}
+@keyframes header-drop {
+  from { translate: 0 calc(-100% - 40px); opacity: 0; }
+  to { translate: 0 0; opacity: 1; }
+}
+html.lights body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 60% at 50% 42%, #1b130e00 var(--lights), #1b130eeb calc(var(--lights) + 30%), #120c08 calc(var(--lights) + 60%));
+  animation: lights-on 1.9s cubic-bezier(0.55, 0, 0.3, 1) 0.15s both;
+}
+html.lights .glass-header {
+  animation: header-drop 0.9s var(--ease-paper) 1.35s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.lights body::before {
+    animation: lights-on 0.4s linear both;
+  }
+  html.lights .glass-header {
+    animation: none;
+  }
+}
+
+/*
+  Cabecera de vidrio: fondo casi transparente, desenfoque y saturación del
+  fondo, y brillos en los bordes. En Chromium (clase "glass-refract") el filtro
+  SVG #liquid-glass además dobla el fondo en los bordes, como una lente
+  (ver scripts/liquid-glass.js).
+*/
+@layer components {
+  .glass-header {
+    background: linear-gradient(180deg, #fffdf6a6, #fbf5e861 60%, #fbf5e88c);
+    border: 1px solid #ffffffb3;
+    box-shadow:
+      inset 0 1px 0 #ffffffe6,
+      inset 0 -1px 0 #263b3214,
+      inset 0 0 18px #ffffff59,
+      0 8px 28px #263b321f,
+      0 1px 3px #263b321a;
+    backdrop-filter: blur(14px) saturate(1.9) brightness(1.04);
+    -webkit-backdrop-filter: blur(14px) saturate(1.9) brightness(1.04);
+  }
+  .glass-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(105deg, #ffffff73 0%, #ffffff00 28%, #ffffff00 72%, #ffffff40 100%);
+    mix-blend-mode: soft-light;
+  }
+  .glass-refract .glass-header {
+    backdrop-filter: url(#liquid-glass) blur(3px) saturate(1.9) brightness(1.04);
+  }
+}

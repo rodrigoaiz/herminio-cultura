@@ -1,7 +1,10 @@
 ---
 import SectionLayout from '../layouts/SectionLayout.astro';
+import BulletinFeed from '../components/BulletinFeed.tsx';
+import { getBulletins } from '../lib/bulletins';
+const bulletins = await getBulletins();
 ---
 <SectionLayout title="Boletines" description="Noticias, voces e ideas de la Comisión de Cultura." section="boletines">
- <section class="editorial-section boletines-section" id="boletines"><div class="section-heading"><h1>Lo que pasa.<br>Lo que nos <em>une.</em></h1><p>Las noticias de la comisión, las voces de la comunidad y un archivo de ideas al que podemos volver.</p></div><article class="bulletin-feature"><div><h3><a href="/boletines/las-palabras-tambien-hacen-comunidad/">Las palabras también<br>hacen comunidad.</a></h3><div class="metadata"><span>Boletín · Comunidad</span><time datetime="2026-10-16">16 de octubre de 2026</time></div></div><div><p>Escuchar lo que las niñas y los niños piensan es una forma de conocernos. Darle un lugar a su voz también es construir comunidad.</p><a class="text-link" href="/boletines/las-palabras-tambien-hacen-comunidad/">Leer el boletín <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></article></section>
+ <section class="editorial-section boletines-section" id="boletines"><div class="section-heading"><h1>Lo que pasa.<br>Lo que nos <em>une.</em></h1><p>Las noticias de la comisión, las voces de la comunidad y un archivo de ideas al que podemos volver.</p></div><div class="mt-16"><BulletinFeed client:load items={bulletins} pageSize={6} /></div></section>
 
 </SectionLayout>

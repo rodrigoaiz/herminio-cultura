@@ -1,20 +1,31 @@
 ---
-import '../styles/global.css';
+import '../styles/tailwind.css';
 import Header from '../components/Header.astro';
-const { title, description, home = false, section = '', bodyClass = '', contentId = 'contenido' } = Astro.props;
+import SeoHead from '../components/SeoHead.astro';
+const { title, description, home = false, section = '', bodyClass = '', contentId = 'contenido', image, imageAlt, publishedTime, noindex = false } = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
  <head>
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#fbf5e8"/>
-  <title>{title}</title><meta name="description" content={description}/>
-  <meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content={home ? 'website' : 'article'}/><meta property="og:locale" content="es_MX"/>
+  <SeoHead title={title} description={description} type={publishedTime ? 'article' : 'website'} image={image} imageAlt={imageAlt} publishedTime={publishedTime} noindex={noindex}/>
+  <script is:inline>
+   // Luces de entrada al llegar de otro sitio o al recargar; no al navegar dentro del sitio.
+   (() => {
+    const root = document.documentElement;
+    const nav = performance.getEntriesByType('navigation')[0];
+    let internal = false;
+    try { internal = new URL(document.referrer).origin === location.origin; } catch {}
+    if (!internal || nav?.type === 'reload') root.classList.add('lights');
+    if (navigator.userAgentData?.brands?.some(b => b.brand === 'Chromium')) root.classList.add('glass-refract');
+   })();
+  </script>
   <link rel="icon" href="/assets/flor.svg" type="image/svg+xml"/>
   <link rel="preload" href="/assets/cormorant-garamond.ttf" as="font" type="font/ttf" crossorigin/>
  </head>
  <body class={bodyClass}>
-  <a class="skip" href={home ? '#descubrir' : `#${contentId}`}>Saltar al contenido</a>
+  <a class="fixed top-[-100px] left-6 z-100 bg-paper px-6 py-3 focus:top-20" href={home ? '#descubrir' : `#${contentId}`}>Saltar al contenido</a>
   <Header home={home} section={section}/>
   <slot/>
  </body>

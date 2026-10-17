@@ -6,6 +6,16 @@
   "outputDirectory": "dist",
   "redirects": [
     {
+      "source": "/libros",
+      "destination": "/lecturas/",
+      "permanent": true
+    },
+    {
+      "source": "/libros/:path*",
+      "destination": "/lecturas/:path*",
+      "permanent": true
+    },
+    {
       "source": "/prototipo",
       "destination": "/",
       "permanent": true
@@ -38,10 +48,10 @@
         {
           "type": "query",
           "key": "pieza",
-          "value": "libros"
+          "value": "lecturas"
         }
       ],
-      "destination": "/libros/lecturas-de-la-comunidad/",
+      "destination": "/lecturas/lecturas-de-la-comunidad/",
       "permanent": true
     },
     {

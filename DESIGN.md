@@ -276,4 +276,4 @@ Jardín, ciudad y bosque nocturno tienen fondos, figuras y luces propios. Todos 
 
 ## Estructura de publicación
 
-El sitio usa Astro estático. Las páginas y los artículos están en `src/pages/`, los componentes compartidos en `src/components/`, las publicaciones en archivos Markdown dentro de `src/content/articles/` y el estilo global en `src/styles/global.css`. Las imágenes y fuentes se sirven desde `/assets/`. Los avisos de prueba se retiraron por instrucción del usuario.
+El sitio usa Astro estático. Las páginas y los artículos están en `src/pages/`, los componentes compartidos en `src/components/`, las publicaciones en archivos Markdown dentro de `src/content/articles/` y el estilo en `src/styles/`: Tailwind v4 (`tailwind.css`, con los colores y puntos de corte `compact`/`narrow`/`tiny` del sitio) convive con el CSS heredado de `global.css`, que queda en una capa anterior para que las utilidades de Tailwind siempre ganen. Los componentes nuevos y migrados usan utilidades; la entrada teatral sigue en `global.css`. Las imágenes y fuentes se sirven desde `/assets/`. Los avisos de prueba se retiraron por instrucción del usuario.

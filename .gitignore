@@ -7,7 +7,8 @@
 *.swo
 
 # Herramientas locales y resultados de revisión
-.agents/
+.agents/*
+!.agents/skills/
 .codex/
 .impeccable/
 .playwright-cli/
@@ -16,6 +17,7 @@ fotos/
 playwright-report/
 test-results/
 *.log
+docs/
 
 # Dependencias y compilaciones
 node_modules/

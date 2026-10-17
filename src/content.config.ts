@@ -4,14 +4,32 @@ import { z } from 'astro/zod';
 
 const articles = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
-  schema: z.object({
-    section: z.enum(['cartelera', 'libros', 'boletines']),
+  schema: ({ image }) => z.object({
+    section: z.enum(['cartelera', 'lecturas', 'boletines']),
     label: z.string(),
     title: z.string(),
     description: z.string(),
     intro: z.string(),
     date: z.coerce.date(),
+    cover: image().optional(),
+    coverAlt: z.string().default(''),
   }),
 });
 
-export const collections = { articles };
+const eventos = defineCollection({
+  loader: glob({ pattern: '*/index.md', base: './src/content/eventos', generateId: ({ entry }) => entry.split('/')[0] }),
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    type: z.string(),
+    summary: z.string(),
+    date: z.coerce.date(),
+    when: z.string(),
+    where: z.string(),
+    cost: z.string().optional(),
+    cover: image(),
+    coverAlt: z.string(),
+    cartelera: z.string(),
+  }),
+});
+
+export const collections = { articles, eventos };
