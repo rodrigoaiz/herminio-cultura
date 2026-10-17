@@ -1823,3 +1823,116 @@ body.motion-paused .scene-copy-track {
   right: 20px;
   width: fit-content;
 }
+
+/*
+  Fondos con volumen y luz de teatro.
+  Los recortes del escenario (cerros, edificios, piso) reciben luz desde arriba:
+  un filo claro en el borde superior y sombra hacia la base. Lo lejano se funde
+  con la bruma del telón de fondo; lo cercano queda más saturado. La luz de
+  escena suma penumbra en la parte alta, un haz cenital sobre los personajes y
+  el resplandor de las candilejas abajo.
+*/
+.sky:before,
+.town-sky:before,
+.night-sky:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, #2a1a0f2e 0%, transparent 30%),
+    repeating-linear-gradient(90deg, transparent 0 150px, #3a24140a 185px, transparent 220px);
+}
+.night-sky:before {
+  background:
+    linear-gradient(180deg, #05091a55 0%, transparent 34%),
+    repeating-linear-gradient(90deg, transparent 0 150px, #00000012 185px, transparent 220px);
+}
+.back-ridge {
+  filter: saturate(0.82) brightness(1.04);
+  box-shadow:
+    inset 0 26px 34px -14px #fff1cf8c,
+    0 -6px 14px #0000001a;
+}
+.hill-back {
+  box-shadow:
+    inset 0 9px 10px -7px #fff7dcb3,
+    inset 0 -60px 70px -30px #1d2a1c40,
+    0 -8px 16px #00000029;
+}
+.hill-front {
+  box-shadow:
+    inset 0 8px 8px -6px #fff3d0cc,
+    inset 0 -50px 60px -25px #5a2f0a4d,
+    0 -10px 18px #0000003d;
+}
+.town-buildings {
+  filter: drop-shadow(6px 14px 8px #0003) drop-shadow(1px 3px 2px #0002);
+}
+.town-buildings i {
+  box-shadow:
+    inset 8px 10px 12px -8px #fff4,
+    inset -16px 0 18px -8px #3a1e1240;
+}
+.town-buildings i:before {
+  box-shadow: inset 3px 5px 7px #0006;
+}
+.town-floor {
+  box-shadow:
+    inset 0 16px 22px -10px #2a140840,
+    inset 0 -30px 40px -20px #fff1d630,
+    0 -9px 16px #0002;
+}
+.forest-back {
+  filter: brightness(0.82) saturate(0.85) drop-shadow(5px 12px 7px #0005);
+}
+.forest-front {
+  filter: brightness(0.92) drop-shadow(6px -4px 10px #0006);
+}
+
+/* Luz de escena: haz cenital y candilejas sobre todo el decorado. */
+.stage-light {
+  --spot: #fff2cf;
+  --footlights: #ffb050;
+  --beam: #fff6dc;
+}
+.scene-town .stage-light {
+  --spot: #ffe6cf;
+}
+.scene-night .stage-light {
+  --spot: #c9d4ff;
+  --footlights: #ffbe6a;
+  --beam: #d9e2ff;
+}
+.stage-light:before,
+.stage-light:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.stage-light:before {
+  background:
+    radial-gradient(ellipse 34% 46% at 70% 62%, color-mix(in srgb, var(--spot) 30%, transparent), transparent 72%),
+    radial-gradient(ellipse 70% 22% at 50% 104%, color-mix(in srgb, var(--footlights) 45%, transparent), transparent 70%);
+  mix-blend-mode: soft-light;
+}
+.stage-light:after {
+  background: conic-gradient(
+    from 168deg at 66% -12%,
+    transparent 0deg,
+    color-mix(in srgb, var(--beam) 2.5%, transparent) 6deg,
+    color-mix(in srgb, var(--beam) 4.5%, transparent) 13deg,
+    color-mix(in srgb, var(--beam) 2.5%, transparent) 20deg,
+    transparent 26deg
+  );
+  mix-blend-mode: screen;
+}
+/* De noche la luz viene de la luna, no del haz cenital. */
+.scene-night .stage-light:before {
+  background:
+    radial-gradient(ellipse 30% 38% at 79% 27%, color-mix(in srgb, var(--spot) 32%, transparent), transparent 72%),
+    radial-gradient(ellipse 70% 22% at 50% 104%, color-mix(in srgb, var(--footlights) 40%, transparent), transparent 70%);
+}
+.scene-night .stage-light:after {
+  display: none;
+}
