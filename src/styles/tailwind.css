@@ -142,7 +142,7 @@ html.lights .glass-header {
 */
 @layer components {
   .glass-header {
-    background: linear-gradient(180deg, #fffdf6a6, #fbf5e861 60%, #fbf5e88c);
+    background: linear-gradient(180deg, #fffdf6e0, #fbf5e8c7 60%, #fbf5e8d9);
     border: 1px solid #ffffffb3;
     box-shadow:
       inset 0 1px 0 #ffffffe6,
@@ -150,8 +150,8 @@ html.lights .glass-header {
       inset 0 0 18px #ffffff59,
       0 8px 28px #263b321f,
       0 1px 3px #263b321a;
-    backdrop-filter: blur(14px) saturate(1.9) brightness(1.04);
-    -webkit-backdrop-filter: blur(14px) saturate(1.9) brightness(1.04);
+    backdrop-filter: blur(18px) saturate(1.35) brightness(1.06);
+    -webkit-backdrop-filter: blur(18px) saturate(1.35) brightness(1.06);
   }
   .glass-header::before {
     content: '';
@@ -164,6 +164,6 @@ html.lights .glass-header {
     mix-blend-mode: soft-light;
   }
   .glass-refract .glass-header {
-    backdrop-filter: url(#liquid-glass) blur(3px) saturate(1.9) brightness(1.04);
+    backdrop-filter: url(#liquid-glass) blur(14px) saturate(1.35) brightness(1.06);
   }
 }
