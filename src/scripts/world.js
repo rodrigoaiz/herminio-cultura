@@ -1,4 +1,4 @@
-import { mountPaperArt } from './paper-art.js';
+import { mountPaperArt, buildingSide } from './paper-art.js';
 mountPaperArt();
 
 // One native document scroll is the clock: hold, travel sideways, hold,
@@ -10,7 +10,8 @@ const sets = [...intro.querySelectorAll('.intro-scene')];
 const tracks = sets.map(set => set.querySelector('.scene-copy-track'));
 const panels = tracks.map(track => [...track.children]);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-const motion = document.querySelector('#motion');
+const prev = document.querySelector('#step-prev');
+const next = document.querySelector('#step-next');
 const count = document.querySelector('#chapter-progress');
 const name = document.querySelector('#scene-name');
 const progressBar = intro.querySelector('.theatre-progress span');
@@ -18,7 +19,6 @@ const clamp = (n, min = 0, max = 1) => Math.max(min, Math.min(n, max));
 const ease = n => { n = clamp(n); return n * n * (3 - 2 * n); };
 const STRIDE = 2.8;
 const TOTAL = (sets.length - 1) * STRIDE + 2;
-let paused = false;
 let frame = 0, height = 0, width = 0, top = 0, span = 0;
 let state = { index: 0, panel: 0, progress: 0, position: 0 };
 
@@ -28,10 +28,14 @@ const puppets = sets.map(set => [...set.querySelectorAll('.scene-visual > svg > 
  const holder = document.createElementNS('http://www.w3.org/2000/svg', 'g');
  holder.classList.add('puppet');
  piece.before(holder); holder.append(piece);
- return { el: holder, figure: piece.classList.contains('figure'), order };
+ const building = piece.classList.contains('building');
+ if (building) holder.classList.add('building-hinge');
+ return { el: holder, figure: piece.classList.contains('figure'), building, side: piece.querySelectorAll('.building-side path'), order };
 }));
 const layers = sets.map(set => [...set.querySelectorAll('.sun,.cloud,.back-ridge,.hill,.town-buildings,.town-floor,.forest-back,.forest-front,.moon-lamp,.hanging-star,.firefly')]);
-const still = () => paused || reduced.matches;
+const still = () => reduced.matches;
+// Each of the six steps rests where its panel is fully on stage.
+const STEPS = sets.flatMap((_, i) => [i === 0 ? 0 : i * STRIDE + .2, i * STRIDE + 1.65]);
 
 function render() {
  frame = 0;
@@ -59,14 +63,23 @@ function render() {
   tracks[i].style.transform = `translate3d(${-x * width}px,0,0)`;
   const accessible = i === visible;
   // Move keyboard focus off a departing panel before it becomes inert.
-  if (set.contains(document.activeElement) && (!accessible || !panels[i][panel].contains(document.activeElement))) motion.focus({ preventScroll: true });
+  if (set.contains(document.activeElement) && (!accessible || !panels[i][panel].contains(document.activeElement))) next.focus({ preventScroll: true });
   set.inert = !accessible;
   set.setAttribute('aria-hidden', String(!accessible));
   panels[i].forEach((item, j) => { item.inert = !accessible || j !== panel; });
   // Skip painting offscreen sets; they retain deterministic state on reversal.
   set.style.visibility = Math.abs(position - i) < 1.05 ? 'visible' : 'hidden';
   if (Math.abs(position - i) >= 1.05) return;
-  puppets[i].forEach(({ el, figure, order }, j) => {
+  puppets[i].forEach(({ el, figure, building, side, order }, j) => {
+   if (building) {
+    // Pop-up: it unfolds from its base on entry and folds flat on exit. While
+    // the camera pans, a slight skew and the side wall turning give it depth.
+    const fold = Math.max(incoming, outgoing);
+    const turn = x * 2 - 1;
+    el.style.transform = `translate(${-x * 36}px,0) skewY(${turn * -1.6}deg) scale(${1 - Math.abs(turn) * .03},${Math.max(.02, Math.cos(fold * Math.PI / 2))})`;
+    buildingSide(1 - x * .75).forEach((d, k) => side[k].setAttribute('d', d));
+    return;
+   }
    const direction = j % 2 === 0 ? 1 : -1;
    const entry = incoming * (300 + order * 28);
    const exit = outgoing * (350 + order * 36);
@@ -89,7 +102,23 @@ function render() {
   name.textContent = sets[visible].dataset.name;
   count.textContent = `${visible * 2 + panel + 1} / 6`;
  }
+ intro.classList.toggle('theatre-start', offset < 4);
+ prev.disabled = clock < .05;
  state = { index: visible, panel, progress: offset / span, position, clock };
+}
+// Arrows glide to the previous or next resting point; past the last one the
+// visitor continues into the page below.
+function step(direction) {
+ const clock = (window.scrollY - top) / height;
+ const current = STEPS.findLastIndex(point => point <= clock + .05);
+ const target = direction > 0 ? current + 1 : (clock > STEPS[current] + .05 ? current : current - 1);
+ if (target >= STEPS.length) {
+  const descubrir = document.querySelector('#descubrir');
+  descubrir.scrollIntoView({ behavior: 'smooth' });
+  descubrir.focus({ preventScroll: true });
+  return;
+ }
+ window.scrollTo({ top: top + STEPS[Math.max(0, target)] * height, behavior: 'smooth' });
 }
 function schedule() { if (!frame) frame = requestAnimationFrame(render); }
 function measure() {
@@ -104,11 +133,6 @@ function measure() {
 function syncMotion() {
  const simple = still();
  document.documentElement.classList.toggle('theatre-static', simple);
- motion.setAttribute('aria-pressed', String(simple));
- motion.disabled = reduced.matches;
- motion.setAttribute('aria-label', simple ? 'Activar recorrido animado' : 'Reducir movimiento');
- motion.title = reduced.matches ? 'Movimiento reducido según tu dispositivo' : motion.getAttribute('aria-label');
- motion.innerHTML = simple ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7Z"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>';
  if (simple) {
   intro.style.height = '';
   stack.style.transform = '';
@@ -119,7 +143,7 @@ function syncMotion() {
   layers.flat().forEach(el => { el.style.translate = ''; el.style.rotate = ''; });
  } else measure();
 }
-function changeMotion(update = () => {}) {
+function changeMotion() {
  const bottom = intro.getBoundingClientRect().bottom + window.scrollY;
  const afterIntro = window.scrollY >= bottom;
  const distanceAfter = window.scrollY - bottom;
@@ -133,19 +157,18 @@ function changeMotion(update = () => {}) {
    if (distance < nearest) { nearest = distance; selected = { index, panel }; }
   }));
  }
- update();
  syncMotion();
  if (afterIntro) {
   window.scrollTo({ top: intro.getBoundingClientRect().bottom + window.scrollY + distanceAfter, behavior: 'instant' });
  } else if (still()) {
   panels[selected.index][selected.panel].scrollIntoView({ block: 'center', behavior: 'instant' });
  } else {
-  const readingPoint = selected.index * STRIDE + (selected.panel ? 1.65 : .2);
-  window.scrollTo({ top: top + readingPoint * height, behavior: 'instant' });
+  window.scrollTo({ top: top + STEPS[selected.index * 2 + selected.panel] * height, behavior: 'instant' });
   render();
  }
 }
-motion.addEventListener('click', () => changeMotion(() => { paused = !paused; }));
+prev.addEventListener('click', () => step(-1));
+next.addEventListener('click', () => step(1));
 // Only the closing arrow glides down; the other anchors jump too far for it.
 intro.querySelector('.scroll-on').addEventListener('click', event => {
  const target = document.querySelector(event.currentTarget.hash);

@@ -65,7 +65,6 @@ export const child = (x, y, s = 1, shirt = '#4b6899', skin = '#bf8058', hair = '
     ? `<path d="M-14 72Q8 96 30 72Q22 82 8 84Q-6 82-14 72Z" fill="${sock}"/>`
     : `<path d="M-10 72Q8 92 26 72Z" fill="${mix(skin, '#4a2410', .12)}"/><path d="M-12 72Q8 88 28 72" fill="none" stroke="${light(shirt)}" stroke-width="5" stroke-linecap="round"/>`;
 
-  const emblem = mom ? '' : `<path d="${girl ? 'M5 148l11-13 11 13-11 13Z' : 'M5 116l12-14 12 14-12 14Z'}" fill="#fbf5e8" opacity=".85"/>`;
 
   const pigtails = mom
     ? `${ell(8, -58, 22, 18, hair)}${ell(-44, 42, 14, 38, hair, 8)}${ell(60, 42, 14, 38, hair, -8)}`
@@ -97,5 +96,5 @@ export const child = (x, y, s = 1, shirt = '#4b6899', skin = '#bf8058', hair = '
   return `<g class="figure paper-piece" transform="translate(${x} ${y}) scale(${s})">${defs}`
     + `<ellipse cx="4" cy="${260 + lift}" rx="64" ry="9" fill="#1d1410" opacity=".16"/>`
     + `${legs}<g transform="translate(${mirror} ${lift}) scale(-1 1)">${shoes}</g><g transform="translate(0 ${lift})">${shoes}</g>`
-    + `${neck}${arms}${torso}${sleeves}${collar}${emblem}${pigtails}${ears}${face}${features}${hairFront}${sheen}${season}</g>`;
+    + `${neck}${arms}${torso}${sleeves}${collar}${pigtails}${ears}${face}${features}${hairFront}${sheen}${season}</g>`;
 };

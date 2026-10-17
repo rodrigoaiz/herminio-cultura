@@ -155,8 +155,8 @@ button svg {
 .sun {
   position: absolute;
   top: 22%;
-  right: 19%;
-  width: 88px;
+  right: 15%;
+  width: clamp(88px, 8vw, 132px);
   filter: drop-shadow(5px 12px 6px #0003);
   transform: rotate(-12deg);
 }
@@ -173,33 +173,47 @@ button svg {
   width: 100%;
   display: block;
 }
+/* Nubes de papel colgadas de dos hilos, como un telón volado. */
 .cloud {
   position: absolute;
-  width: 116px;
-  height: 28px;
-  border-radius: 60% 70% 0 0;
-  background: var(--paper);
-  filter: url(#paper-matte) drop-shadow(4px 12px 5px #0003);
+  width: clamp(150px, 15vw, 270px);
+  filter: drop-shadow(5px 14px 6px #0003);
 }
+.cloud svg {
+  display: block;
+  width: 100%;
+  filter: url(#paper-matte);
+}
+.cloud:before,
 .cloud:after {
   content: "";
   position: absolute;
-  left: 22px;
-  bottom: 0;
-  width: 55px;
-  height: 40px;
-  border-radius: 70% 70% 0 0;
-  background: inherit;
+  left: 30%;
+  bottom: 50%;
+  width: 1px;
+  height: 340px;
+  background: #7e634599;
+}
+.cloud:after {
+  left: 74%;
+  bottom: 84%;
 }
 .cloud-a {
-  right: 37%;
-  top: 24%;
-  transform: rotate(-4deg);
+  right: 35%;
+  top: 17%;
+  transform: rotate(-3deg);
+}
+.cloud-c {
+  left: 9%;
+  top: 9%;
+  width: clamp(190px, 22vw, 400px);
+  transform: rotate(-2deg);
 }
 .cloud-b {
-  right: 5%;
-  top: 39%;
-  transform: scale(0.6);
+  right: 7%;
+  top: 33%;
+  width: clamp(110px, 10vw, 180px);
+  transform: rotate(4deg);
 }
 .back-ridge,
 .hill {
@@ -676,70 +690,88 @@ button svg {
   background: linear-gradient(0deg, #281b16f5, #38241b99 28%, #38241b00);
   z-index: -1;
 }
+/* La etiqueta del recorrido es otro papel del escenario, apoyado en las candilejas. */
 .stage-controls {
   display: none;
   position: absolute;
-  bottom: 24px;
-  left: 48px;
-  right: 48px;
+  bottom: 28px;
+  left: 50%;
   z-index: 65;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  color: #fff2d8;
-  text-shadow: 0 2px 4px #0009;
+  gap: 4px;
+  padding: 4px;
+  color: var(--ink);
+  background: var(--paper);
+  background-image: linear-gradient(#fbf5e8d9, #fbf5e8d9), var(--paper-texture);
+  background-size: auto, 400px;
+  box-shadow: 4px 10px 12px #0004;
+  transform: translateX(-50%) rotate(-1deg);
 }
 .js-world .stage-controls {
   display: flex;
 }
 .scene-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
+  display: grid;
+  justify-items: center;
+  min-width: 184px;
+  padding: 0 8px;
+  line-height: 1.1;
+}
+#scene-name {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 19px;
   font-weight: 600;
 }
-.scene-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #e3bc75;
-}
-.direction-help {
-  display: flex;
-  gap: 24px;
-  font-size: 12px;
-}
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-}
-.controls button {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid #f0d9bb70;
-  background: #42251dcc;
-  border-radius: 4px;
-  transition: background 0.25s var(--ease);
-}
-.controls button:hover:enabled {
-  background: #704331;
-}
-.controls button svg {
-  width: 20px;
-  height: 20px;
-}
 #chapter-progress {
-  min-width: 40px;
-  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
   font-variant-numeric: tabular-nums;
 }
-#motion {
-  margin-left: 8px;
+.step-arrow {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+}
+.step-arrow svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+.step-arrow:hover:enabled {
+  background: var(--ink);
+  color: var(--paper);
+}
+.step-arrow:disabled {
+  opacity: 0.25;
+}
+.step-arrow:focus-visible {
+  outline-offset: 2px;
+}
+/* Mientras nadie ha bajado, la flecha siguiente invita a empezar. */
+.theatre-start #step-next svg {
+  animation: nudge-right 1.8s ease-in-out infinite;
+}
+@keyframes nudge-right { 0%, 100% { transform: translateX(-2px); } 50% { transform: translateX(3px); } }
+@media (max-width: 700px) {
+  .stage-controls {
+    bottom: 24px;
+  }
+  .scene-status {
+    min-width: 148px;
+  }
+  #scene-name {
+    font-size: 17px;
+  }
 }
 /* Conventional editorial pages begin after the theatre has left the viewport. */
 .editorial-world {
@@ -1059,13 +1091,6 @@ button svg {
     right: 12%;
     font-size: 20px;
   }
-  .direction-help {
-    display: block;
-    font-size: 11px;
-  }
-  .direction-help span {
-    display: flex;
-  }
   .editorial-section {
     padding: 80px 40px;
   }
@@ -1140,19 +1165,15 @@ button svg {
   .sky .sun {
     top: 18%;
     right: 12%;
-    width: 48px;
+    width: 62px;
   }
   .cloud-a {
-    top: 61%;
-    right: 70%;
-    width: 72px;
-    height: 16px;
+    top: 58%;
+    right: 62%;
+    width: 120px;
   }
-  .cloud-a:after {
-    width: 32px;
-    height: 24px;
-  }
-  .cloud-b {
+  .cloud-b,
+  .cloud-c {
     display: none;
   }
   .back-ridge {
@@ -1200,45 +1221,6 @@ button svg {
     height: 30%;
     bottom: -3%;
     width: 120%;
-  }
-  .stage-controls {
-    bottom: 24px;
-    left: 24px;
-    right: 24px;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .scene-status {
-    font-size: 11px;
-    flex: 1;
-    gap: 6px;
-  }
-  .direction-help {
-    flex: 0 0 100%;
-    order: 3;
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    margin-top: 4px;
-    font-size: 11px;
-  }
-  .controls {
-    gap: 4px;
-    font-size: 11px;
-  }
-  .controls button {
-    width: 44px;
-    height: 44px;
-  }
-  .controls button svg {
-    width: 16px;
-    height: 16px;
-  }
-  #chapter-progress {
-    min-width: 32px;
-  }
-  #motion {
-    margin-left: 4px;
   }
   .footlight {
     height: 112px;
@@ -1445,25 +1427,6 @@ button svg {
     right: 14%;
     width: 40px;
   }
-  .stage-controls {
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-  }
-  .scene-status {
-    font-size: 11px;
-    max-width: 88px;
-  }
-  .direction-help {
-    font-size: 11px;
-  }
-  .direction-help span:first-child {
-    max-width: 120px;
-  }
-  .direction-help span:last-child {
-    max-width: 120px;
-    text-align: right;
-  }
   .section-heading h2,
   .books-copy h2 {
     font-size: 48px;
@@ -1537,29 +1500,6 @@ button svg {
     transform: none;
   }
 }
-html:has(body.motion-paused) {
-  scroll-behavior: auto;
-}
-body.motion-paused .scene-copy-track {
-  scroll-behavior: auto;
-}
-
-.direction-help span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.direction-help svg {
-  width: 14px;
-  height: 14px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  flex: none;
-}
-.direction-help span:first-child svg {
-  transform: rotate(90deg);
-}
 
 .scene-garden {
   background: #ead9b2;
@@ -1607,23 +1547,23 @@ body.motion-paused .scene-copy-track {
   transform-box: fill-box;
   transform-origin: 50% 85%;
 }
-.scroll-invitation {
-  font-size: 12px;
-  margin: 0;
+/* El edificio se despliega desde su base, como en un libro desplegable. */
+.puppet.building-hinge {
+  transform-origin: 50% 100%;
 }
 .theatre-progress {
   position: absolute;
-  bottom: -12px;
-  left: 0;
-  right: 0;
+  bottom: 0;
+  left: 4px;
+  right: 4px;
   height: 2px;
-  background: #fff2d833;
+  background: #3a2a1f1a;
 }
 .theatre-progress span {
   display: block;
   width: 100%;
   height: 100%;
-  background: #e3bc75;
+  background: var(--rust);
   transform: scaleX(0);
   transform-origin: left;
 }
@@ -1633,22 +1573,9 @@ body.motion-paused .scene-copy-track {
   isolation: auto;
   overflow: visible;
 }
-.theatre-static .theatre-past .stage-controls {
-  display: none;
-}
 .theatre-static .proscenium,
-.theatre-static .theatre-progress,
-.theatre-static .scroll-invitation,
-.theatre-static .scene-status,
-.theatre-static #chapter-progress {
+.js-world.theatre-static .stage-controls {
   display: none;
-}
-.theatre-static .stage-controls {
-  position: fixed;
-  left: auto;
-  right: 24px;
-  bottom: 24px;
-  top: auto;
 }
 .theatre-static .scene-panel {
   min-height: 660px;
@@ -1759,19 +1686,6 @@ body.motion-paused .scene-copy-track {
   }
 }
 @media (max-width: 700px) {
-  .scroll-invitation {
-    position: absolute;
-    bottom: 48px;
-    font-size: 11px;
-    left: 0;
-  }
-  .stage-controls {
-    bottom: 24px;
-    flex-wrap: nowrap;
-  }
-  .scene-status {
-    max-width: none;
-  }
   .scene-panel {
     padding-top: 136px;
   }
@@ -2034,26 +1948,39 @@ body.motion-paused .scene-copy-track {
 .town-buildings i:nth-child(3) b {
   inset: 46% 22% 9%;
 }
+/* Cruza todo el escenario: los extremos quedan atados detrás del telón. */
 .garland {
   position: absolute;
-  left: -6%;
-  top: -14%;
-  width: 112%;
-  height: 54px;
+  left: -126%;
+  top: -46%;
+  width: 245%;
+  height: auto;
   overflow: visible;
   transform-origin: 50% 0;
   will-change: transform;
   animation: garland-sway 4.5s ease-in-out infinite alternate;
 }
+@media (max-width: 700px) {
+  .garland {
+    left: -36%;
+    top: 6%;
+    left: -90%;
+    width: 280%;
+  }
+}
 .sun img {
   will-change: transform;
   animation: sun-turn 9s ease-in-out infinite alternate;
 }
-.cloud-a { --cloud: rotate(-4deg); }
-.cloud-b { --cloud: scale(0.6); }
+.cloud-a { --cloud: rotate(-3deg); }
+.cloud-b { --cloud: rotate(4deg); }
+.cloud-c { --cloud: rotate(-2deg); }
 .cloud {
   will-change: transform;
   animation: cloud-drift 14s ease-in-out infinite alternate;
+}
+.cloud-c {
+  animation-duration: 23s;
 }
 .cloud-b {
   animation-duration: 19s;
@@ -2117,7 +2044,7 @@ body.motion-paused .scene-copy-track {
 }
 @keyframes sway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
 @keyframes bush-sway { from { transform: skewX(-1.2deg); } to { transform: skewX(1.4deg); } }
-@keyframes garland-sway { from { transform: rotate(-1.2deg) skewX(-3deg); } to { transform: rotate(1.2deg) translateY(2px) skewX(3deg); } }
+@keyframes garland-sway { from { transform: rotate(-0.4deg) skewX(-2deg); } to { transform: rotate(0.4deg) translateY(2px) skewX(2deg); } }
 @keyframes sun-turn { from { transform: rotate(-8deg) scale(0.98); } to { transform: rotate(10deg) scale(1.02); } }
 @keyframes cloud-drift { from { transform: translateX(0) var(--cloud); } to { transform: translateX(-34px) var(--cloud); } }
 @keyframes hang-swing { from { transform: rotate(-1.4deg); } to { transform: rotate(1.4deg); } }
