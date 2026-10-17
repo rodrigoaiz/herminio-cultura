@@ -3,20 +3,20 @@ section: boletines
 label: Boletín · Taller
 grades: [1, 2]
 title: Nuestro tzompantli
-description: El taller de grabado Tzompantli reunió a primero y segundo grado para imprimir, entre todos, un muro de cráneos que habla de vida y renovación.
+description: En el taller de grabado, primero y segundo grado imprimieron, entre todos, su propio tzompantli, un muro de cráneos que habla de vida y renovación.
 intro: En el taller de grabado, cada niña y niño diseñó su propio cráneo. Al colocar las impresiones juntas, descubrieron cómo sus creaciones se vuelven un diálogo colectivo.
 date: 2026-10-16
 cover: ./impresiones-sobre-la-mesa.jpg
 coverAlt: Doce impresiones de cráneos grabados, cada una distinta, sobre una mesa de madera.
 ---
 
-Durante la semana de la ofrenda, el grupo de primero y segundo grado hizo un taller de grabado en dos sesiones. El tema fue el *Tzompantli*, y la propuesta, entender a través del arte una cultura que sigue viva: el Día de Muertos.
+Durante la semana de la ofrenda, el grupo de primero y segundo grado hizo un taller de grabado en dos sesiones. El tema fue el *tzompantli*, y la propuesta, entender a través del arte una cultura que sigue viva: el Día de Muertos.
 
 ![Una mesa de madera cubierta de impresiones de cráneos, cada una con sus propios trazos y colores.](./impresiones-sobre-la-mesa.jpg)
 
-## Un muro, muchas semillas
+## Qué es un tzompantli
 
-Solemos imaginar el Tzompantli como un muro de cráneos. En el taller lo miramos de otra manera: como un **muro de semillas**, necesarias para la renovación. Las investigaciones arqueológicas más recientes lo interpretan así, y desde ahí el taller abordó la dualidad mesoamericana: vida y muerte, siembra y cosecha.
+El tzompantli era una estructura de los pueblos mesoamericanos, como los mexicas, donde se colocaban cráneos en hileras. Solemos imaginarlo solo como un muro de cráneos, pero las investigaciones arqueológicas más recientes lo interpretan también como un **muro de semillas**, necesarias para la renovación. Desde ahí el taller abordó la dualidad mesoamericana: vida y muerte, siembra y cosecha.
 
 Para las culturas mesoamericanas, la muerte era el inicio de un viaje y una manera de conservar el equilibrio. Cada niña y niño grabó un cráneo que fuera, en sus palabras y en sus líneas, una semilla que asegura la continuidad de la vida.
 
