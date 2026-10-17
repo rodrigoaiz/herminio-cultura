@@ -95,46 +95,6 @@
 }
 
 /*
-  Entrada de la página: se encienden las luces (un foco que se abre desde el
-  centro) y después baja la cabecera. Solo corre cuando <html> trae la clase
-  "lights", que pone SiteLayout al llegar de fuera del sitio o al recargar.
-*/
-@property --lights {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 0%;
-}
-@keyframes lights-on {
-  0% { --lights: 0%; opacity: 1; }
-  55% { opacity: 1; }
-  100% { --lights: 140%; opacity: 0; }
-}
-@keyframes header-drop {
-  from { translate: 0 calc(-100% - 40px); opacity: 0; }
-  to { translate: 0 0; opacity: 1; }
-}
-html.lights body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 95;
-  pointer-events: none;
-  background: radial-gradient(ellipse 70% 60% at 50% 42%, #1b130e00 var(--lights), #1b130eeb calc(var(--lights) + 30%), #120c08 calc(var(--lights) + 60%));
-  animation: lights-on 0.95s cubic-bezier(0.55, 0, 0.3, 1) 0.08s both;
-}
-html.lights .glass-header {
-  animation: header-drop 0.45s var(--ease-paper) 0.68s both;
-}
-@media (prefers-reduced-motion: reduce) {
-  html.lights body::before {
-    animation: lights-on 0.2s linear both;
-  }
-  html.lights .glass-header {
-    animation: none;
-  }
-}
-
-/*
   Cabecera de vidrio: fondo casi transparente, desenfoque y saturación del
   fondo, y brillos en los bordes. Sin filtros SVG en backdrop-filter: Chromium
   los recalcula en cada cuadro del scroll y la cabecera parpadea.

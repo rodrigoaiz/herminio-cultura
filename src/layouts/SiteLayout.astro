@@ -12,14 +12,68 @@ const { title, description, home = false, section = '', bodyClass = '', contentI
   <SeoHead title={title} description={description} type={publishedTime ? 'article' : 'website'} image={image} imageAlt={imageAlt} publishedTime={publishedTime} noindex={noindex}/>
   <script is:inline define:vars={{ home }}>
    // Luces de entrada solo en el teatro (portada), al llegar de otro sitio o al recargar; no al navegar dentro del sitio.
+   // La sala espera a oscuras (con la flor como precarga) hasta que la página, las imágenes y las fuentes están
+   // listas; luego medio segundo de negro y se abre el foco. Si algo tarda demasiado, se abre de todos modos.
    (() => {
     const root = document.documentElement;
     const nav = performance.getEntriesByType('navigation')[0];
     let internal = false;
     try { internal = new URL(document.referrer).origin === location.origin; } catch {}
-    if (home && (!internal || nav?.type === 'reload')) root.classList.add('lights');
+    if (!home || (internal && nav?.type !== 'reload')) return;
+    root.classList.add('lights');
+    let opened = false;
+    const open = () => { if (!opened) { opened = true; root.classList.add('lights-on'); } };
+    const loaded = new Promise(resolve => document.readyState === 'complete' ? resolve() : addEventListener('load', resolve, { once: true }));
+    loaded.then(() => document.fonts.ready).then(() => setTimeout(open, 500));
+    setTimeout(open, 4000);
    })();
   </script>
+  {home && <style is:inline>
+   @property --lights { syntax: '<percentage>'; inherits: false; initial-value: -60%; }
+   @keyframes lights-on {
+    0% { --lights: -60%; opacity: 1; }
+    60% { opacity: 1; }
+    100% { --lights: 140%; opacity: 0; }
+   }
+   @keyframes lights-wait { from { opacity: .25; scale: .94; } to { opacity: .7; scale: 1; } }
+   @keyframes lights-done { to { opacity: 0; scale: .8; } }
+   @keyframes header-drop {
+    from { translate: 0 calc(-100% - 40px); opacity: 0; }
+    to { translate: 0 0; opacity: 1; }
+   }
+   /* Telón negro: opaco desde el primer cuadro, sin depender del CSS del sitio. */
+   html.lights body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 95;
+    pointer-events: none;
+    --lights: -60%;
+    background: radial-gradient(ellipse 70% 60% at 50% 42%, #1b130e00 var(--lights), #1b130eeb calc(var(--lights) + 30%), #120c08 calc(var(--lights) + 60%));
+   }
+   html.lights body::after {
+    content: '';
+    position: fixed;
+    top: 42%;
+    left: 50%;
+    z-index: 96;
+    width: 44px;
+    height: 44px;
+    margin: -22px 0 0 -22px;
+    pointer-events: none;
+    background: url('/assets/flor.svg') center / contain no-repeat;
+    animation: lights-wait 0.9s ease-in-out infinite alternate;
+   }
+   html.lights-on body::before { animation: lights-on 1.15s cubic-bezier(0.55, 0, 0.3, 1) both; }
+   html.lights-on body::after { animation: lights-done 0.3s ease-out both; }
+   html.lights:not(.lights-on) .glass-header { opacity: 0; }
+   html.lights-on .glass-header { animation: header-drop 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both; }
+   @media (prefers-reduced-motion: reduce) {
+    html.lights body::after { animation: none; opacity: .5; }
+    html.lights-on body::before { animation: lights-on 0.2s linear both; }
+    html.lights-on .glass-header { animation: none; }
+   }
+  </style>}
   <link rel="icon" href="/assets/flor.svg" type="image/svg+xml"/>
   <link rel="preload" href="/assets/cormorant-garamond.ttf" as="font" type="font/ttf" crossorigin/>
  </head>
