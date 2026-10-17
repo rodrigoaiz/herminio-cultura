@@ -5,8 +5,8 @@ summary: Un picnic para leer al aire libre y celebrar el Día de la ONU en Chapu
 date: 2026-10-17
 when: Sábado 17 de octubre · 12:00 h
 where: Audiorama del Bosque de Chapultepec
-cover: ./portada.jpg
-coverAlt: Ilustración de niñas y niños leyendo sobre un mantel de picnic en un parque.
+cover: ./portada-reinterpretada.png
+coverAlt: Ilustración de cuatro niñas y niños compartiendo un picnic de lectura en un parque, uno de ellos en silla de ruedas, junto a un mantel rosa y un libro abierto.
 cartelera: cartelera/octubre-2026
 ---
 

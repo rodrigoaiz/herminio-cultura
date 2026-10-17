@@ -6,8 +6,8 @@ date: 2026-10-18
 when: Domingo 18 de octubre · 12:00 a 14:00 h
 where: Centro de Educación y Arte, Tlalpan
 cost: $150, material incluido
-cover: ./portada.jpg
-coverAlt: Ilustración botánica con hojas, flores y frutos, tomada del cartel de Herbario fantástico.
+cover: ./portada-reinterpretada.png
+coverAlt: Ilustración botánica reinterpretada con hojas verdes, flores blancas, amarillas, naranjas y rosas, frutos y una cápsula de semillas sobre papel claro.
 cartelera: cartelera/octubre-2026
 ---
 
