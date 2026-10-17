@@ -120,14 +120,14 @@ html.lights body::before {
   z-index: 95;
   pointer-events: none;
   background: radial-gradient(ellipse 70% 60% at 50% 42%, #1b130e00 var(--lights), #1b130eeb calc(var(--lights) + 30%), #120c08 calc(var(--lights) + 60%));
-  animation: lights-on 1.9s cubic-bezier(0.55, 0, 0.3, 1) 0.15s both;
+  animation: lights-on 0.95s cubic-bezier(0.55, 0, 0.3, 1) 0.08s both;
 }
 html.lights .glass-header {
-  animation: header-drop 0.9s var(--ease-paper) 1.35s both;
+  animation: header-drop 0.45s var(--ease-paper) 0.68s both;
 }
 @media (prefers-reduced-motion: reduce) {
   html.lights body::before {
-    animation: lights-on 0.4s linear both;
+    animation: lights-on 0.2s linear both;
   }
   html.lights .glass-header {
     animation: none;
