@@ -146,6 +146,13 @@ function changeMotion(update = () => {}) {
  }
 }
 motion.addEventListener('click', () => changeMotion(() => { paused = !paused; }));
+// Only the closing arrow glides down; the other anchors jump too far for it.
+intro.querySelector('.scroll-on').addEventListener('click', event => {
+ const target = document.querySelector(event.currentTarget.hash);
+ event.preventDefault();
+ target.scrollIntoView({ behavior: still() ? 'instant' : 'smooth' });
+ target.focus({ preventScroll: true });
+});
 reduced.addEventListener('change', () => changeMotion());
 window.addEventListener('scroll', schedule, { passive: true });
 // svh prevents the mobile address bar from changing the scroll timeline.
