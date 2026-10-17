@@ -1936,3 +1936,158 @@ body.motion-paused .scene-copy-track {
 .scene-night .stage-light:after {
   display: none;
 }
+
+/*
+  Escenografía viva: detalles de papel y movimiento ambiental en bucle.
+  El scroll ya mueve las capas con `translate` y `rotate` (world.js); estas
+  animaciones usan `transform` o elementos internos para no pisarlo.
+*/
+.tuft {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 1;
+  width: calc(56px * var(--s));
+  overflow: visible;
+  translate: -50% -82%;
+  transform-origin: 50% 100%;
+  filter: url(#paper-matte) drop-shadow(1px 3px 2px #0003);
+  animation: sway var(--d) ease-in-out infinite alternate;
+}
+.tuft.flower {
+  width: calc(30px * var(--s));
+}
+.town-buildings b {
+  position: absolute;
+  inset: 52% 18% 9%;
+  background-image: linear-gradient(#5f6b5e, #75806f);
+  background-size: 9px 13px;
+  background-repeat: space;
+  box-shadow: none;
+  opacity: 0.75;
+}
+.town-buildings b:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -14%;
+  width: 26%;
+  min-width: 12px;
+  height: 34%;
+  translate: -50% 0;
+  border-radius: 20px 20px 0 0;
+  background: #4b6899;
+  box-shadow: inset 3px 4px 5px #0005;
+}
+.town-buildings i:nth-child(3) b {
+  inset: 46% 22% 9%;
+}
+.garland {
+  position: absolute;
+  left: -6%;
+  top: -14%;
+  width: 112%;
+  height: 54px;
+  overflow: visible;
+  transform-origin: 50% 0;
+  animation: garland-sway 6s ease-in-out infinite alternate;
+}
+.garland .flag {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: flutter var(--d) ease-in-out var(--delay) infinite alternate;
+}
+.sun img {
+  animation: sun-turn 9s ease-in-out infinite alternate;
+}
+.cloud-a { --cloud: rotate(-4deg); }
+.cloud-b { --cloud: scale(0.6); }
+.cloud {
+  animation: cloud-drift 14s ease-in-out infinite alternate;
+}
+.cloud-b {
+  animation-duration: 19s;
+  animation-direction: alternate-reverse;
+}
+.moon-lamp svg {
+  transform-origin: 50% -200%;
+  animation: hang-swing 7s ease-in-out infinite alternate;
+}
+.hanging-star svg {
+  transform-origin: 50% -900%;
+  animation:
+    hang-swing 5.5s ease-in-out infinite alternate,
+    twinkle 3.4s ease-in-out infinite alternate;
+}
+.hanging-star:nth-of-type(2n) svg { animation-duration: 6.4s, 2.7s; animation-delay: -2s, -1s; }
+.hanging-star:nth-of-type(3n) svg { animation-duration: 4.8s, 3.9s; animation-delay: -3.5s, -2s; }
+.firefly {
+  animation:
+    firefly-a 9s ease-in-out infinite alternate,
+    glow 2.6s ease-in-out infinite alternate;
+}
+.firefly:nth-of-type(2n) { animation-name: firefly-b, glow; animation-duration: 11s, 3.3s; animation-delay: -4s, -1.2s; }
+.firefly:nth-of-type(3n) { animation-name: firefly-c, glow; animation-duration: 8s, 2.1s; animation-delay: -6s, -.6s; }
+.firefly:nth-of-type(5n) { animation-delay: -2s, -2.2s; }
+.plant-sway {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: plant-sway 5s ease-in-out infinite alternate;
+}
+.forest-back .paper-piece:nth-child(2n) .plant-sway,
+.scene-visual .paper-piece:nth-of-type(2n) .plant-sway {
+  animation-duration: 6.3s;
+  animation-delay: -2.4s;
+}
+.forest-front .plant-sway {
+  animation-duration: 7s;
+  animation-delay: -1.3s;
+}
+.shooting-star {
+  position: absolute;
+  top: 14%;
+  left: 18%;
+  width: 120px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #fff6d0);
+  opacity: 0;
+  rotate: 18deg;
+  animation: shooting 13s linear 4s infinite;
+}
+@keyframes sway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+@keyframes plant-sway { from { transform: rotate(-2deg); } to { transform: rotate(2.5deg); } }
+@keyframes flutter { from { transform: rotate(-9deg) scaleY(0.94); } to { transform: rotate(8deg) scaleY(1); } }
+@keyframes garland-sway { from { transform: rotate(-0.8deg); } to { transform: rotate(0.8deg) translateY(2px); } }
+@keyframes sun-turn { from { transform: rotate(-8deg) scale(0.98); } to { transform: rotate(10deg) scale(1.02); } }
+@keyframes cloud-drift { from { transform: translateX(0) var(--cloud); } to { transform: translateX(-34px) var(--cloud); } }
+@keyframes hang-swing { from { transform: rotate(-1.4deg); } to { transform: rotate(1.4deg); } }
+@keyframes twinkle { from { filter: url(#paper-matte) brightness(0.92); } to { filter: url(#paper-matte) brightness(1.18) drop-shadow(0 0 4px #fff3b880); } }
+@keyframes glow { 0% { opacity: 0.25; } 60% { opacity: 1; } 100% { opacity: 0.55; } }
+@keyframes firefly-a { 0% { transform: translate(0, 0); } 33% { transform: translate(18px, -14px); } 66% { transform: translate(-8px, -26px); } 100% { transform: translate(12px, -6px); } }
+@keyframes firefly-b { 0% { transform: translate(0, 0); } 40% { transform: translate(-20px, -10px); } 75% { transform: translate(-6px, 14px); } 100% { transform: translate(10px, -18px); } }
+@keyframes firefly-c { 0% { transform: translate(0, 0); } 30% { transform: translate(14px, 12px); } 70% { transform: translate(24px, -10px); } 100% { transform: translate(-10px, -16px); } }
+@keyframes shooting {
+  0% { opacity: 0; transform: translateX(0); }
+  2% { opacity: 1; }
+  7% { opacity: 0; transform: translateX(420px); }
+  100% { opacity: 0; transform: translateX(420px); }
+}
+.theatre-static .tuft,
+.theatre-static .garland,
+.theatre-static .garland .flag,
+.theatre-static .sun img,
+.theatre-static .cloud,
+.theatre-static .moon-lamp svg,
+.theatre-static .hanging-star svg,
+.theatre-static .firefly,
+.theatre-static .plant-sway,
+.theatre-static .shooting-star {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tuft, .garland, .garland .flag, .sun img, .cloud, .moon-lamp svg,
+  .hanging-star svg, .firefly, .plant-sway, .shooting-star {
+    animation: none;
+  }
+}
