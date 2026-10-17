@@ -9,13 +9,14 @@ export async function getStaticPaths() {
 const { evento } = Astro.props;
 const { data } = evento;
 const { Content } = await render(evento);
+const isPast = data.date.toISOString().slice(0, 10) < new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Mexico_City' }).format(new Date());
 ---
 <SiteLayout title={`${data.title} · Herminio Cultura`} description={data.summary} section="cartelera" image={data.cover} imageAlt={data.coverAlt} bodyClass="reader-body" contentId="lectura">
  <main class="reader" id="lectura">
   <a class="back" href="/cartelera/">Volver a la cartelera</a>
   <article>
    <h1>{data.title}</h1>
-   <div class="metadata"><span>{data.type}</span><span>{data.when}</span><span>{data.where}</span>{data.cost && <span>{data.cost}</span>}</div>
+   <div class="metadata"><span>{data.type}</span><span>{data.when}</span><span>{data.where}</span>{data.cost && <span>{data.cost}</span>}{isPast && <span>Ya pasó</span>}</div>
    <Image class="mb-8 block h-auto max-h-[75vh] w-full bg-white object-contain p-2 shadow-[3px_8px_18px_#0002]" src={data.cover} alt={data.coverAlt} width={1200} format="webp" loading="eager" />
    <p class="intro">{data.summary}</p>
    <div class="article-body"><Content /></div>

@@ -28,6 +28,8 @@ const eventos = defineCollection({
     cost: z.string().optional(),
     cover: image(),
     coverAlt: z.string(),
+    // Encuadre de la portada en las tarjetas 4:3 (object-position), útil para carteles verticales.
+    coverPosition: z.string().default('center'),
     cartelera: z.string(),
   }),
 });
