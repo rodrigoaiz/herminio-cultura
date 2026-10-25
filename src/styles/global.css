@@ -1054,6 +1054,25 @@ button svg {
 .reader .metadata {
   margin-bottom: 32px;
 }
+.share-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 48px;
+}
+.share-links button {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: inherit;
+  background: none;
+  border-width: 0 0 1px;
+  padding: 0 0 4px;
+  cursor: pointer;
+}
+.share-links [hidden] {
+  display: none;
+}
 .reader .intro {
   font-size: 20px;
   line-height: 1.6;
