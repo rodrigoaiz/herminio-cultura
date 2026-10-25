@@ -73,6 +73,8 @@ Esta cartelera reúne lo que trae el [Boletín Cultural de octubre](/boletines/l
 
 ## Día de Muertos
 
+Toda la temporada, con teatro, danza, música, talleres y festivales, está en el [especial de temporada de muertos](/cartelera/especial-dia-de-muertos-2026/).
+
 - **[XXVI Feria de las Calacas](/cartelera/feria-de-las-calacas/)**. La fiesta de Día de Muertos de Alas y Raíces, con arte, tradición y juego para toda la familia. *31 de octubre y 1 de noviembre · 11:00 a 21:00 h · Cenart y Pabellón de Cultura Comunitaria · Entrada libre.*
 
 ## ¿Participas en un evento cultural?
