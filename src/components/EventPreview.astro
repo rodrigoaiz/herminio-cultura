@@ -10,13 +10,27 @@ const isPast = (date: Date) => date.toISOString().slice(0, 10) < today;
 const eventos = (await getCollection('eventos', ({ data }) => isPast(data.date) === past))
  .sort((a, b) => (a.data.date.getTime() - b.data.date.getTime()) * (past ? -1 : 1) || a.id.localeCompare(b.id))
  .slice(0, limit);
+// Las fechas del contenido son días sin hora (medianoche UTC), así que se formatean en UTC.
+const format = (date: Date, options: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat('es-MX', { timeZone: 'UTC', ...options }).format(date).replace('.', '');
+const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+const dayLabel = (date: Date) => capitalize(format(date, { weekday: 'long', day: 'numeric', month: 'long' }).replace(',', ''));
+// La cartelera completa agrupa por día (próximos) o por mes (historial); con `limit` es una vista previa sin grupos.
+const groups = [...Map.groupBy(eventos, ({ data }) => limit ? '' : data.date.toISOString().slice(0, past ? 7 : 10))];
 ---
-{eventos.length > 0 && <div class="grid grid-cols-3 gap-12 compact:grid-cols-2 narrow:grid-cols-1 narrow:gap-10" data-event-grid>
- {eventos.map(({ id, data }) => <article class="event-card relative flex min-w-0 flex-col">
-  <div class="event-cover"><Image class="aspect-[4/3] h-auto w-full bg-white object-cover" src={data.cover} alt={data.coverAlt} style={{ objectPosition: data.coverPosition }} width={720} format="webp" /></div>
-  <div class="pt-6"><h3 class="mt-0 mb-4 text-3xl leading-[1.1] narrow:text-2xl"><a class="no-underline after:absolute after:inset-0" href={`/cartelera/${id}/`}>{data.title}</a></h3><div class="metadata"><span>{data.type}</span><span>{data.when}</span><span>{data.where}</span></div><p class="mt-4 mb-0 max-w-100 text-sm">{data.summary}</p><span class="event-more" aria-hidden="true">Ver la ficha <svg viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div>
- </article>)}
-</div>}
+{past ? groups.map(([month, items], i) => <details class="archive-month" open={i === 0}>
+ <summary><time datetime={month}>{capitalize(format(items[0].data.date, { month: 'long', year: 'numeric' }))}</time></summary>
+ <ol>
+  {items.map(({ id, data }) => <li><time datetime={data.date.toISOString().slice(0, 10)}>{format(data.date, { weekday: 'short' })} {format(data.date, { day: 'numeric', month: 'short' })}</time><a href={`/cartelera/${id}/`}>{data.title}</a><span>{data.type} · {data.where}</span></li>)}
+ </ol>
+</details>) : groups.map(([day, items]) => <div class="event-day-group">
+ {day && <h2 class="event-day"><time datetime={day}>{dayLabel(items[0].data.date)}</time></h2>}
+ <div class="grid grid-cols-3 gap-12 compact:grid-cols-2 narrow:grid-cols-1 narrow:gap-10" data-event-grid>
+  {items.map(({ id, data }) => <article class="event-card relative flex min-w-0 flex-col">
+   <div class="event-cover relative"><Image class="aspect-[4/3] h-auto w-full bg-white object-cover" src={data.cover} alt={data.coverAlt} style={{ objectPosition: data.coverPosition }} width={720} format="webp" /><span class="event-date" aria-hidden="true"><strong>{format(data.date, { day: 'numeric' })}</strong>{format(data.date, { month: 'short' })}</span></div>
+   <div class="pt-6"><h3 class="mt-0 mb-4 text-3xl leading-[1.1] narrow:text-2xl"><a class="no-underline after:absolute after:inset-0" href={`/cartelera/${id}/`}>{data.title}</a></h3><div class="metadata"><span>{data.type}</span><span>{data.when}</span><span>{data.where}</span></div><p class="mt-4 mb-0 max-w-100 text-sm">{data.summary}</p><span class="event-more" aria-hidden="true">Ver la ficha <svg viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div>
+  </article>)}
+ </div>
+</div>)}
 <script>
  // Las tarjetas que aún no se ven entran al hacer scroll, por filas; las que ya están en pantalla no se tocan.
  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
