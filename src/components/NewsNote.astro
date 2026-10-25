@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+// Lo más reciente de cada sección: último boletín, los próximos tres eventos (uno en móvil) y la última reseña del estante.
+const latest = <T extends { data: { date: Date }; id: string }>(entries: T[]) => entries.sort((a, b) => b.data.date.getTime() - a.data.date.getTime() || b.id.localeCompare(a.id))[0];
+const articles = await getCollection('articles');
+const bulletin = latest(articles.filter(({ data }) => data.section === 'boletines'));
+const review = latest(articles.filter(({ data }) => data.section === 'lecturas' && !!data.recommendedBy));
+// Igual que la cartelera: un evento sigue vigente hasta el final de su día (hora de la CDMX, al construir el sitio).
+const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Mexico_City' }).format(new Date());
+const events = (await getCollection('eventos', ({ data }) => data.date.toISOString().slice(0, 10) >= today))
+ .sort((a, b) => a.data.date.getTime() - b.data.date.getTime() || a.id.localeCompare(b.id))
+ .slice(0, 3);
+const format = (date: Date) => new Intl.DateTimeFormat('es-MX', { timeZone: 'UTC', day: 'numeric', month: 'short' }).format(date).replace('.', '');
+type NewsLink = { title: string; href: string; key: string; date?: string; meta?: string };
+const sections: { kind: string; more: string; href: string; links: NewsLink[] }[] = [];
+if (bulletin) sections.push({ kind: 'Boletín', more: 'Todos los boletines', href: '/boletines/', links: [{ title: bulletin.data.title, href: `/${bulletin.id}/`, key: bulletin.id }] });
+if (events.length) sections.push({ kind: 'Próximo en la cartelera', more: 'Toda la cartelera', href: '/cartelera/', links: events.map(({ id, data }) => ({ date: format(data.date), title: data.title, href: `/cartelera/${id}/`, key: id })) });
+if (review) sections.push({ kind: 'Lecturas', more: 'Todo el estante', href: '/lecturas/#estante', links: [{ title: review.data.title, meta: `Lo recomienda ${review.data.recommendedBy}`, href: `/${review.id}/`, key: review.id }] });
+// Cambia cuando hay algo nuevo; así la nota vuelve a abrirse sola sólo con novedades.
+const signature = sections.flatMap(section => section.links.map(link => link.key)).join('|');
+---
+{sections.length > 0 && <aside class="news-note fixed top-24 right-6 z-[70] w-80 max-w-[calc(100vw-32px)] text-right narrow:top-auto narrow:right-auto narrow:bottom-24 narrow:left-4 narrow:text-left" aria-label="Novedades" data-news-note={signature} hidden>
+ <button class="news-tab paper-surface cursor-pointer border-0 px-4 py-2 font-sans text-xs font-semibold text-ink rotate-2 narrow:-rotate-2" type="button" aria-expanded="false" aria-controls="news-panel">
+  <span class="mr-2 inline-block size-2 rounded-full bg-coral align-middle" aria-hidden="true"></span>Novedades
+ </button>
+ <div class="news-panel paper-surface relative overflow-hidden px-6 pt-5 pb-4 text-left rotate-1 narrow:-rotate-1" id="news-panel" hidden>
+  <p class="mt-0 mb-3 font-display text-2xl leading-none font-semibold">Lo nuevo <em>en Herminio</em></p>
+  <button class="news-close absolute top-2 right-2 grid size-9 cursor-pointer place-items-center border-0 bg-transparent text-ink" type="button" aria-label="Cerrar novedades"><svg class="size-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button>
+  <ul class="m-0 list-none p-0">
+   {sections.map(section => <li class="border-t border-ink/15 py-2.5">
+    <div class="mb-1 flex items-baseline justify-between gap-3"><span class="text-[11px] font-semibold tracking-[.06em] text-coral uppercase">{section.kind}</span><a class="shrink-0 text-[11px] text-ink/70 underline-offset-2 hover:text-coral" href={section.href}>{section.more} <span aria-hidden="true">→</span></a></div>
+    <ul class="m-0 list-none space-y-1 p-0">
+     {section.links.map((link, i) => <li class={i > 0 ? 'narrow:hidden' : undefined}><a class="group block no-underline" href={link.href}>
+      <span class="block text-sm leading-snug font-semibold group-hover:underline">{link.date && <time class="mr-1.5 font-normal text-ink/70">{link.date}</time>}{link.title}</span>
+      {link.meta && <span class="block text-xs text-ink/70">{link.meta}</span>}
+     </a></li>)}
+    </ul>
+   </li>)}
+  </ul>
+  <span class="news-timer absolute bottom-0 left-0 h-[3px] w-full origin-left bg-coral" aria-hidden="true"></span>
+ </div>
+</aside>}
+<script>
+ const note = document.querySelector<HTMLElement>('[data-news-note]');
+ if (note) {
+  const tab = note.querySelector<HTMLButtonElement>('.news-tab')!;
+  const panel = note.querySelector<HTMLElement>('.news-panel')!;
+  const storageKey = 'herminio-novedades';
+  const read = () => { try { return localStorage.getItem(storageKey); } catch { return null; } };
+  const markSeen = () => { try { localStorage.setItem(storageKey, note.dataset.newsNote!); } catch {} };
+  const setOpen = (open: boolean) => {
+   panel.hidden = !open;
+   tab.hidden = open;
+   tab.setAttribute('aria-expanded', String(open));
+  };
+  const collapse = (focusTab: boolean) => { setOpen(false); markSeen(); if (focusTab) tab.focus(); };
+  // La línea de abajo se agota en 8 s (se pausa con el mouse o el foco encima); al terminar, la nota se encoge.
+  panel.addEventListener('animationend', event => { if (event.animationName === 'news-drain') collapse(false); });
+  tab.addEventListener('click', () => setOpen(true));
+  note.querySelector('.news-close')!.addEventListener('click', () => collapse(true));
+  note.addEventListener('keydown', event => { if (event.key === 'Escape' && !panel.hidden) collapse(true); });
+  panel.addEventListener('click', event => { if ((event.target as Element).closest('a')) markSeen(); });
+  setTimeout(() => {
+   note.hidden = false;
+   // Quien ya vio estas novedades sólo encuentra la pestaña.
+   setOpen(read() !== note.dataset.newsNote);
+  }, 1500);
+ }
+</script>

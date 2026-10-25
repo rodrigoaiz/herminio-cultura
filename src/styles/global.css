@@ -2293,3 +2293,19 @@ button svg {
     grid-template-columns: 1fr;
   }
 }
+/* La nota de novedades llega como un papel que se desliza desde la esquina. */
+.news-note:not([hidden]) > :not([hidden]) {
+  animation: news-in 0.6s var(--ease-paper);
+}
+@keyframes news-in { from { opacity: 0; translate: 0 -12px; } }
+.news-timer {
+  animation: news-drain 8s linear forwards;
+}
+.news-note:hover .news-timer,
+.news-note:focus-within .news-timer {
+  animation-play-state: paused;
+}
+@keyframes news-drain { to { scale: 0 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .news-note > * { animation: none !important; }
+}
