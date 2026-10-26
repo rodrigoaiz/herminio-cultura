@@ -23,7 +23,7 @@ Garantizar el derecho a la cultura significa abrir las puertas de museos, biblio
 ## En este boletín
 
 - **[La cartelera de octubre](/cartelera/octubre-2026/):** cine, artes plásticas, música, teatro, danza y ciencia para todo el mes.
-- **[Lecturas de la comunidad](/lecturas/lecturas-de-la-comunidad/):** *Gorila*, recomendado por Rodrigo Emilio, de 4.º, y *El libro de los cerdos* y *Cuando fuiste nube*, recomendados por Tatiana C.
+- **[Lecturas de la comunidad](/lecturas/lecturas-de-la-comunidad/):** *Gorila*, recomendado por Rodrigo Emilio, de 4º, y *El libro de los cerdos* y *Cuando fuiste nube*, recomendados por Tatiana C.
 
 ## Prepárate para el boletín de Día de Muertos
 

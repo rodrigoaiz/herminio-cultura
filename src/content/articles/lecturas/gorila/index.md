@@ -3,16 +3,16 @@ section: lecturas
 label: Reseña · Alumnado
 grades: [4]
 title: Gorila
-description: Rodrigo Emilio, de 4.º, recomienda el libro de Anthony Browne sobre una niña que quiere pasar más tiempo con su papá.
+description: Rodrigo Emilio, de 4º, recomienda el libro de Anthony Browne sobre una niña que quiere pasar más tiempo con su papá.
 intro: «Recomiendo este libro porque es muy bonito y sentimental.»
-recommendedBy: Rodrigo Emilio, de 4.º
+recommendedBy: Rodrigo Emilio, de 4º
 date: 2026-10-17
 cover: ./portada.jpg
 coverAlt: Portada de Gorila, de Anthony Browne, con un gorila de pelaje rojizo y una niña de cabello negro.
 ---
 
 - **Libro:** *Gorila*, de Anthony Browne (Fondo de Cultura Económica, varias ediciones)
-- **Recomienda:** Rodrigo Emilio, de 4.º
+- **Recomienda:** Rodrigo Emilio, de 4º
 
 ![Portada de Gorila, de Anthony Browne, con un gorila de pelaje rojizo y una niña de cabello negro.](./portada.jpg)
 

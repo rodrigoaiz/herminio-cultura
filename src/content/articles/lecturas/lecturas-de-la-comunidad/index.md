@@ -13,13 +13,13 @@ coverAlt: Invitación a recomendar un libro, con un niño leyendo bajo un árbol
 
 Lo que sorprendió, lo que hizo reír, la pregunta que quedó abierta. Leer también es encontrar una manera propia de contar lo que sentimos.
 
-- [*Gorila*](/lecturas/gorila/), de Anthony Browne. Lo recomienda Rodrigo Emilio, de 4.º: «Es muy bonito y sentimental».
+- [*Gorila*](/lecturas/gorila/), de Anthony Browne. Lo recomienda Rodrigo Emilio, de 4º: «Es muy bonito y sentimental».
 
 <h2 id="adultos">Lecturas de personas adultas</h2>
 
 Un libro que queremos compartir. Una historia que invita a otra conversación. Las recomendaciones de personas adultas acompañan las voces del alumnado y amplían las miradas sobre cada lectura.
 
-- [*El libro de los cerdos*](/lecturas/el-libro-de-los-cerdos/), de Anthony Browne. Lo recomienda Tatiana C., mamá de Rodrigo, de 4.º: una invitación a preguntarnos quién hace el trabajo de la casa.
+- [*El libro de los cerdos*](/lecturas/el-libro-de-los-cerdos/), de Anthony Browne. Lo recomienda Tatiana C., mamá de Rodrigo, de 4º: una invitación a preguntarnos quién hace el trabajo de la casa.
 - [*Cuando fuiste nube*](/lecturas/cuando-fuiste-nube/), de María José Ferrada y Andrés López. También lo recomienda Tatiana C.: un libro de poesía para sentir, oler y tocar las palabras.
 
 <h2 id="recomienda">Recomienda un libro</h2>

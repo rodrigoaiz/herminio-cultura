@@ -14,7 +14,7 @@ cartelera: cartelera/octubre-2026
 
 ¿Qué historias de tu familia siguen hablando en silencio? *Mácula* es un documental que explora los recuerdos, los silencios y las preguntas que atraviesan una historia familiar. Después de la película se comparte *El Oráculo*, una experiencia de mediación guiada por su directora para escuchar los ecos de nuestra memoria y explorar lo que heredamos, incluso sin palabras.
 
-Es una actividad de Talía G., mamá de Lucía R., de 4.º.
+Es una actividad de Talía G., mamá de Lucía R., de 4º.
 
 - **Ficha:** Mariana X. Rivera, México, 2025, 25 min
 - **Cuándo:** viernes 16 de octubre de 2026, a las 18:00 h

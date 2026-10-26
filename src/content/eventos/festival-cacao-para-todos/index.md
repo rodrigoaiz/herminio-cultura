@@ -7,7 +7,7 @@ when: 'Del 29 de octubre al 2 de noviembre · 10:00 a 19:00 h'
 where: Museo Diego Rivera Anahuacalli
 cost: Entrada libre a la expoventa
 cover: ./portada.jpg
-coverAlt: 'Cartel ilustrado del 16.º Festival Cacao para Todos: una mujer, un niño que carga una jícara y un jaguar rodeados de mazorcas de cacao, cempasúchil y velas.'
+coverAlt: 'Cartel ilustrado del 16º Festival Cacao para Todos: una mujer, un niño que carga una jícara y un jaguar rodeados de mazorcas de cacao, cempasúchil y velas.'
 coverPosition: top
 cartelera: cartelera/especial-dia-de-muertos-2026
 ---

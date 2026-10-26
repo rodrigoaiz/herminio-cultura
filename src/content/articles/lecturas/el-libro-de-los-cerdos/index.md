@@ -2,16 +2,16 @@
 section: lecturas
 label: Reseña · Personas adultas
 title: El libro de los cerdos
-description: Tatiana C., mamá de Rodrigo, de 4.º, recomienda el libro de Anthony Browne sobre los cuidados y los roles de género en casa.
+description: Tatiana C., mamá de Rodrigo, de 4º, recomienda el libro de Anthony Browne sobre los cuidados y los roles de género en casa.
 intro: Una invitación a preguntarnos quién hace el trabajo de la casa y a cuestionar lo que antes parecía «natural».
-recommendedBy: Tatiana C., mamá de Rodrigo, de 4.º
+recommendedBy: Tatiana C., mamá de Rodrigo, de 4º
 date: 2026-10-17
 cover: ./portada.jpg
 coverAlt: Portada de El libro de los cerdos, de Anthony Browne, con una mamá que carga en la espalda a su esposo y a sus dos hijos.
 ---
 
 - **Libro:** *El libro de los cerdos*, de Anthony Browne (Fondo de Cultura Económica, colección Los Especiales de A la Orilla del Viento, varias ediciones)
-- **Recomienda:** Tatiana C., mamá de Rodrigo, de 4.º
+- **Recomienda:** Tatiana C., mamá de Rodrigo, de 4º
 
 ![Portada de El libro de los cerdos, de Anthony Browne, con una mamá que carga en la espalda a su esposo y a sus dos hijos.](./portada.jpg)
 

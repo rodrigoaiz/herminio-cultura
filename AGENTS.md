@@ -2,7 +2,7 @@
 
 ## Privacidad: nunca nombres completos de la comunidad
 
-El sitio es público y aparecen menores de edad. Alumnos, mamás, papás y personas del Comité de Cultura se publican con **nombre + inicial del apellido**, y el grado cuando aplica: «Iktan A., 2.º», «Talía G., mamá de Lucía R., de 4.º». Un nombre sin apellido («Rodrigo Emilio, de 4.º») también vale. Las figuras públicas (autores, artistas, directores de obra) conservan su nombre completo.
+El sitio es público y aparecen menores de edad. Alumnos, mamás, papás y personas del Comité de Cultura se publican con **nombre + inicial del apellido**, y el grado cuando aplica: «Iktan A. 2º», «Talía G., mamá de Lucía R., de 4º». Un nombre sin apellido («Rodrigo Emilio, de 4º») también vale. Las figuras públicas (autores, artistas, directores de obra) conservan su nombre completo.
 
 La regla aplica a todo lo que llega al sitio:
 

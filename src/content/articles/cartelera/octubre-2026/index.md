@@ -45,7 +45,7 @@ Esta cartelera reúne lo que trae el [Boletín Cultural de octubre](/boletines/l
 - **[Tonter I.A.](/cartelera/tonter-ia/)**. Tres clowns, música en vivo y videomapping para reírse de la inteligencia artificial. *Sábados y domingos · 13:00 h, hasta el 4 de octubre · El Gallinero, Centro Cultural del Bosque.*
 - **[Pájaro](/cartelera/pajaro/)**. Dos hombres que, inspirados por una mosca, deciden conquistar el cielo. *Sábados y domingos · 13:00 h, del 3 al 11 de octubre · La Titería, Coyoacán.*
 - **[La ópera de los monstruos](/cartelera/la-opera-de-los-monstruos/)**. Títeres gigantes, danza y música en vivo para que las infancias se asomen al mundo de la ópera. *Sábado 17 de octubre · 12:00 y 16:00 h · Teatro de las Artes, Cenart · $180.*
-- **[PUM](/cartelera/pum/)**. Una payasa pierde el tren y encuentra una maleta llena de historias. 13.º Encuentro Internacional de Clown. *Domingo 18 de octubre · 13:00 h · Teatro Helénico.*
+- **[PUM](/cartelera/pum/)**. Una payasa pierde el tren y encuentra una maleta llena de historias. 13º Encuentro Internacional de Clown. *Domingo 18 de octubre · 13:00 h · Teatro Helénico.*
 - **[La vendedora de nubes](/cartelera/la-vendedora-de-nubes/)**. Una niña intenta vender una nube en el mercado. Basada en el cuento de Elena Poniatowska. *Del 17 de octubre al 1 de noviembre · 13:00 h · Foro La Gruta, Centro Cultural Helénico.*
 
 ## Danza

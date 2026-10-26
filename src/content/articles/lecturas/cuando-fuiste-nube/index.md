@@ -2,16 +2,16 @@
 section: lecturas
 label: Reseña · Personas adultas
 title: Cuando fuiste nube
-description: Tatiana C., mamá de Rodrigo, de 4.º, recomienda el libro de poesía de María José Ferrada y Andrés López.
+description: Tatiana C., mamá de Rodrigo, de 4º, recomienda el libro de poesía de María José Ferrada y Andrés López.
 intro: ¿Crees que las palabras se pueden sentir, oler o tocar? Un libro de poesía para descubrirlo.
-recommendedBy: Tatiana C., mamá de Rodrigo, de 4.º
+recommendedBy: Tatiana C., mamá de Rodrigo, de 4º
 date: 2026-10-17
 cover: ./portada.jpg
 coverAlt: Portada de Cuando fuiste nube, con letras blancas manuscritas sobre un fondo naranja lleno de hojas pequeñas.
 ---
 
 - **Libro:** *Cuando fuiste nube*, de María José Ferrada y Andrés López (Fondo de Cultura Económica, 2019). Premio Hispanoamericano de Poesía para Niños 2018.
-- **Recomienda:** Tatiana C., mamá de Rodrigo, de 4.º
+- **Recomienda:** Tatiana C., mamá de Rodrigo, de 4º
 
 ![Portada de Cuando fuiste nube, con letras blancas manuscritas sobre un fondo naranja lleno de hojas pequeñas.](./portada.jpg)
 

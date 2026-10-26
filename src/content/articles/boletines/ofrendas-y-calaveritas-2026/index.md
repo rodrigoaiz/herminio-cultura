@@ -26,6 +26,6 @@ Envía tus aportaciones a [comiteculturaherminioalmendros@gmail.com](mailto:comi
 - tu **nombre** y tu **grado**;
 - si nos **autorizan a publicar** la foto o la calaverita en el álbum.
 
-En el álbum aparecerá sólo el nombre con la inicial del apellido y el grado, por ejemplo «Ana R., 3.º».
+En el álbum aparecerá sólo el nombre con la inicial del apellido y el grado, por ejemplo «Ana R. 3º».
 
 ¡Participa y mantengamos vivas nuestras tradiciones!

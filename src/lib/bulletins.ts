@@ -15,9 +15,9 @@ export type BulletinItem = {
 
 const gradeList = new Intl.ListFormat('es', { type: 'conjunction' });
 
-// [1, 2] → «1.º y 2.º grado»; un texto se muestra tal cual; sin grados, cadena vacía.
+// [1, 2] → «1º y 2º grado»; un texto se muestra tal cual; sin grados, cadena vacía.
 export const formatGrades = (grades: number[] | string) =>
-  typeof grades === 'string' ? grades.trim() : grades.length ? `${gradeList.format([...grades].sort((a, b) => a - b).map(g => `${g}.º`))} grado` : '';
+  typeof grades === 'string' ? grades.trim() : grades.length ? `${gradeList.format([...grades].sort((a, b) => a - b).map(g => `${g}º`))} grado` : '';
 
 const dateFormat = new Intl.DateTimeFormat('es-MX', { dateStyle: 'long', timeZone: 'UTC' });
 
