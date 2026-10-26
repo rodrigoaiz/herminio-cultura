@@ -13,6 +13,6 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   devToolbar: { enabled: false },
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap({ filter: page => !page.includes('/borradores/') })],
   vite: { plugins: [tailwindcss()] },
 });

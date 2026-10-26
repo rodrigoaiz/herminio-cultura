@@ -19,11 +19,13 @@ const flower = Array.from({ length: 8 }, (_, i) => petal(i * Math.PI / 4)).join(
 // La calavera se recorta entera; ojos, nariz y dientes quedan de papel (evenodd).
 const skull = `M-13 22a13 13 0 1 1 26 0q0 8-5 10v8h-16v-8q-5-2-5-10Z${hole(-5.5, 22, 4)}${hole(5.5, 22, 4)}${hole(0, 29, 1.6)}M-4.7 34h1.4v6h-1.4ZM-.7 34h1.4v6h-1.4ZM3.3 34h1.4v6h-1.4Z`;
 const dots = [...Array.from({ length: 9 }, (_, i) => hole(-32 + i * 8, 6, 1.3)), ...[14, 22, 30, 38, 46].flatMap(y => [hole(-32, y, 1.3), hole(32, y, 1.3)]), ...[0, 1, 2, 3].map(i => hole(-27.75 + i * 18.5, 57, 1.8))].join('');
-const picado = ['#d63384', '#ef7d22', '#1fa2c4', '#7a3fae', '#4f9e3a', '#f0b92a'].map((color, i) => {
+// Un banderín de papel picado; también lo usa el álbum de ofrendas.
+export const picadoFlag = (i, transform) => `<path transform="${transform}" fill="${['#d63384', '#ef7d22', '#1fa2c4', '#7a3fae', '#4f9e3a', '#f0b92a'][i % 6]}" fill-rule="evenodd" d="M-37 0H37V54a9.25 9.25 0 0 1-18.5 0 9.25 9.25 0 0 1-18.5 0 9.25 9.25 0 0 1-18.5 0 9.25 9.25 0 0 1-18.5 0Z${dots}${i % 2 ? skull : flower}"/>`;
+const picado = Array.from({ length: 6 }, (_, i) => {
  const t = 0.08 + i * 0.168, u = 1 - t;
  const x = u * u * 130 + 2 * u * t * 430 + t * t * 765, y = u * u * 80 + 2 * u * t * 140 + t * t * 64;
  const angle = Math.atan2(2 * u * 60 + 2 * t * -76, 2 * u * 300 + 2 * t * 335) * 180 / Math.PI + [-3, 2, -2, 3, -1, 2][i];
- return `<path transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${angle.toFixed(1)})" fill="${color}" fill-rule="evenodd" d="M-37 0H37V54a9.25 9.25 0 0 1-18.5 0 9.25 9.25 0 0 1-18.5 0 9.25 9.25 0 0 1-18.5 0 9.25 9.25 0 0 1-18.5 0Z${dots}${i % 2 ? skull : flower}"/>`;
+ return picadoFlag(i, `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${angle.toFixed(1)})`);
 }).join('');
 const seasonal = `<g class="season-prop"><path d="M130 80Q430 140 765 64" stroke="#68557a" stroke-width="2" fill="none"/>${picado}<g transform="translate(699 508) rotate(12)"><path d="M-34-12Q-38-51 1-52Q39-52 35-11l-9 15-1 28h-51l-1-28Z" fill="#fbf5e8"/><ellipse cx="-15" cy="-17" rx="9" ry="10" fill="#68557a"/><ellipse cx="16" cy="-17" rx="9" ry="10" fill="#68557a"/><path d="m0-1-5 8H6Z" fill="#cf503c"/><path d="M-18 18h36m-28-5v12M0 13v12m10-12v12" stroke="#68557a" stroke-width="2"/></g></g>`;
 // Día de Muertos: pan de muerto con sus huesitos, sobre un plato de barro (sólo en el jardín).
