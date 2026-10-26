@@ -91,7 +91,9 @@ export const child = (x, y, s = 1, shirt = '#4b6899', skin = '#bf8058', hair = '
     + `<radialGradient id="cb${n}"><stop offset="0" stop-color="#d4503c" stop-opacity=".55"/><stop offset="1" stop-color="#d4503c" stop-opacity="0"/></radialGradient></defs>`;
 
   const neck = limb('M8 46L8 78', 26, mix(skin, '#4a2410', .18));
-  const season = `<g class="season-prop" transform="translate(0 -14)"><path d="M-35-25q8-34 39-29 28-10 52 27L21-16-8-18Z" fill="#eab64f"/><circle cx="-20" cy="-29" r="9" fill="#cf503c"/><circle cx="4" cy="-36" r="10" fill="#cf503c"/><circle cx="29" cy="-30" r="9" fill="#cf503c"/></g>`;
+  // Día de Muertos: una flor de cempasúchil prendida en el pelo.
+  const petals = (r, size, color) => Array.from({ length: 8 }, (_, i) => `<circle cx="${(r * Math.cos(i * Math.PI / 4)).toFixed(1)}" cy="${(r * Math.sin(i * Math.PI / 4)).toFixed(1)}" r="${size}" fill="${color}"/>`).join('');
+  const season = `<g class="season-prop" transform="translate(-30 -44)">${petals(10, 7, '#e8892b')}${petals(5, 6, '#f2a33a')}<circle r="5" fill="#d9701f"/></g>`;
 
   return `<g class="figure paper-piece" transform="translate(${x} ${y}) scale(${s})">${defs}`
     + `<ellipse cx="4" cy="${260 + lift}" rx="64" ry="9" fill="#1d1410" opacity=".16"/>`

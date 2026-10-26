@@ -2328,3 +2328,53 @@ button svg {
 @media (prefers-reduced-motion: reduce) {
   .news-note > * { animation: none !important; }
 }
+/* Día de Muertos (body[data-theme="muertos"], ver paper-art.js): cempasúchil, papel picado y veladoras. */
+.seasonal,
+.flag-picado,
+[data-theme="muertos"] .flag-plain {
+  display: none;
+}
+[data-theme="muertos"] .seasonal,
+[data-theme="muertos"] .flag-picado {
+  display: block;
+}
+[data-theme="muertos"] .garland g {
+  fill: var(--muertos);
+}
+[data-theme="muertos"] .marigold g {
+  fill: #e8892b;
+}
+[data-theme="muertos"] .marigold > circle {
+  fill: #f2b33d;
+}
+.veladora {
+  position: absolute;
+  left: var(--fly-x);
+  top: var(--fly-y);
+  width: 16px;
+  height: 22px;
+  translate: -50% -100%;
+  border-radius: 2px 2px 3px 3px;
+  background: linear-gradient(#f6ecd2, #e3d3ad);
+  box-shadow: 0 0 22px 8px #f2b33d40, inset 0 -4px #d6418a;
+}
+.veladora:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 8px;
+  height: 13px;
+  translate: -50% 1px;
+  border-radius: 50% 50% 45% 45% / 70% 70% 30% 30%;
+  background: radial-gradient(circle at 50% 70%, #fff6c3, #f2b33d 60%, #e8892b);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .veladora:before {
+    will-change: opacity;
+    animation: veladora-flicker 2.4s ease-in-out infinite alternate;
+  }
+}
+@keyframes veladora-flicker {
+  to { opacity: 0.7; }
+}
