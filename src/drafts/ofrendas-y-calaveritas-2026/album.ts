@@ -1,4 +1,5 @@
-// Contenido de ejemplo del álbum: fotos de relleno y calaveritas inventadas.
+// Contenido del álbum: Iktan es real; el resto son fotos de relleno y calaveritas inventadas.
+import iktan from './iktan-a.jpg';
 import ofrenda1 from './ofrenda-1.jpg';
 import ofrenda2 from './ofrenda-2.jpg';
 import ofrenda3 from './ofrenda-3.jpg';
@@ -9,6 +10,12 @@ export const title = 'Ofrendas y calaveritas 2026';
 export const intro = 'Gracias a todas las familias que compartieron su ofrenda y su calaverita. Este es el álbum de Día de Muertos de la Familia Almendros.';
 
 export const entries: OfrendaEntry[] = [
+ {
+  name: 'Iktan A., 2.º',
+  photo: iktan,
+  alt: 'Ofrenda en el piso con tapete de aserrín morado y dos calaveras de cempasúchil, macetas de flores, calaveritas de azúcar, un esqueleto, veladoras y papel picado.',
+  calaverita: 'Estaba la calavera\nmuy contenta en el patio grande,\njugando con los niños\nde la Escuela Herminio Almendros\ndulces, risas y sustillos\npara que nadie se espante.\nY al sonar de la campana,\nse fue bailando hasta la tarde.',
+ },
  {
   name: 'Familia de Ana R., 3.º',
   photo: ofrenda1,
