@@ -14,16 +14,16 @@ const marigold = (x: number, y: number, r: number) => Array.from({ length: 10 },
 const bouquet = `<path d="M60 150Q50 100 30 70M60 150Q70 95 100 60M60 150Q62 110 64 40" stroke="#5d7a55" stroke-width="4" fill="none"/>${marigold(30, 64, 26)}${marigold(100, 56, 24)}${marigold(64, 36, 28)}`;
 ---
 <SiteLayout title={`${title} · Borrador`} description={intro} bodyClass="reader-body muertos-page" contentId="lectura" noindex>
- <main class="reader relative pt-20! narrow:pt-14!" id="lectura">
+ <main class="reader relative max-w-[1120px]! pt-20! narrow:pt-14!" id="lectura">
   <svg class="pointer-events-none absolute -top-5 left-1/2 w-[112%] -translate-x-1/2 narrow:w-full drop-shadow-[2px_6px_6px_#0004]" viewBox="0 0 1092 110" aria-hidden="true"><path d="M0 6Q546 70 1092 6" stroke="#3a2c4f" stroke-width="2" fill="none"/><Fragment set:html={picado} /></svg>
   <svg class="pointer-events-none absolute -bottom-20 -left-16 w-36 -rotate-12 narrow:-left-4 narrow:w-24" viewBox="0 0 130 160" aria-hidden="true"><Fragment set:html={bouquet} /></svg>
   <svg class="pointer-events-none absolute top-1/3 -right-14 w-32 rotate-12 narrow:hidden" viewBox="0 0 130 160" aria-hidden="true"><Fragment set:html={bouquet} /></svg>
   <p class="notice mt-0!">Borrador para el Comité de Cultura. Las fotos y las calaveritas son de ejemplo; no compartas este enlace.</p>
-  <article>
+  <article class="[&>p]:max-w-[736px]">
    <h1>{title}</h1>
    <div class="metadata"><span>Boletín · Álbum</span><span>Toda la comunidad</span></div>
    <p class="intro">{intro}</p>
-   <p>Del 26 de octubre al 2 de noviembre, el Comité de Cultura invitó a toda la comunidad a compartir la foto de su ofrenda familiar y una calaverita literaria. Toca una foto para verla en grande.</p>
+   <p>Del 26 de octubre al 2 de noviembre, el Comité de Cultura invitó a toda la comunidad a compartir la foto de su ofrenda familiar y una calaverita literaria. Toca cualquier foto para ampliarla.</p>
    <OfrendaAlbum entries={entries} />
   </article>
  </main>
