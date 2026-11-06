@@ -17,6 +17,7 @@ const dayLabel = (date: Date) => capitalize(format(date, { weekday: 'long', day:
 // La cartelera completa agrupa por día (próximos) o por mes (historial); con `limit` es una vista previa sin grupos.
 const groups = [...Map.groupBy(eventos, ({ data }) => limit ? '' : data.date.toISOString().slice(0, past ? 7 : 10))];
 ---
+{!past && !eventos.length && <p class="event-empty">Estamos preparando los próximos planes. ¿Conoces una función, una exposición o un paseo que valga la pena? <a href="mailto:comiteculturaherminioalmendros@gmail.com">Cuéntale al comité</a>.</p>}
 {past ? groups.map(([month, items], i) => <details class="archive-month" open={i === 0}>
  <summary><time datetime={month}>{capitalize(format(items[0].data.date, { month: 'long', year: 'numeric' }))}</time></summary>
  <ol>

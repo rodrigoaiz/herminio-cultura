@@ -99,7 +99,10 @@ button svg {
 /* Three sets share the stage; one is shown at a time and they cross-fade. */
 .theatre-intro {
   position: relative;
+  /* Above the page below, so the stage casts its shadow onto the paper. */
+  z-index: 1;
   background: var(--wood);
+  box-shadow: 0 6px 10px #3c251e40, 0 18px 36px -8px #3c251e33;
 }
 .stage-window {
   position: relative;
@@ -633,9 +636,11 @@ button svg {
 .scene-status {
   display: grid;
   justify-items: center;
-  min-width: 184px;
+  /* Fixed width: the label must not resize when the act's name changes. */
+  width: 200px;
   padding: 0 8px;
   line-height: 1.1;
+  white-space: nowrap;
 }
 #scene-name {
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -643,11 +648,39 @@ button svg {
   font-weight: 600;
 }
 #chapter-progress {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  opacity: 0.6;
-  font-variant-numeric: tabular-nums;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--rust);
+}
+/* La línea avanza hasta el cambio de acto; al terminar, world.js pasa al siguiente. */
+.act-timer {
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  background: #3a2a1f1a;
+}
+.act-timer span {
+  display: block;
+  height: 100%;
+  background: var(--rust);
+  transform-origin: left;
+  animation: act-timer 9s linear forwards;
+}
+@keyframes act-timer { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.theatre-paused .act-timer span {
+  animation-play-state: paused;
+}
+.theatre-stopped .act-timer {
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .act-timer {
+    display: none;
+  }
 }
 .step-arrow {
   display: grid;
@@ -682,7 +715,7 @@ button svg {
     bottom: 24px;
   }
   .scene-status {
-    min-width: 148px;
+    width: 172px;
   }
   #scene-name {
     font-size: 17px;
@@ -1493,6 +1526,28 @@ button svg {
   font-size: 36px;
   line-height: 1.1;
   margin: 0;
+}
+/* Nombre de la sección sobre su título: dice qué es; el título, por qué entrar. */
+.section-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--rust);
+}
+.section-kicker:before {
+  content: "";
+  width: 24px;
+  height: 1.5px;
+  background: currentColor;
+}
+.event-empty {
+  max-width: 560px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
 }
 .preview-heading .text-link {
   flex: none;
