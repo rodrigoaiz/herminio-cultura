@@ -96,7 +96,7 @@ button svg {
   stroke-width: 1.5;
   flex: none;
 }
-/* Three complete sets in one vertical stack. Nothing swaps visibility on scroll. */
+/* Three sets share the stage; one is shown at a time and they cross-fade. */
 .theatre-intro {
   position: relative;
   background: var(--wood);
@@ -107,21 +107,31 @@ button svg {
   overflow: hidden;
   isolation: isolate;
 }
-.js-world .stage-window {
-  position: sticky;
-  top: 0;
+.stage-window {
   height: var(--stage-height);
 }
 .sets-stack {
   position: relative;
-  width: 100%;
-  transform: translate3d(0, 0, 0);
+  height: 100%;
 }
 .intro-scene {
-  position: relative;
-  height: var(--stage-height);
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   isolation: isolate;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.9s ease, visibility 0s 0.9s;
+}
+.intro-scene.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.9s ease;
+}
+/* Hidden scenes and an off-screen stage stop their ambient loops. */
+.intro-scene:not(.is-active) *,
+.theatre-away * {
+  animation-play-state: paused !important;
 }
 .scene-world {
   position: absolute;
@@ -456,19 +466,7 @@ button svg {
   position: relative;
   z-index: 10;
   display: flex;
-  width: 100%;
   height: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-}
-.scene-copy-track::-webkit-scrollbar {
-  display: none;
-}
-.scene-copy-track:focus-visible {
-  outline-offset: -100px;
 }
 .scene-panel {
   position: relative;
@@ -477,8 +475,6 @@ button svg {
   display: flex;
   align-items: center;
   padding: 160px 14vw 136px;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 .copy {
   max-width: 560px;
@@ -578,82 +574,6 @@ button svg {
   background-size: 480px;
   background-blend-mode: multiply;
   box-shadow: 8px 16px 24px #0002;
-}
-.sheet-panel {
-  justify-content: center;
-}
-.intro-sheet {
-  width: min(600px, 100%);
-  padding: 40px 48px;
-  transform: rotate(-2deg);
-}
-.intro-sheet h2 {
-  font-size: 60px;
-  line-height: 1;
-  margin: 0 0 24px;
-}
-.intro-sheet p {
-  font-size: 14px;
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-.intro-sheet .text-link {
-  margin-top: 8px;
-}
-.scroll-on {
-  font-size: 14px;
-  font-weight: 700;
-  text-decoration: none;
-  display: inline-flex;
-  gap: 16px;
-  align-items: center;
-  margin-top: 8px;
-}
-.scroll-on-arrow {
-  width: 48px;
-  height: 48px;
-  border: 1.5px solid currentColor;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-}
-.scroll-on-arrow svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  animation: nudge-down 1.8s ease-in-out infinite;
-}
-.scroll-on:hover {
-  color: var(--coral);
-}
-.scroll-on:hover .scroll-on-arrow {
-  color: var(--paper);
-  background-color: var(--coral);
-  border-color: var(--coral);
-}
-@keyframes nudge-down { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
-.theatre-static .scroll-on-arrow svg {
-  animation: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .scroll-on-arrow svg {
-    animation: none;
-  }
-}
-.simple-list {
-  padding: 0;
-  list-style: none;
-  font-size: 20px;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 600;
-  margin: 0 0 24px;
-}
-.simple-list li {
-  padding: 8px 0;
-  border-bottom: 1px solid #263b3226;
 }
 .proscenium {
   display: none;
@@ -757,11 +677,6 @@ button svg {
 .step-arrow:focus-visible {
   outline-offset: 2px;
 }
-/* Mientras nadie ha bajado, la flecha siguiente invita a empezar. */
-.theatre-start #step-next svg {
-  animation: nudge-right 1.8s ease-in-out infinite;
-}
-@keyframes nudge-right { 0%, 100% { transform: translateX(-2px); } 50% { transform: translateX(3px); } }
 @media (max-width: 700px) {
   .stage-controls {
     bottom: 24px;
@@ -1261,35 +1176,6 @@ button svg {
   .footlight {
     height: 112px;
   }
-  .sheet-panel {
-    align-items: center;
-    padding: 144px 12vw 112px;
-  }
-  .intro-sheet {
-    padding: 24px;
-    transform: rotate(-1deg);
-  }
-  .intro-sheet h2 {
-    font-size: 48px;
-    margin-bottom: 16px;
-  }
-  .intro-sheet p {
-    font-size: 12px;
-    line-height: 1.65;
-    margin-bottom: 16px;
-  }
-  .intro-sheet .text-link,
-  .scroll-on {
-    font-size: 12px;
-    gap: 8px;
-  }
-  .scroll-on-arrow {
-    width: 40px;
-    height: 40px;
-  }
-  .simple-list {
-    font-size: 20px;
-  }
   .editorial-section {
     padding: 64px 24px;
   }
@@ -1449,22 +1335,6 @@ button svg {
   .copy p {
     font-size: 12px;
   }
-  .sheet-panel {
-    padding-top: 120px;
-  }
-  .intro-sheet {
-    padding: 24px 20px;
-  }
-  .intro-sheet h2 {
-    font-size: 36px;
-  }
-  .intro-sheet p {
-    font-size: 12px;
-  }
-  .intro-sheet .text-link,
-  .scroll-on {
-    font-size: 11px;
-  }
   .moon-lamp {
     top: 59%;
     right: 14%;
@@ -1513,15 +1383,6 @@ button svg {
     font-size: 14px;
     margin-bottom: 16px;
   }
-  .intro-sheet {
-    padding: 24px 40px;
-  }
-  .intro-sheet h2 {
-    font-size: 48px;
-  }
-  .intro-sheet p {
-    font-size: 12px;
-  }
   .stage-caption {
     font-size: 20px;
   }
@@ -1555,86 +1416,6 @@ button svg {
   color: #fff5db;
 }
 
-/* Scroll theatre: the document advances every panel, then changes the set. */
-.scene-copy-track {
-  display: block;
-  height: auto;
-  overflow: visible;
-  scroll-snap-type: none;
-}
-.intro-scene {
-  height: auto;
-  min-height: var(--stage-height);
-}
-.scene-panel {
-  min-height: var(--stage-height);
-  height: auto;
-}
-.js-world:not(.theatre-static) .intro-scene {
-  height: var(--stage-height);
-}
-.js-world:not(.theatre-static) .scene-copy-track {
-  display: flex;
-  height: 100%;
-  overflow: visible;
-  will-change: transform;
-}
-.js-world:not(.theatre-static) .scene-panel {
-  height: 100%;
-  min-height: 0;
-}
-.js-world:not(.theatre-static) .sets-stack {
-  will-change: transform;
-}
-.puppet {
-  transform-box: fill-box;
-  transform-origin: 50% 85%;
-}
-/* El edificio se despliega desde su base, como en un libro desplegable. */
-.puppet.building-hinge {
-  transform-origin: 50% 100%;
-}
-.theatre-progress {
-  position: absolute;
-  bottom: 0;
-  left: 4px;
-  right: 4px;
-  height: 2px;
-  background: #3a2a1f1a;
-}
-.theatre-progress span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--rust);
-  transform: scaleX(0);
-  transform-origin: left;
-}
-.js-world.theatre-static .stage-window {
-  position: relative;
-  height: auto;
-  isolation: auto;
-  overflow: visible;
-}
-.theatre-static .proscenium,
-.js-world.theatre-static .stage-controls {
-  display: none;
-}
-.theatre-static .scene-panel {
-  min-height: 660px;
-}
-.theatre-static .scene-world {
-  opacity: 0.35;
-}
-.theatre-static .intro-scene.scene-night .scene-world {
-  opacity: 1;
-}
-.theatre-static .scene-visual {
-  opacity: 0.45;
-}
-.theatre-static .sheet-panel {
-  justify-content: flex-start;
-}
 /* Text surfaces retain only a trace of fibre; scenery keeps its cardboard. */
 .paper-surface,
 .stage-caption {
@@ -1746,19 +1527,6 @@ button svg {
     bottom: 7%;
     height: 43%;
   }
-  .sheet-panel {
-    padding: 128px 12vw 112px;
-  }
-  .intro-sheet {
-    padding: 24px;
-  }
-  .intro-sheet h2 {
-    font-size: 36px;
-  }
-  .intro-sheet p {
-    font-size: 14px;
-    line-height: 1.6;
-  }
   .section-main {
     padding-top: 88px;
   }
@@ -1790,7 +1558,7 @@ button svg {
   }
 }
 @media (max-height: 720px) {
-  .js-world:not(.theatre-static) .scene-panel {
+  .scene-panel {
     padding-top: 112px;
     padding-bottom: 96px;
   }
@@ -1801,21 +1569,6 @@ button svg {
   .copy p {
     font-size: 12px;
     line-height: 1.6;
-  }
-  .intro-sheet h2 {
-    font-size: 36px;
-    margin-bottom: 16px;
-  }
-  .intro-sheet p {
-    font-size: 12px;
-    margin-bottom: 12px;
-  }
-  .simple-list {
-    font-size: 18px;
-    margin-bottom: 12px;
-  }
-  .simple-list li {
-    padding: 4px 0;
   }
 }
 
@@ -2107,10 +1860,6 @@ button svg {
   2% { opacity: 1; }
   7% { opacity: 0; transform: translateX(420px); }
   100% { opacity: 0; transform: translateX(420px); }
-}
-.theatre-static :is(.tuft, .garland, .sun img, .cloud, .moon-lamp svg, .hanging-star svg, .hanging-star:after, .firefly, .forest-back svg, .forest-front svg, .shooting-star) {
-  animation: none;
-  will-change: auto;
 }
 @media (prefers-reduced-motion: reduce) {
   :is(.tuft, .garland, .sun img, .cloud, .moon-lamp svg, .hanging-star svg, .hanging-star:after, .firefly, .forest-back svg, .forest-front svg, .shooting-star) {
