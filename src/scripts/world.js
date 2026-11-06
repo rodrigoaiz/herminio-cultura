@@ -16,21 +16,33 @@ const timer = intro.querySelector('.act-timer span');
 const ORDINAL = ['Primer', 'Segundo', 'Tercer', 'Cuarto', 'Quinto'];
 let index = 0, focused = false, visible = true;
 
-function show(i) {
- index = (i + sets.length) % sets.length;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+// Must match the CSS: the last zone (.dim-all) is dark after 0.88s delay + 0.22s.
+const OUT = 1150;
+let swap = 0;
+
+function setScene() {
  sets.forEach((set, j) => {
   const active = j === index;
   set.classList.toggle('is-active', active);
   set.inert = !active;
   set.setAttribute('aria-hidden', String(!active));
  });
- stage.style.setProperty('--curtain-night', sets[index].classList.contains('scene-night') ? '1' : '0');
+}
+// Between acts the lights go out zone by zone (back, middle, front), the set
+// changes in the dark, and the zones come back up in reverse order.
+function show(i, lights = true) {
+ index = (i + sets.length) % sets.length;
  name.textContent = sets[index].dataset.name;
  count.textContent = `${ORDINAL[index]} acto`;
  // Restart the line from zero for the new act.
  timer.style.animation = 'none';
  void timer.offsetWidth;
  timer.style.animation = '';
+ clearTimeout(swap);
+ if (!lights || reduced.matches) { setScene(); return; }
+ stage.classList.add('lights-out');
+ swap = setTimeout(() => { setScene(); stage.classList.remove('lights-out'); }, OUT);
 }
 function pause() { intro.classList.toggle('theatre-paused', focused || !visible || document.hidden); }
 function step(direction) { intro.classList.add('theatre-stopped'); show(index + direction); }
@@ -47,4 +59,4 @@ new IntersectionObserver(([entry]) => {
 }).observe(intro);
 document.addEventListener('visibilitychange', pause);
 document.documentElement.classList.add('js-world');
-show(0);
+show(0, false);

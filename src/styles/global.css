@@ -96,7 +96,7 @@ button svg {
   stroke-width: 1.5;
   flex: none;
 }
-/* Three sets share the stage; one is shown at a time and they cross-fade. */
+/* Three sets share the stage; one is shown at a time. */
 .theatre-intro {
   position: relative;
   /* Above the page below, so the stage casts its shadow onto the paper. */
@@ -122,14 +122,59 @@ button svg {
   inset: 0;
   overflow: hidden;
   isolation: isolate;
-  opacity: 0;
   visibility: hidden;
-  transition: opacity 0.9s ease, visibility 0s 0.9s;
 }
 .intro-scene.is-active {
-  opacity: 1;
   visibility: visible;
-  transition: opacity 0.9s ease;
+}
+/* Apagón entre actos por zonas, cada una con su luz: el fondo baja lento a azul
+   noche (ciclorama), los personajes se van en ámbar y desde arriba (varas de
+   tungsteno) y el frente con el texto se corta de golpe. Al volver, el frente
+   entra primero y el fondo se aclara al final. dim-back va bajo los personajes,
+   dim-mid sobre ellos, dim-all encima de todo; solo cambia la opacidad.
+   La base es el encendido; .lights-out, el apagado. */
+.dim {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.dim-back {
+  z-index: 2;
+  background: #0a1633;
+  transition: opacity 1s 0.55s ease-in-out;
+}
+.dim-mid {
+  z-index: 3;
+  background: linear-gradient(#1c0d05f2, #1c0d05d9 55%, #1c0d0599);
+  transition: opacity 0.6s 0.25s ease-out;
+}
+.dim-all {
+  z-index: 50;
+  background: #0d0806;
+  transition: opacity 0.35s ease-out;
+}
+.lights-out .dim-back {
+  opacity: 0.85;
+  transition: opacity 0.9s ease-in-out;
+}
+.lights-out .dim-mid {
+  opacity: 1;
+  transition: opacity 0.55s 0.35s ease-in;
+}
+.lights-out .dim-all {
+  opacity: 0.96;
+  transition: opacity 0.22s 0.88s ease-in;
+}
+/* El texto va encima de las zonas: si esperara al corte final, el fondo se
+   oscurecería detrás y sus colores parecerían cambiar. Se va con el fondo y
+   vuelve cuando ya hay luz. */
+.scene-copy-track {
+  transition: opacity 0.6s 0.9s ease-out;
+}
+.lights-out .scene-copy-track {
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
 }
 /* Hidden scenes and an off-screen stage stop their ambient loops. */
 .intro-scene:not(.is-active) *,
@@ -491,15 +536,11 @@ button svg {
   line-height: 1;
   margin: 0 0 24px;
 }
-.copy p {
-  font-size: 16px;
-  line-height: 1.75;
-  max-width: 384px;
-}
 .scene-night .copy {
   color: #fff5db;
 }
-.scene-night .copy em {
+.scene-night .copy em,
+.scene-night .section-kicker {
   color: #efd38b;
 }
 .scene-night .paper-link {
@@ -600,8 +641,7 @@ button svg {
   border-width: var(--curtain-edge) var(--curtain-edge) var(--curtain-floor);
   border-image: url("/assets/curtain-frame-v2.webp") 165 165 52 /
     var(--curtain-edge) var(--curtain-edge) var(--curtain-floor) stretch;
-  filter: brightness(calc(1 - var(--curtain-night, 0) * 0.38))
-    drop-shadow(6px 12px 10px #0005);
+  filter: drop-shadow(6px 12px 10px #0005);
   user-select: none;
 }
 .footlight {
@@ -726,6 +766,8 @@ button svg {
   position: relative;
   background: var(--paper);
   isolation: isolate;
+  /* Tilted book cards poke past the edge on narrow phones; clip, not scroll. */
+  overflow-x: clip;
 }
 .editorial-world:before {
   content: "";
@@ -1064,9 +1106,6 @@ button svg {
   .copy h2 {
     font-size: 72px;
   }
-  .copy p {
-    font-size: 14px;
-  }
   .scene-visual {
     left: 25%;
     right: -10%;
@@ -1124,12 +1163,6 @@ button svg {
   .copy h1,
   .copy h2 {
     font-size: 60px;
-    margin-bottom: 24px;
-  }
-  .copy p {
-    font-size: 14px;
-    line-height: 1.6;
-    max-width: 288px;
     margin-bottom: 24px;
   }
   .paper-link {
@@ -1365,9 +1398,6 @@ button svg {
   .copy h2 {
     font-size: 48px;
   }
-  .copy p {
-    font-size: 12px;
-  }
   .moon-lamp {
     top: 59%;
     right: 14%;
@@ -1410,10 +1440,6 @@ button svg {
   .copy h1,
   .copy h2 {
     font-size: 60px;
-    margin-bottom: 16px;
-  }
-  .copy p {
-    font-size: 14px;
     margin-bottom: 16px;
   }
   .stage-caption {
@@ -1467,18 +1493,6 @@ button svg {
 }
 .scene-world:after {
   opacity: 0.12;
-}
-.copy p {
-  box-sizing: content-box;
-  padding: 8px 24px;
-  margin-inline: -24px;
-  background: linear-gradient(90deg, #ead9b2ee 70%, #ead9b200);
-}
-.scene-town .copy p {
-  background: linear-gradient(90deg, #edc9b5ee 70%, #edc9b500);
-}
-.scene-night .copy p {
-  background: linear-gradient(90deg, #29356bee 70%, #29356b00);
 }
 /* Editorial destinations have their own page composition and URLs. */
 .section-main {
@@ -1574,10 +1588,6 @@ button svg {
     max-width: 300px;
     margin-bottom: 16px;
   }
-  .copy p {
-    max-width: 280px;
-    margin-bottom: 16px;
-  }
   .scene-visual {
     bottom: 7%;
     height: 43%;
@@ -1620,10 +1630,6 @@ button svg {
   .copy h1,
   .copy h2 {
     font-size: 48px;
-  }
-  .copy p {
-    font-size: 12px;
-    line-height: 1.6;
   }
 }
 
