@@ -62,8 +62,9 @@ const signature = sections.flatMap(section => section.links.map(link => link.key
   panel.addEventListener('click', event => { if ((event.target as Element).closest('a')) markSeen(); });
   setTimeout(() => {
    note.hidden = false;
-   // Quien ya vio estas novedades sólo encuentra la pestaña.
-   setOpen(read() !== note.dataset.newsNote);
+   // Quien ya vio estas novedades sólo encuentra la pestaña; en móvil también,
+   // porque abierta tapa el escenario y su botón.
+   setOpen(read() !== note.dataset.newsNote && !matchMedia('(max-width: 700px)').matches);
   }, 1500);
  }
 </script>
