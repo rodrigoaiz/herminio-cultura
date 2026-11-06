@@ -1,17 +1,20 @@
 import { mountPaperArt } from './paper-art.js';
 mountPaperArt();
 
-// One scene on stage; every few seconds the next one fades in. Nothing reads
-// the scroll. Autoplay stops for reduced motion, after an arrow click, while
-// the pointer or focus is on stage, and while the stage is off screen.
+// One act on stage; when the timer line under its label fills, the next act
+// fades in. Nothing reads the scroll. The line is a CSS animation, so pausing
+// it pauses the change: while keyboard focus is on stage (the stage fills
+// the screen, so a hovering mouse would pause it for good), while the
+// stage is off screen or the tab hidden. An arrow click stops autoplay, and
+// reduced motion hides the line so its animation never ends.
 const intro = document.querySelector('.theatre-intro');
 const stage = intro.querySelector('.stage-window');
 const sets = [...intro.querySelectorAll('.intro-scene')];
 const name = document.querySelector('#scene-name');
 const count = document.querySelector('#chapter-progress');
-const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-const DELAY = 9000;
-let index = 0, timer = 0, stopped = false, hovering = false, visible = true;
+const timer = intro.querySelector('.act-timer span');
+const ORDINAL = ['Primer', 'Segundo', 'Tercer', 'Cuarto', 'Quinto'];
+let index = 0, focused = false, visible = true;
 
 function show(i) {
  index = (i + sets.length) % sets.length;
@@ -23,28 +26,25 @@ function show(i) {
  });
  stage.style.setProperty('--curtain-night', sets[index].classList.contains('scene-night') ? '1' : '0');
  name.textContent = sets[index].dataset.name;
- count.textContent = `${index + 1} / ${sets.length}`;
+ count.textContent = `${ORDINAL[index]} acto`;
+ // Restart the line from zero for the new act.
+ timer.style.animation = 'none';
+ void timer.offsetWidth;
+ timer.style.animation = '';
 }
-function plan() {
- clearInterval(timer);
- timer = 0;
- if (!stopped && !hovering && visible && !reduced.matches && !document.hidden) timer = setInterval(() => show(index + 1), DELAY);
-}
-function step(direction) { stopped = true; show(index + direction); plan(); }
+function pause() { intro.classList.toggle('theatre-paused', focused || !visible || document.hidden); }
+function step(direction) { intro.classList.add('theatre-stopped'); show(index + direction); }
 
+timer.addEventListener('animationend', () => { if (!intro.classList.contains('theatre-stopped')) show(index + 1); });
 document.querySelector('#step-prev').addEventListener('click', () => step(-1));
 document.querySelector('#step-next').addEventListener('click', () => step(1));
-stage.addEventListener('pointerenter', () => { hovering = true; plan(); });
-stage.addEventListener('pointerleave', () => { hovering = false; plan(); });
-stage.addEventListener('focusin', () => { hovering = true; plan(); });
-stage.addEventListener('focusout', () => { hovering = false; plan(); });
+stage.addEventListener('focusin', () => { focused = true; pause(); });
+stage.addEventListener('focusout', () => { focused = false; pause(); });
 new IntersectionObserver(([entry]) => {
  visible = entry.isIntersecting;
  intro.classList.toggle('theatre-away', !visible);
- plan();
+ pause();
 }).observe(intro);
-document.addEventListener('visibilitychange', plan);
-reduced.addEventListener('change', plan);
+document.addEventListener('visibilitychange', pause);
 document.documentElement.classList.add('js-world');
 show(0);
-plan();
