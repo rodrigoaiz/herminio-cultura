@@ -11,3 +11,7 @@ La regla aplica a todo lo que llega al sitio:
 - Imágenes: no publiques fotos o escaneos donde se lea un nombre completo (listas, gafetes, la contraportada del boletín con el comité).
 
 Si el material de origen (`docs/`, `fotos/`, PDF, correos) trae el nombre completo, acórtalo al pasarlo. Si no sabes si es una figura pública, pregunta.
+
+## Rostros de niñas y niños
+
+Antes de publicar cualquier foto, revísala a buen tamaño (no sólo en miniatura) y reporta cada rostro de niña o niño que se vea, aunque esté de fondo, en un reflejo o en un retrato del altar. No publiques esas fotos hasta que el Comité confirme que hay permiso; si no lo hay, pide otra foto o recórtala para que no aparezca.
