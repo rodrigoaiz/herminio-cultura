@@ -99,6 +99,19 @@
   .article-body .essay::after {
     @apply mt-14 block text-center text-2xl tracking-[.6em] text-coral content-['✿✿✿'];
   }
+  /* Marco de papel picado del álbum impreso de Día de Muertos, en tres colores que se alternan. */
+  .ofrenda-marco {
+    border: solid transparent;
+    border-width: 25px 34px;
+    border-image: url('/assets/marco-papel-picado-morado.png') 57 78 round;
+    filter: drop-shadow(2px 6px 8px #0003);
+  }
+  .ofrenda:nth-child(3n + 2) .ofrenda-marco {
+    border-image-source: url('/assets/marco-papel-picado-rosa.png');
+  }
+  .ofrenda:nth-child(3n) .ofrenda-marco {
+    border-image-source: url('/assets/marco-papel-picado-turquesa.png');
+  }
   .article-body .voices {
     @apply my-8 grid grid-cols-2 gap-5 narrow:grid-cols-1;
   }
