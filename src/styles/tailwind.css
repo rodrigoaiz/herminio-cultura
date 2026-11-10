@@ -63,10 +63,41 @@
     @apply text-coral underline-offset-4;
   }
   .article-body p:has(> img) {
-    @apply my-10 grid gap-4;
+    @apply my-10 grid max-w-none gap-4;
   }
   .article-body p:has(> img + img) {
     @apply grid-cols-2 narrow:grid-cols-1;
+  }
+  /* Ensayo o carta: serif de lectura, entrada destacada, capitular, cita y firma. */
+  .article-body .essay {
+    @apply mx-auto mt-16 max-w-[66ch] font-display text-[22px] narrow:text-[19px];
+  }
+  .article-body .essay p {
+    @apply font-display text-[1em] leading-[1.55] font-medium;
+  }
+  .article-body .essay .kicker {
+    @apply mb-2 font-sans text-xs font-bold tracking-[.08em] text-coral uppercase;
+  }
+  .article-body .essay h2 {
+    @apply mt-0;
+  }
+  .article-body .essay h2 + p {
+    @apply text-[1.35em] leading-[1.35] italic;
+  }
+  .article-body .essay h2 + p + p::first-letter {
+    @apply float-left mt-[.08em] mr-2 font-display text-[4.1em] leading-[.82] font-semibold text-coral;
+  }
+  .article-body .essay blockquote {
+    @apply mx-0 my-12 border-y border-ink/20 py-8 text-center;
+  }
+  .article-body .essay blockquote p {
+    @apply mx-auto my-0 text-[1.5em] leading-[1.2] font-semibold text-balance italic;
+  }
+  .article-body .essay .signature {
+    @apply mt-10 text-right italic;
+  }
+  .article-body .essay::after {
+    @apply mt-14 block text-center text-2xl tracking-[.6em] text-coral content-['✿✿✿'];
   }
   .article-body .voices {
     @apply my-8 grid grid-cols-2 gap-5 narrow:grid-cols-1;

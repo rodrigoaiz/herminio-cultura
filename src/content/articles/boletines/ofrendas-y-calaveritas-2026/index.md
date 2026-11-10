@@ -10,6 +10,10 @@ cover: ./portada-album.jpg
 coverAlt: Portada del álbum Día de Muertos 2026 de la Escuela Herminio Almendros, con el logo de la escuela, dos veladoras y papel picado de colores sobre fondo morado.
 ---
 
+<div class="essay">
+
+<p class="kicker">Palabras para la ofrenda de la escuela</p>
+
 ## Día de Muertos 2026
 
 Este día quiero hablarles de nuestros muertos.
@@ -30,6 +34,8 @@ Un buen ejemplo de esto es nuestra escuela. Somos herederos de las ideas y de la
 
 Ellos ya no están.
 
+> Somos por los ancestros y trabajamos por los que vienen.
+
 Pero hace ya casi 50 años que Norma Amirante y Marita Maher, con ayuda de Guillermo Díaz, fundaron esta escuela recuperando estas ideas y propuestas pedagógicas de aquellos grandes maestros.
 
 Creo que ellos, los grandes maestros, nunca supieron las consecuencias de sus propuestas. Las consecuencias de haber fundado esta escuela (Norma, Marita y Güili) tampoco las podemos ver, porque lo que hacemos no es sólo para el presente, es también para el futuro.
@@ -38,7 +44,9 @@ Somos por los ancestros y trabajamos por los que vienen. Por eso es tan importan
 
 Muchas gracias.
 
-*Mtro. Mauricio S.*
+<p class="signature">Mtro. Mauricio S.</p>
+
+</div>
 
 ## El álbum
 
