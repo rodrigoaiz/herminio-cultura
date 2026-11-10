@@ -4,6 +4,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import ShareLinks from '../components/ShareLinks.astro';
 import OfrendaAlbum, { type OfrendaEntry } from '../components/OfrendaAlbum.astro';
 import MuertosDecor from '../components/MuertosDecor.astro';
+import Footer from '../components/Footer.astro';
 import { formatGrades } from '../lib/bulletins';
 // Un album.ts junto al index.md convierte el artículo en álbum de Día de Muertos.
 const albums = import.meta.glob<{ entries: OfrendaEntry[] }>('../content/articles/**/album.ts', { eager: true });
@@ -31,5 +32,5 @@ const published = new Intl.DateTimeFormat('es-MX', {dateStyle:'long', timeZone:'
    <ShareLinks title={data.title} />
   </article>
  </main>
- <footer class="reader-footer"><a href={`/${data.section}/`}>Volver a {data.section}</a><p>Comité de Cultura · Escuela Herminio Almendros</p></footer>
+ <Footer />
 </SiteLayout>
