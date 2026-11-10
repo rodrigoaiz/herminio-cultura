@@ -1070,6 +1070,8 @@ button svg {
 .reader p,
 .reader li {
   line-height: 1.8;
+  /* Renglones de lectura cómoda: unos 66 caracteres. */
+  max-width: 66ch;
 }
 .reader .notice {
   background: #ece4d2;
