@@ -1080,15 +1080,6 @@ button svg {
 .reader h2[id] {
   scroll-margin-top: 96px;
 }
-.reader-footer {
-  max-width: 864px;
-  margin: 0 auto 48px;
-  padding: 0 24px;
-  font-size: 12px;
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-}
 @media (min-width: 1700px) {
   .scene-panel {
     padding-left: 16vw;
@@ -1381,13 +1372,6 @@ button svg {
   .reader .notice {
     padding: 16px;
     font-size: 12px;
-  }
-  .reader-footer {
-    display: block;
-    font-size: 12px;
-  }
-  .reader-footer p {
-    margin: 12px 0;
   }
 }
 @media (max-width: 370px) {
