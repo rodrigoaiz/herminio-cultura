@@ -3,7 +3,8 @@
 // Las fotos se amplían en un <dialog> al tocarlas.
 import type { ImageMetadata } from 'astro';
 import { Image, getImage } from 'astro:assets';
-export type OfrendaEntry = { name: string; photo?: ImageMetadata; alt?: string; calaverita?: string };
+// note: el texto que la familia mandó junto a la foto.
+export type OfrendaEntry = { name: string; photo?: ImageMetadata; alt?: string; title?: string; calaverita?: string; note?: string };
 const { entries } = Astro.props as { entries: OfrendaEntry[] };
 const items = await Promise.all(entries.map(async entry => ({
  ...entry,
@@ -17,9 +18,10 @@ const items = await Promise.all(entries.map(async entry => ({
     <Image class="block aspect-[4/3] h-auto w-full object-cover" src={entry.photo} alt={entry.alt ?? ''} widths={[480, 960]} sizes="(max-width: 700px) 90vw, 480px" />
    </button>}
    {entry.calaverita && <blockquote class={`relative bg-note shadow-[2px_6px_12px_#0002] ${entry.photo ? 'mx-4 -mt-6 px-5 py-4' : 'm-0 px-7 py-8'} ${i % 2 ? '-rotate-1' : 'rotate-1'}`}>
+    {entry.title && <p class="m-0 mb-2 text-xs font-bold tracking-[.06em] uppercase">{entry.title}</p>}
     <p class="m-0 font-display text-xl leading-snug font-semibold">{entry.calaverita.split('\n').map(line => <span class="block pl-4 -indent-4">{line}</span>)}</p>
    </blockquote>}
-   <figcaption class="mt-4 px-4 text-xs font-bold tracking-[.06em] text-coral uppercase">{entry.name}</figcaption>
+   <figcaption class="mt-4 px-4 text-xs font-bold tracking-[.06em] text-coral uppercase">{entry.name}{entry.note && <span class="mt-1 block text-sm font-normal tracking-normal text-ink normal-case">{entry.note}</span>}</figcaption>
   </figure>
  </li>)}
 </ul>
