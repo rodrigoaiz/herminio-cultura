@@ -1,5 +1,4 @@
 ---
-import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
@@ -16,16 +15,12 @@ const { title, description, type = 'website', image, imageAlt, publishedTime, no
 const siteName = 'Herminio Cultura';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
-// WhatsApp y Facebook piden JPG/PNG de 1200×630; la portada de cada artículo se recorta a ese formato.
-// En imágenes verticales (carteles) se conserva la parte de arriba, donde suelen estar el título y el logo.
-const ogImage = image
-  ? await getImage({ src: image, width: 1200, height: 630, fit: 'cover', position: image.height > image.width ? 'top' : 'center', format: 'jpg', quality: 80 })
-  : undefined;
-const imageUrl = new URL(ogImage?.src ?? '/og-default.jpg', Astro.site).href;
-// Astro no agranda imágenes: si la original es más angosta que 1200 px, la salida conserva su ancho.
-const imageWidth = image ? Math.min(1200, image.width) : 1200;
+// WhatsApp y Facebook piden JPG de 1200×630. Las páginas con portada usan la miniatura de src/pages/og/,
+// que muestra la portada completa sin recortes; las demás, la imagen general del sitio.
+const imageUrl = new URL(image ? `/og${Astro.url.pathname.replace(/\/$/, '')}.jpg` : '/og-default.jpg', Astro.site).href;
+const imageWidth = 1200;
 const imageHeight = 630;
-const alt = ogImage ? (imageAlt || title) : 'La cultura la hacemos juntos. Comité de Cultura, Escuela Herminio Almendros.';
+const alt = image ? (imageAlt || title) : 'La cultura la hacemos juntos. Comité de Cultura, Escuela Herminio Almendros.';
 ---
 <title>{title}</title>
 <meta name="description" content={description}/>
