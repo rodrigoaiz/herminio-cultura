@@ -1,0 +1,34 @@
+---
+// Visor de fotos de todo el sitio: cualquier botón .ampliable con data-full se abre aquí en grande.
+// Además, cada foto del cuerpo de un artículo (.article-body img) se vuelve ampliable sola.
+// La lupa de la esquina es CSS de .ampliable (tailwind.css), así se ve igual en todas las galerías.
+---
+<dialog class="foto-visor m-auto max-h-[92vh] max-w-[92vw] overflow-visible border-0 bg-transparent p-0">
+ <img class="block max-h-[88vh] max-w-[92vw] bg-white object-contain p-2" alt="" />
+ <button class="absolute -top-4 -right-4 grid size-10 cursor-pointer place-items-center rounded-full border-0 bg-paper text-ink shadow-md" type="button" aria-label="Cerrar foto"><svg class="size-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button>
+</dialog>
+<script>
+ const visor = document.querySelector<HTMLDialogElement>('.foto-visor')!;
+ const big = visor.querySelector('img')!;
+ // Fotos del Markdown: se envuelven en un botón que abre la misma imagen.
+ document.querySelectorAll<HTMLImageElement>('.article-body img').forEach(photo => {
+  if (photo.closest('.ampliable')) return;
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'ampliable';
+  button.dataset.full = photo.currentSrc || photo.src;
+  button.dataset.alt = photo.alt;
+  button.setAttribute('aria-label', photo.alt ? `Ampliar la foto: ${photo.alt}` : 'Ampliar la foto');
+  photo.replaceWith(button);
+  button.append(photo);
+ });
+ document.addEventListener('click', event => {
+  const button = (event.target as Element).closest<HTMLButtonElement>('.ampliable[data-full]');
+  if (!button) return;
+  big.src = button.dataset.full!;
+  big.alt = button.dataset.alt ?? '';
+  visor.showModal();
+ });
+ // Se cierra con la X, con Esc (nativo del <dialog>) o tocando fuera de la foto.
+ visor.addEventListener('click', event => { if (event.target === visor || (event.target as Element).closest('button')) visor.close(); });
+</script>

@@ -2178,6 +2178,6 @@ button svg {
 .reader-body.muertos-page {
   background: radial-gradient(ellipse at 50% 0, #4f3470, #2b2040 55%, #1c1529);
 }
-.ofrenda-visor::backdrop {
+.foto-visor::backdrop {
   background: #1c1529e8;
 }

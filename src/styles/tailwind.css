@@ -47,6 +47,15 @@
 
 /* Cuerpo de los artículos escritos en Markdown (fotos y voces del alumnado). */
 @layer components {
+  /* Foto que se amplía en FotoVisor: lupa siempre visible en la esquina, porque en celular no hay hover. */
+  .ampliable {
+    @apply relative block cursor-zoom-in border-0 bg-transparent p-0 text-left;
+  }
+  .ampliable::after {
+    @apply pointer-events-none absolute right-3 bottom-3 size-10 rounded-full bg-paper/90 bg-center bg-no-repeat shadow-md content-[''];
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2314423f' stroke-width='2'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6'/%3E%3C/svg%3E");
+    background-size: 20px;
+  }
   .article-body img {
     @apply block h-auto max-h-[75vh] w-full rounded-[2px] bg-white object-contain p-2 shadow-[3px_8px_18px_#0002];
   }
@@ -62,10 +71,10 @@
   .article-body a {
     @apply text-coral underline-offset-4;
   }
-  .article-body p:has(> img) {
+  .article-body p:has(> :is(img, .ampliable)) {
     @apply my-10 grid max-w-none gap-4;
   }
-  .article-body p:has(> img + img) {
+  .article-body p:has(> :is(img, .ampliable) + :is(img, .ampliable)) {
     @apply grid-cols-2 narrow:grid-cols-1;
   }
   /* Ensayo o carta: serif de lectura, entrada destacada, capitular, cita y firma. */

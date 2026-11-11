@@ -12,6 +12,10 @@ La regla aplica a todo lo que llega al sitio:
 
 Si el material de origen (`docs/`, `fotos/`, PDF, correos) trae el nombre completo, acórtalo al pasarlo. Si no sabes si es una figura pública, pregunta.
 
+## Fotos ampliables
+
+Toda foto de un artículo se puede ampliar y lo avisa con una lupa en la esquina. Las imágenes del Markdown ya lo hacen solas (`FotoVisor.astro`, incluido en `[...slug].astro`). En una galería hecha como componente, envuelve cada foto en `<button class="ampliable" data-full={urlGrande} data-alt={alt} aria-label="Ampliar…">`; no crees otro visor ni otra lupa.
+
 ## Rostros de niñas y niños
 
 Antes de publicar cualquier foto, revísala a buen tamaño (no sólo en miniatura) y reporta cada rostro de niña o niño que se vea, aunque esté de fondo, en un reflejo o en un retrato del altar. No publiques esas fotos hasta que el Comité confirme que hay permiso; si no lo hay, pide otra foto o recórtala para que no aparezca.

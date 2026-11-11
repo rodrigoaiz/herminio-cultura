@@ -1,6 +1,6 @@
 ---
 // Álbum de Día de Muertos: foto con calaverita, sólo foto o sólo calaverita, revueltas en mosaico de dos columnas (se leen de arriba abajo, columna por columna).
-// Las fotos se amplían en un <dialog> al tocarlas.
+// Las fotos se amplían en FotoVisor al tocarlas (clase .ampliable).
 import type { ImageMetadata } from 'astro';
 import { Image, getImage } from 'astro:assets';
 // note: el texto que la familia mandó junto a la foto.
@@ -19,7 +19,7 @@ const items = await Promise.all(entries.map(async entry => ({
     <span class="font-display text-[26px] leading-tight font-bold">{entry.name.split(' ').map((word, w) => <span class={w % 2 ? '' : 'text-coral'}>{word} </span>)}</span>
     {entry.note && <span class="mt-1 block text-sm leading-relaxed">{entry.note}</span>}
    </figcaption>
-   {entry.photo && <button class={`ofrenda-marco block w-full cursor-zoom-in bg-transparent p-0 transition-transform hover:rotate-0 ${i % 2 ? 'rotate-1' : '-rotate-1'}`} type="button" data-full={entry.full} data-alt={entry.alt} aria-label={`Ampliar la foto de la ofrenda: ${entry.name}`}>
+   {entry.photo && <button class={`ampliable ofrenda-marco w-full transition-transform hover:rotate-0 ${i % 2 ? 'rotate-1' : '-rotate-1'}`} type="button" data-full={entry.full} data-alt={entry.alt} aria-label={`Ampliar la foto de la ofrenda: ${entry.name}`}>
     <Image class="block aspect-[4/3] h-auto w-full object-cover" src={entry.photo} alt={entry.alt ?? ''} widths={[480, 960]} sizes="(max-width: 700px) 90vw, 480px" />
    </button>}
    {entry.calaverita && <blockquote class={`relative bg-note shadow-[2px_6px_12px_#0002] ${entry.photo ? 'mx-4 -mt-6 px-5 py-4' : 'm-0 px-7 py-8'} ${i % 2 ? '-rotate-1' : 'rotate-1'}`}>
@@ -29,18 +29,3 @@ const items = await Promise.all(entries.map(async entry => ({
   </figure>
  </li>)}
 </ul>
-<dialog class="ofrenda-visor m-auto max-h-[92vh] max-w-[92vw] overflow-visible border-0 bg-transparent p-0">
- <img class="block max-h-[88vh] max-w-[92vw] bg-white object-contain p-2" alt="" />
- <button class="absolute -top-4 -right-4 grid size-10 cursor-pointer place-items-center rounded-full border-0 bg-paper text-ink shadow-md" type="button" aria-label="Cerrar foto"><svg class="size-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button>
-</dialog>
-<script>
- const visor = document.querySelector<HTMLDialogElement>('.ofrenda-visor')!;
- const img = visor.querySelector('img')!;
- document.querySelectorAll<HTMLButtonElement>('[data-full]').forEach(button => button.addEventListener('click', () => {
-  img.src = button.dataset.full!;
-  img.alt = button.dataset.alt ?? '';
-  visor.showModal();
- }));
- // Se cierra con la X, con Esc (nativo del <dialog>) o tocando fuera de la foto.
- visor.addEventListener('click', event => { if (event.target === visor || (event.target as Element).closest('button')) visor.close(); });
-</script>
