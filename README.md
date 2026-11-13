@@ -50,7 +50,7 @@ La rama `main` está conectada al proyecto de Vercel. Publicar cambios en esa ra
 
 Las etiquetas Open Graph (WhatsApp, Facebook), `canonical`, `sitemap-index.xml` y `robots.txt` necesitan la dirección pública del sitio. Se toma, en este orden, de la variable de entorno `SITE_URL` (por ejemplo `https://cultura.mi-dominio.mx`), del dominio de producción que Vercel expone (`VERCEL_PROJECT_PRODUCTION_URL`) o, si no hay ninguna, de `https://herminio-cultura.vercel.app`. Al tener dominio propio, basta con definir `SITE_URL` en Vercel (Settings → Environment Variables) y volver a desplegar.
 
-La imagen al compartir es la portada del artículo (`cover`), recortada a 1200×630 en JPG. Las páginas sin portada usan `public/og-default.jpg`. WhatsApp guarda en caché la vista previa de cada enlace; si cambias la imagen o el texto de uno ya compartido, vuelve a generarla con el depurador de Facebook (developers.facebook.com/tools/debug).
+La imagen al compartir es la portada del artículo (`cover`), recortada a 1200×630 en JPG. Las páginas sin portada usan `public/og-default.jpg`, que se genera desde `docs/assets/og-default.html`. WhatsApp guarda en caché la vista previa de cada enlace; si cambias la imagen o el texto de uno ya compartido, vuelve a generarla con el depurador de Facebook (developers.facebook.com/tools/debug).
 
 ## Contenidos
 

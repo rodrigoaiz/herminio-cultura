@@ -585,7 +585,7 @@ button svg {
 }
 .paper-link:hover {
   transform: translateY(-2px);
-  background: #3c5646;
+  background: #215551;
 }
 .paper-link:active {
   transform: translateY(1px);
@@ -895,7 +895,7 @@ button svg {
   align-items: baseline;
   gap: 16px;
   padding: 16px 0;
-  border-top: 1px solid #263b3233;
+  border-top: 1px solid #14423f33;
 }
 .program-list li > span:first-child {
   font-family: "Cormorant Garamond", Georgia, serif;
@@ -976,7 +976,7 @@ button svg {
   gap: 24px;
   text-decoration: none;
   padding: 24px 0;
-  border-top: 1px solid #263b3244;
+  border-top: 1px solid #14423f44;
 }
 .reading-links strong {
   font-family: "Cormorant Garamond", Georgia, serif;
