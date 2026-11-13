@@ -13,6 +13,8 @@ coverAlt: Invitación a recomendar un libro, con un niño leyendo bajo un árbol
 
 Lo que sorprendió, lo que hizo reír, la pregunta que quedó abierta. Leer también es encontrar una manera propia de contar lo que sentimos.
 
+- [*Diario de un desenterrador de dinosaurios*](/lecturas/diario-de-un-desenterrador-de-dinosaurios/), de Juan Carlos Quezadas. Lo recomienda Lucía R., de 4º: «Es para todas las edades porque es imaginativo».
+- [*Sobrevive en: Una noche en el safari*](/lecturas/sobrevive-en-una-noche-en-el-safari/), de Gomdori Co. y Han Hyun-dong. Lo recomienda Darío V., de 2º: «Es bonito y aprendes mucho sobre animales».
 - [*Gorila*](/lecturas/gorila/), de Anthony Browne. Lo recomienda Rodrigo Emilio, de 4º: «Es muy bonito y sentimental».
 
 <h2 id="adultos">Lecturas de personas adultas</h2>
