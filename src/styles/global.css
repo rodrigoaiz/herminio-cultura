@@ -2113,6 +2113,14 @@ button svg {
   animation: news-in 0.6s var(--ease-paper);
 }
 @keyframes news-in { from { opacity: 0; translate: 0 -12px; } }
+.news-note {
+  transition: opacity 0.3s, translate 0.3s, visibility 0.3s;
+}
+.news-note[data-away] {
+  opacity: 0;
+  translate: 0 12px;
+  visibility: hidden;
+}
 .news-timer {
   animation: news-drain 8s linear forwards;
 }

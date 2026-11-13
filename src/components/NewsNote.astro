@@ -60,6 +60,12 @@ const signature = sections.flatMap(section => section.links.map(link => link.key
   note.querySelector('.news-close')!.addEventListener('click', () => collapse(true));
   note.addEventListener('keydown', event => { if (event.key === 'Escape' && !panel.hidden) collapse(true); });
   panel.addEventListener('click', event => { if ((event.target as Element).closest('a')) markSeen(); });
+  // En móvil la pestaña fija tapa el texto al leer: sólo se queda en la primera pantalla.
+  const mobile = matchMedia('(max-width: 700px)');
+  const away = () => note.toggleAttribute('data-away', mobile.matches && scrollY > innerHeight * 0.5);
+  addEventListener('scroll', away, { passive: true });
+  mobile.addEventListener('change', away);
+  away();
   setTimeout(() => {
    note.hidden = false;
    // Quien ya vio estas novedades sólo encuentra la pestaña; en móvil también,
