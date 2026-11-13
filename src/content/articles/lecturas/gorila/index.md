@@ -3,6 +3,7 @@ section: lecturas
 label: Reseña · Alumnado
 grades: [4]
 title: Gorila
+bookAuthor: Anthony Browne
 description: Rodrigo Emilio, de 4º, recomienda el libro de Anthony Browne sobre una niña que quiere pasar más tiempo con su papá.
 intro: «Recomiendo este libro porque es muy bonito y sentimental.»
 recommendedBy: Rodrigo Emilio, de 4º

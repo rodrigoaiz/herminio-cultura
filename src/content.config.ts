@@ -17,6 +17,8 @@ const articles = defineCollection({
     grades: z.union([z.array(z.number().int().min(1).max(6)), z.string()]).default([]),
     // Reseñas de Lecturas: quién recomienda el libro. Con este campo, la reseña aparece en el estante.
     recommendedBy: z.string().optional(),
+    // Reseñas: autoría del libro, para la portada del estante.
+    bookAuthor: z.string().optional(),
   }),
 });
 

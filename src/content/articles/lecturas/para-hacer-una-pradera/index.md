@@ -2,6 +2,7 @@
 section: lecturas
 label: Reseña de ejemplo
 title: 'Para hacer una pradera'
+bookAuthor: Flor Aguilera y Florencia Rigiroti
 description: Una reseña de muestra del Comité de Cultura sobre la biografía de Emily Dickinson de Flor Aguilera y Florencia Rigiroti, para que veas cómo puede ser la tuya.
 intro: Esta reseña es un ejemplo. La escribimos desde el Comité de Cultura para mostrar cómo puede verse una recomendación. La tuya puede ser más corta, más larga o muy distinta.
 date: 2026-10-17

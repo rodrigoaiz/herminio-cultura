@@ -3,6 +3,7 @@ section: lecturas
 label: Reseña · Alumnado
 grades: [2]
 title: 'Sobrevive en: Una noche en el safari'
+bookAuthor: Gomdori Co. y Han Hyun-dong
 description: Darío V., de 2º, recomienda una serie de cómics coreanos de aventuras y animales.
 intro: «A mí me gustan los cómics y estos son mangas, y a mí me gustan los dibujos de los mangas.»
 recommendedBy: Darío V., de 2º

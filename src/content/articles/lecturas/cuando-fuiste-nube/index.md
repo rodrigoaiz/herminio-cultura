@@ -2,6 +2,7 @@
 section: lecturas
 label: Reseña · Personas adultas
 title: Cuando fuiste nube
+bookAuthor: María José Ferrada y Andrés López
 description: Tatiana C., mamá de Rodrigo, de 4º, recomienda el libro de poesía de María José Ferrada y Andrés López.
 intro: ¿Crees que las palabras se pueden sentir, oler o tocar? Un libro de poesía para descubrirlo.
 recommendedBy: Tatiana C., mamá de Rodrigo, de 4º

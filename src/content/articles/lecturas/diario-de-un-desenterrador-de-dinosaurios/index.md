@@ -3,6 +3,7 @@ section: lecturas
 label: Reseña · Alumnado
 grades: [4]
 title: Diario de un desenterrador de dinosaurios
+bookAuthor: Juan Carlos Quezadas
 description: Lucía R., de 4º, recomienda el libro de Juan Carlos Quezadas para leer de día y de noche.
 intro: «Es para todas las edades porque es imaginativo y para todo tipo de gustos.»
 recommendedBy: Lucía R., de 4º

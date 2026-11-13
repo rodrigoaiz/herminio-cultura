@@ -2,6 +2,7 @@
 section: lecturas
 label: Reseña · Personas adultas
 title: El libro de los cerdos
+bookAuthor: Anthony Browne
 description: Tatiana C., mamá de Rodrigo, de 4º, recomienda el libro de Anthony Browne sobre los cuidados y los roles de género en casa.
 intro: Una invitación a preguntarnos quién hace el trabajo de la casa y a cuestionar lo que antes parecía «natural».
 recommendedBy: Tatiana C., mamá de Rodrigo, de 4º
